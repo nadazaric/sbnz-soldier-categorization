@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from '../styles/DropdownMenu.module.css'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ArrowIcon from '@mui/icons-material/ArrowDropDown'
-// import { getTranslation } from '@/locales/TranslationHelper';
-import { Button } from '@mui/material';
-import Link from 'next/link';
+import { getTranslation } from '@/locales/TranslationHelper';
 
-export default function DropdownMenu({ options, selectedDefault, onSelect, alwaysOnText = null }) {
+export function DropdownMenuNavbarOption({ options, selectedDefault, onSelect, alwaysOnText = null }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedOption, setSelectedOption] = useState(null)
 
-//   const t = getTranslation()
+  const t = getTranslation()
 
   useEffect(() => {
     if (!selectedDefault && options && options.length > 0) {
@@ -33,7 +30,7 @@ export default function DropdownMenu({ options, selectedDefault, onSelect, alway
   }
 
   if (!options || options.length === 0) {
-    return <div>No da</div>
+    return <div>{t.no_data}</div>
   }
 
   return (

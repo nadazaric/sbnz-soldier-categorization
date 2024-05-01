@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import style from '../styles/Navbar.module.css'
 import { useEffect, useState } from 'react'
-import DropdownMenu from './DropdownMenu'
+import { DropdownMenuNavbarOption } from './DropdownMenu'
 import { useRouter } from 'next/router'
+import { getTranslation } from '@/locales/TranslationHelper'
 
 export default function Navbar() {
+    const t = getTranslation()
     const router = useRouter()
     const [selectedOption, setSelectedOption] = useState(PAGE.SOLDIERS)
     const [locale, setLocale] = useState()
@@ -31,7 +33,7 @@ export default function Navbar() {
                     href={`/${PAGE.SOLDIERS}`}
                     onClick={() => setSelectedOption(PAGE.SOLDIERS)}
                 >
-                    Dutyify
+                    {t.logo}
                 </Link>
                 
             </div>
@@ -41,17 +43,17 @@ export default function Navbar() {
                     href={`/${PAGE.SOLDIERS}`}
                     onClick={() => setSelectedOption(PAGE.SOLDIERS)}
                 >
-                    Vojnici
+                    {t.navbar_option_soldiers}
                 </Link>
                 <Link
                     className={`${style.option} ${selectedOption === PAGE.COMPETITIONS ? style.selectedOption : ''}`}
                     href={`/${PAGE.COMPETITIONS}`}
                     onClick={() => setSelectedOption(PAGE.COMPETITIONS)}
                 >
-                    Konkursi
+                    {t.navbar_option_competitions}
                 </Link>
                 <div className={style.devider} />
-                <DropdownMenu
+                <DropdownMenuNavbarOption
                     options={languageOptions}
                     selectedDefault={locale}
                     onSelect={changeLanguage}
