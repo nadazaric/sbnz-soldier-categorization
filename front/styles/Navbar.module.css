@@ -1,0 +1,49 @@
+.wrapper {
+    height: var(--NavbarHeight);
+    padding: 20px 25px;
+    background-color: rgb(var(--PrimaryColor));
+    color: rgb(var(--OnPrimaryColor));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(var(--OnPrimaryColor));
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgb(var(--OnPrimaryColor));
+    height: fit-content;
+    padding: 8px 13px;
+    border-radius: var(--CornerRadiusStandard);
+    transition: outline 0.05s ease-out;
+}
+
+.option:hover {
+    background-color: rgb(var(--SecondaryColor));
+}
+
+.selectedOption {
+    background-color: rgb(var(--SecondaryColor));
+    font-weight: 600;
+}
