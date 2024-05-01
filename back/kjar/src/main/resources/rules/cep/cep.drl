@@ -1,0 +1,8 @@
+package cep;
+
+rule "hello world"
+when
+    $s: String(this == "HELLO")
+then
+    System.err.println("WORLD");
+end
