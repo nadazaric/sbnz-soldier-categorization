@@ -1,0 +1,1 @@
+insert into soldier(id, full_name, jmbg, months, category, monthlyContribution) values (1, 'Pera Peric', '076436335357', 0, 0, 0.0);
