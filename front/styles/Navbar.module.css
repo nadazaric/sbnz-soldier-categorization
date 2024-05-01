@@ -47,3 +47,11 @@
     background-color: rgb(var(--SecondaryColor));
     font-weight: 600;
 }
+
+.devider {
+    height: 30px;
+    width: 1.5px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(var(--OnPrimaryColor), 0.3);
+}

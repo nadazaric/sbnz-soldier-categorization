@@ -1,0 +1,19 @@
+.dropdownButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgb(var(--OnPrimaryColor));
+    height: fit-content;
+    padding: 8px 13px;
+    border-radius: var(--CornerRadiusStandard);
+    transition: outline 0.05s ease-out;
+    border: none;
+    background-color: transparent;
+}
+
+.dropdownButton:hover {
+    background-color: rgb(var(--SecondaryColor));
+}

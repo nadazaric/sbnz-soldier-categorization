@@ -1,9 +1,27 @@
 import Link from 'next/link'
 import style from '../styles/Navbar.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import DropdownMenu from './DropdownMenu'
+import { useRouter } from 'next/router'
 
 export default function Navbar() {
+    const router = useRouter()
     const [selectedOption, setSelectedOption] = useState(PAGE.SOLDIERS)
+    const [locale, setLocale] = useState()
+    const languageOptions = [
+        { value: 'sr-Latn', text: 'SRB' },
+        { value: 'en', text: 'EN' }
+    ]
+
+    useEffect(() => {
+        setLocale(router.locale)
+    }, [router, selectedOption])
+
+    const changeLanguage = (e) => {
+        setLocale(e.value)
+        document.cookie = `NEXT_LOCALE=${e.value}; max-age=31536000; path=/`
+        router.replace(router.pathname, router.asPath, { locale: e.value })
+    }
 
     return(
         <div className={style.wrapper}>
@@ -32,6 +50,13 @@ export default function Navbar() {
                 >
                     Konkursi
                 </Link>
+                <div className={style.devider} />
+                <DropdownMenu
+                    options={languageOptions}
+                    selectedDefault={locale}
+                    onSelect={changeLanguage}
+                    button={true}
+                />
             </div>
         </div>
     )
