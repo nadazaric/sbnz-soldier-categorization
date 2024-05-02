@@ -37,7 +37,6 @@ export function DropdownMenuNavbarOption({ options, selectedDefault, onSelect, a
     <div>
 
         <label 
-            disableRipple 
             className={style.dropdownButton} 
             onClick={handleClick}>
                 <div>

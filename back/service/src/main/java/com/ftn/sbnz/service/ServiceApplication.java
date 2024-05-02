@@ -14,8 +14,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @EnableJpaRepositories("com.*") 
 @ComponentScan(basePackages = { "com.*" }) 
 @EntityScan("com.*")
-public class ServiceApplication  {
-	
+public class ServiceApplication  { 
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceApplication.class, args);
 	}
