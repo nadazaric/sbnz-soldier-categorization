@@ -4,6 +4,9 @@ export default {
     navbar_option_soldiers: 'Vojnici',
     navbar_option_competitions: 'Konkursi',
 
+    // soldiers
+    soldiers_header_title: 'Vojnici',
+
     // globals
     no_data: 'Nema podataka.'
 }

@@ -1,38 +1,25 @@
+import { ButtonHeader } from "@/components/Header";
+import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
+import { getTranslation } from "@/locales/TranslationHelper";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Soldiers() {
-
-    // useEffect(() => {
-    //     axios.get(`${BACK_BASE_URL}/soldier`, {
-    //         // headers: { 'skip': true },
-    //         mode: 'cors' // Dodajte ovde mode: 'cors'
-    //     })
-    //     .then(response => { console.log(response.data) })
-    //     .catch(_error => {});
-    // }, []);
-
+    const t = getTranslation()
+    const [soldiers, setSoldiers] = useState(null)
 
     useEffect(() => {
-        fetch(`${BACK_BASE_URL}/soldier`, {
-            method: 'GET',
-            headers: {
-            //     'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    }, []);
-    
-    
-
+        axios.get(`${BACK_BASE_URL}/soldier`)
+        .then(response => { console.log(response.data); setSoldiers(response.data) })
+        .catch(_error => {})
+    }, [])
 
     return(
-        <div>
-            Soldiers Page
+        <div className='page'>
+            <ButtonHeader title={t.soldiers_header_title} />
+            <div className="spacer_hor_M" />
+            <TableSoldiers soldiers={soldiers} />
         </div>
     )
 }

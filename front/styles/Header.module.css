@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.title:hover {
+    cursor: default;
+}
+
+.icon {
+    scale: 1.4;
+}
