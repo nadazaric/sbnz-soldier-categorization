@@ -43,3 +43,23 @@
     gap: 15px;
     justify-content: flex-end;
 }
+
+.pageNoData {
+    height: calc(100vh - var(--NavBarHeight));
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.noDataDescription {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.noDataIcon {
+    color: rgba(var(--PrimaryColor), 0.3);
+}

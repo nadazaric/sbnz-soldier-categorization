@@ -12,6 +12,9 @@ export default {
     soldiers_category: 'Category',
     soldiers_monthly_contribution: 'Monthly Contribution',
 
+    // buttons
+    button_add_soldier: 'Add Soldier',
+
     // globals
-    no_data: 'No data'
+    no_data: 'No data.'
 }

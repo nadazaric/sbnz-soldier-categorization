@@ -12,6 +12,9 @@ export default {
     soldiers_category: 'Kategorija',
     soldiers_monthly_contribution: 'Mjesečni doprinos',
 
+    // buttons
+    button_add_soldier: 'Dodaj vojnika',
+
     // globals
     no_data: 'Nema podataka.'
 }

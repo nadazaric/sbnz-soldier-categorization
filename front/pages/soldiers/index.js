@@ -11,15 +11,30 @@ export default function Soldiers() {
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/soldier`)
-        .then(response => { setSoldiers(response.data) })
+        .then(response => { setSoldiers(response.data); setSoldiers([]) })
         .catch(_error => {})
     }, [])
 
+    function onSoldierClick(soldier) {
+        console.log(soldier)
+    }
+
+    function onAddClick() {
+        console.log('Add')
+    }
+
     return(
         <div className='page'>
-            <ButtonHeader title={t.soldiers_header_title} />
+            <ButtonHeader 
+                title={t.soldiers_header_title}
+                onAddClick={onAddClick} 
+            />
             <div className="spacer_hor_M" />
-            <TableSoldiers soldiers={soldiers} />
+            <TableSoldiers 
+                soldiers={soldiers} 
+                onSoldierClick={onSoldierClick}
+                onAddClick={onAddClick}
+            />
         </div>
     )
 }

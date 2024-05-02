@@ -61,3 +61,42 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--PrimaryColor), 0.6)
 }
+
+/* ------------------------------------------------------------------------------------------------------ Buttons */
+.button {
+  padding: 10px;
+  height: 35px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--CornerRadiusStandard);
+}
+
+.raisedButton {
+  background-color: rgb(var(--PrimaryColor));
+  color: rgb(var(--OnPrimaryColor));
+  transition: background-color 100ms ease-out;
+}
+
+.raisedButton:hover {
+  background-color: rgb(var(--SecondaryColor));
+}
+
+.raisedButton:disabled {
+  background-color: rgba(var(--LightGray), 0.35);
+}
+
+.outlinedButton {
+  color: rgb(var(--PrimaryColor));
+  border: solid 2px rgb(var(--PrimaryColor));
+  transition: background-color 100ms ease-out;
+}
+
+.outlinedButton:hover {
+  color: rgb(var(--SecondaryColor));
+  border: solid 2px rgb(var(--SecondaryColor));
+  background-color: transparent;
+}
