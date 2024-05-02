@@ -11,7 +11,7 @@ export default function Soldiers() {
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/soldier`)
-        .then(response => { console.log(response.data); setSoldiers(response.data) })
+        .then(response => { setSoldiers(response.data) })
         .catch(_error => {})
     }, [])
 

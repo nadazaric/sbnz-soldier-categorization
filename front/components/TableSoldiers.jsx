@@ -14,13 +14,13 @@ export default function TableSoldiers({ soldiers, onSoldierClick }) {
     return (
         <div>
             <div className={style.rowSoldier}>
-                <div className={`${style.item} ${style.headerItem}`}>{'Ime i prezime'}</div>
-                <div className={`${style.item} ${style.headerItem}`}>{'Jedinstveni maticni broj'}</div>
-                <div className={`${style.item} ${style.headerItem}`}>{'Broj mjeseci u ratnoj zoni'}</div>
-                <div className={`${style.item} ${style.headerItem}`}>{'Kategorija'}</div>
-                <div className={`${style.item} ${style.headerItem}`}>{'Mjesecni doprinos'}</div>
+                <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_full_name}</div>
+                <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_jmbg}</div>
+                <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_months}</div>
+                <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_category}</div>
+                <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_monthly_contribution}</div>
             </div>
-            {soldiers.map((soldier, index) => (
+            {soldiers != null && soldiers.map((soldier, index) => (
                 <React.Fragment key={index}>
                     <div className={`${style.rowSoldier} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
                         <div className={`${style.item}`}>{soldier.fullName}</div>

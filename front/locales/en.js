@@ -6,6 +6,11 @@ export default {
 
     // soldiers
     soldiers_header_title: 'Soldiers',
+    soldiers_full_name: 'Name and Surname',
+    soldiers_jmbg: 'Unique identification number',
+    soldiers_months: 'Months in the war zone',
+    soldiers_category: 'Category',
+    soldiers_monthly_contribution: 'Monthly Contribution',
 
     // globals
     no_data: 'No data'
