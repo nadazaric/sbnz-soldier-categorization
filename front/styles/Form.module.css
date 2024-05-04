@@ -1,0 +1,21 @@
+.inputWrapper {
+    width: 250px;
+    border: 2px solid rgb(var(--DarkGray));
+    border-radius: var(--CornerRadiusStandard);
+    transition: border-color 0.1s, color 0.1s;
+    height: var(--InputButtonHeight);
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+}
+.inputWrapper:focus-within { border-color:  rgb(var(--PrimaryColor)); }
+.inputWrapper:hover:not(:focus-within) { border-color: rgb(var(--SecondaryColor)); }
+.input {
+    width: 100%;
+    margin: 0 5px 0 5px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+}
+.input:hover { background-color: transparent; }

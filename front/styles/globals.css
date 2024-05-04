@@ -4,11 +4,12 @@
   --OnPrimaryColor: 255, 255, 255;
   --SecondaryColor: 97, 157, 115;
   --LightGray: 238, 238, 238;
+  --DarkGray: 125, 130, 120;
 
   /* variables */
   --CornerRadiusStandard: 30px;
   --NavbarHeight: 60px;
-  --InputButtonHeight: 30px;
+  --InputButtonHeight: 40px;
 
   /* animations */
   --ModalAnimation: 400ms;

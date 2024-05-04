@@ -1,5 +1,6 @@
 import { Dialog, DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
+import { SoldierDetails } from "@/components/SoldierDetails";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
 import { getTranslation } from "@/locales/TranslationHelper";
@@ -43,7 +44,8 @@ export default function Soldiers() {
                 onCloseModal={() => setOpenDialog(false)}
                 title={'Neki title'}
             >
-                <p>Ovo je neki kontent</p>
+                <SoldierDetails 
+                    formMode/>
             </DialogWithHeader>
         </div>
     )
