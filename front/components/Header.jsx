@@ -5,7 +5,7 @@ export function ButtonHeader({ title, onAddClick }) {
 
     return(
         <div className={style.wrapper}>
-            <div className={style.title}> {title} </div>
+            <div className='title'> {title} </div>
             <AddIcon 
                 className={`${style.icon} icon`}
                 onClick={() => { if(onAddClick) onAddClick()}} />

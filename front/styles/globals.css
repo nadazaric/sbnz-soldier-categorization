@@ -9,6 +9,9 @@
   --CornerRadiusStandard: 30px;
   --NavbarHeight: 60px;
   --InputButtonHeight: 30px;
+
+  /* animations */
+  --ModalAnimation: 400ms;
 }
 
 * {
@@ -45,6 +48,15 @@ body {
 .icon:hover {
   color: rgb(var(--PrimaryColor));
   opacity: 1;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.title:hover {
+  cursor: default;
 }
 
 .spacer_hor_M {height: 10px;}

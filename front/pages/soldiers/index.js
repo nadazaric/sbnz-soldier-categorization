@@ -1,3 +1,4 @@
+import { Dialog, DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
@@ -8,10 +9,11 @@ import { useEffect, useState } from "react";
 export default function Soldiers() {
     const t = getTranslation()
     const [soldiers, setSoldiers] = useState(null)
+    const [openDialog, setOpenDialog] = useState(false)
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/soldier`)
-        .then(response => { setSoldiers(response.data); setSoldiers([]) })
+        .then(response => { setSoldiers(response.data) })
         .catch(_error => {})
     }, [])
 
@@ -20,6 +22,7 @@ export default function Soldiers() {
     }
 
     function onAddClick() {
+        setOpenDialog(true)
         console.log('Add')
     }
 
@@ -35,6 +38,13 @@ export default function Soldiers() {
                 onSoldierClick={onSoldierClick}
                 onAddClick={onAddClick}
             />
+            <DialogWithHeader
+                isOpen={openDialog}
+                onCloseModal={() => setOpenDialog(false)}
+                title={'Neki title'}
+            >
+                <p>Ovo je neki kontent</p>
+            </DialogWithHeader>
         </div>
     )
 }
