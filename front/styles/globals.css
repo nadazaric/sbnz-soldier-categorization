@@ -60,6 +60,7 @@ body {
   cursor: default;
 }
 
+.spacer_hor_S {height: 6px;}
 .spacer_hor_M {height: 10px;}
 
 /* ------------------------------------------------------------------------------------------------------ Scrollbar */
@@ -92,6 +93,9 @@ body {
   background-color: rgb(var(--PrimaryColor));
   color: rgb(var(--OnPrimaryColor));
   transition: background-color 100ms ease-out;
+  border-radius: var(--CornerRadiusStandard);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .raisedButton:hover {

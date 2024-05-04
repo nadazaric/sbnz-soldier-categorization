@@ -19,3 +19,9 @@
     font-size: 14px;
 }
 .input:hover { background-color: transparent; }
+
+.form {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}

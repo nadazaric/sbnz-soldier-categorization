@@ -1,4 +1,4 @@
-import { Dialog, DialogWithHeader } from "@/components/Dialog";
+import { DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
 import { SoldierDetails } from "@/components/SoldierDetails";
 import TableSoldiers from "@/components/TableSoldiers";
@@ -14,8 +14,8 @@ export default function Soldiers() {
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/soldier`)
-        .then(response => { setSoldiers(response.data) })
-        .catch(_error => {})
+            .then(response => { setSoldiers(response.data) })
+            .catch(_error => {})
     }, [])
 
     function onSoldierClick(soldier) {
@@ -24,8 +24,21 @@ export default function Soldiers() {
 
     function onAddClick() {
         setOpenDialog(true)
-        console.log('Add')
     }
+
+    const saveSoldier = async (formData) => {
+        try {
+            const response = await axios.post(`${BACK_BASE_URL}/soldier`, formData, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            if (response.status === 201) {
+                setSoldiers(prevSoldiers => [...prevSoldiers, response.data])
+                setOpenDialog(false)
+            }
+            else { }
+        } catch (error) { }
+    }
+    
 
     return(
         <div className='page'>
@@ -45,7 +58,9 @@ export default function Soldiers() {
                 title={'Neki title'}
             >
                 <SoldierDetails 
-                    formMode/>
+                    formMode
+                    onSave={saveSoldier}
+                />
             </DialogWithHeader>
         </div>
     )

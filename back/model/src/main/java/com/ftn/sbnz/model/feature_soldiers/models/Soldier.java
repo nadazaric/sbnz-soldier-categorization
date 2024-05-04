@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
 
 @Entity
@@ -32,14 +33,22 @@ public class Soldier {
 
     public Soldier() {}
 
-    public Soldier(Long id, String fullName, String jmbg, Integer months, SoldierCategory category,
+    public Soldier(String fullName, String jmbg, Integer months, SoldierCategory category,
             Double monthlyContribution) {
-        this.id = id;
         this.fullName = fullName;
         this.jmbg = jmbg;
         this.months = months;
         this.category = category;
         this.monthlyContribution = monthlyContribution;
+    }
+
+    public Soldier(CreateSoldierDTO soldierDTO) {
+        this.id = null;
+        this.fullName = soldierDTO.getFullName();
+        this.jmbg = soldierDTO.getJmbg();
+        this.months = 0;
+        this.category = SoldierCategory.NONE;
+        this.monthlyContribution = 0.0;
     }
 
     public Long getId() {

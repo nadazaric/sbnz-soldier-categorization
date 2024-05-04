@@ -1,10 +1,13 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Soldiers from "./soldiers";
+import { getTranslation } from "@/locales/TranslationHelper";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const t = getTranslation()
+
   return (
     <>
       <Head>
