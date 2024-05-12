@@ -18,7 +18,8 @@ public class SecurityConfiguration {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }
 }
