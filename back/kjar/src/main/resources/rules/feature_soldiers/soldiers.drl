@@ -1,0 +1,20 @@
+package feature_soldiers;
+
+import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
+import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
+import com.ftn.sbnz.model.feature_soldiers.values.WarDutyType;
+import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
+rule "Calculate months for classification"
+    when 
+        $soldier: Soldier($soldierId: id, SoldierCategory.UNCATEGORIZED == category, months == null)
+        $totalMonths: Number() from accumulate(
+            WarDuty(soldier.id == $soldierId, type == WarDutyType.WAR_ZONE, $startDate: startDate, $endDate: endDate),
+            sum((int)(ChronoUnit.DAYS.between($startDate, $endDate) / 30))
+        )
+    then 
+        System.err.println($totalMonths);
+        modify($soldier) {setMonths($totalMonths.intValue());}
+end

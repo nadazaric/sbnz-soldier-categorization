@@ -50,6 +50,16 @@ public class Soldier {
         this.monthlyContribution = 0.0;
     }
 
+    public Soldier(Long id, String fullName, String jmbg, Integer months, SoldierCategory category,
+            Double monthlyContribution) {
+        this.id = id;
+        this.fullName = fullName;
+        this.jmbg = jmbg;
+        this.months = months;
+        this.category = category;
+        this.monthlyContribution = monthlyContribution;
+    }
+
     public Long getId() {
         return id;
     }
