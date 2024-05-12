@@ -45,12 +45,24 @@ public class SoldiersTest {
             LocalDate.of(1993, 12, 1),
             WarDutyType.WORK_DUTY, 
             s1);
+        
+        Soldier s2 = new Soldier(
+            2L, 
+            "Nemanja Momic", 
+            "2", 
+            null, 
+            SoldierCategory.UNCATEGORIZED, 
+            0.0);
 
         ksession.insert(s1);
         ksession.insert(wd1);   
         ksession.insert(wd2); 
         ksession.insert(wd3);
+        ksession.insert(s2);
         ksession.fireAllRules();
-        System.err.println(s1.getMonths());
+        System.err.println(s1.getCategory());
+        System.err.println(s1.getMonthlyContribution());
+        System.err.println(s2.getCategory());
+        System.err.println(s2.getMonthlyContribution());
     }
 }
