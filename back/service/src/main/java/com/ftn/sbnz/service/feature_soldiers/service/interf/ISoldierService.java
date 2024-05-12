@@ -1,4 +1,4 @@
-package com.ftn.sbnz.service.service.interf;
+package com.ftn.sbnz.service.feature_soldiers.service.interf;
 
 import java.util.List;
 
