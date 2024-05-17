@@ -7,6 +7,8 @@ import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
+import com.ftn.sbnz.model.feature_soldiers.models.Injury;
+import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 
 rule "Calculate months for classification"
     when 
@@ -24,4 +26,27 @@ rule "Calculate months for classification"
         System.err.println($totalDays);
         modify($soldier) {setMonths((int) $totalDays/30);}
         modify($soldier) {setStatus(SoldierStatus.UNCATEGORIZED);}
+end
+
+rule "Calculate bonus from Injuries"
+    no-loop true
+    when
+        $soldier: Soldier(
+            $soldierId: id, 
+            $monthlyContribution: monthlyContribution, 
+            SoldierStatus.NO_INJURIES == status
+        )
+        $bonus: Number() from accumulate(
+            Injury(soldier.id == $soldierId, $type: type),
+            sum(
+                $type == InjuryType.LOW ? 20 :
+                $type == InjuryType.MEDIUM ? 30 :
+                $type == InjuryType.HIGH ? 40 :
+                0
+            )
+        )
+    then
+        System.err.println("LAST RULE");
+        System.err.println($soldierId);
+        modify($soldier) {setMonthlyContribution($monthlyContribution + $bonus.doubleValue());}
 end

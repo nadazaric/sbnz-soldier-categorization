@@ -29,6 +29,12 @@ public class Injury {
         this.type = type;
     }
 
+    public Injury(Long id, InjuryType type, Soldier soldier) {
+        this.id = id;
+        this.type = type;
+        this.soldier = soldier;
+    }
+
     public Long getId() {
         return id;
     }
@@ -43,6 +49,14 @@ public class Injury {
 
     public void setType(InjuryType type) {
         this.type = type;
+    }
+
+    public Soldier getSoldier() {
+        return soldier;
+    }
+
+    public void setSoldier(Soldier soldier) {
+        this.soldier = soldier;
     }
     
 }

@@ -8,8 +8,11 @@ import org.junit.Test;
 import org.kie.api.builder.Results;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.utils.KieHelper;
+
+import com.ftn.sbnz.model.feature_soldiers.models.Injury;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
+import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 import com.ftn.sbnz.model.feature_soldiers.values.WarDutyType;
@@ -68,6 +71,8 @@ public class SoldiersTest {
             LocalDate.of(1993, 12, 1),
             WarDutyType.WORK_DUTY, 
             s1);
+        Injury i1 = new Injury(1L, InjuryType.LOW, s1);
+        Injury i2 = new Injury(1L, InjuryType.HIGH, s1);
         
         Soldier s2 = new Soldier(
             2L, 
@@ -78,6 +83,7 @@ public class SoldiersTest {
             0.0,
             SoldierStatus.NO_MONTHS
         );
+        Injury i3 = new Injury(1L, InjuryType.MEDIUM, s2);
         
         Soldier s3 = new Soldier(
             3L, 
@@ -88,13 +94,21 @@ public class SoldiersTest {
             0.0,
             SoldierStatus.UNCATEGORIZED
         );
+        Injury i4 = new Injury(1L, InjuryType.HIGH, s3);
 
         ksession.insert(s1);
         ksession.insert(wd1);   
         ksession.insert(wd2); 
         ksession.insert(wd3);
+        ksession.insert(i1);
+        ksession.insert(i2);
+
         ksession.insert(s2);
+        ksession.insert(i3);
+
         ksession.insert(s3);
+        ksession.insert(i4);
+        
         ksession.fireAllRules();
         System.err.println(s1.getFullName());
         System.err.println(s1.getMonths());
