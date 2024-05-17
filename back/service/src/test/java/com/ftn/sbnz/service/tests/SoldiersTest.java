@@ -11,47 +11,45 @@ import org.kie.internal.utils.KieHelper;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
+import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 import com.ftn.sbnz.model.feature_soldiers.values.WarDutyType;
-
 import org.kie.api.builder.Message;
 import org.kie.api.io.ResourceType;
 import java.util.List;
 import org.drools.decisiontable.ExternalSpreadsheetCompiler;
 import org.apache.commons.io.IOUtils;
 
-
 public class SoldiersTest {
 
     @Test
     public void generateTemplate() throws IOException {
+
+        // load template
         InputStream template = SoldiersTest.class.getResourceAsStream("/rules/feature_soldiers/categorization.drt");
         InputStream data = SoldiersTest.class.getResourceAsStream("/rules/feature_soldiers/categorization-values.xls");
-
         ExternalSpreadsheetCompiler converter = new ExternalSpreadsheetCompiler();
         String drl = converter.compile(data, template, 3, 2);
-        // System.err.println(drl);
 
+        // load soldier rules
         InputStream ordinaryRules = SoldiersTest.class.getResourceAsStream("/rules/feature_soldiers/soldiers.drl");
         byte[] ordinaryRulesBytes = IOUtils.toByteArray(ordinaryRules);
         drl += new String(ordinaryRulesBytes, StandardCharsets.UTF_8);
-        // System.err.println(drl);
+        System.err.println(drl);
 
         KieSession ksession = this.createKieSessionFromDRL(drl);
         this.test(ksession);
     }
 
     private void test(KieSession ksession) {
-        // KieServices ks = KieServices.Factory.get();
-        // KieContainer kContainer = ks.getKieClasspathContainer(); 
-        // KieSession ksessionn = kContainer.newKieSession("feature_soldiers_key_ssesion");
-
         Soldier s1 = new Soldier(
             1L, 
             "Matko Maric", 
             "1", 
             null, 
-            SoldierCategory.UNCATEGORIZED, 
-            0.0);
+            SoldierCategory.NONE, 
+            0.0,
+            SoldierStatus.NO_MONTHS
+        );
         WarDuty wd1 = new WarDuty(
             1L, 
             LocalDate.of(1992, 5, 1), 
@@ -76,16 +74,20 @@ public class SoldiersTest {
             "Nemanja Momic", 
             "2", 
             null, 
-            SoldierCategory.UNCATEGORIZED, 
-            0.0);
+            SoldierCategory.NONE, 
+            0.0,
+            SoldierStatus.NO_MONTHS
+        );
         
         Soldier s3 = new Soldier(
             3L, 
             "Bogdan Cicic", 
             "2", 
             13, 
-            SoldierCategory.UNCATEGORIZED, 
-            0.0);
+            SoldierCategory.NONE, 
+            0.0,
+            SoldierStatus.UNCATEGORIZED
+        );
 
         ksession.insert(s1);
         ksession.insert(wd1);   

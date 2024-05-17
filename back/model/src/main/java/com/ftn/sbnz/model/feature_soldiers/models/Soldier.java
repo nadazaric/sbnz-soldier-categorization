@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
+import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 
 @Entity
 public class Soldier {
@@ -29,6 +30,9 @@ public class Soldier {
 
     @Column
     private Double monthlyContribution;
+
+    @Column
+    private SoldierStatus status;
 
     public Soldier() {}
 
@@ -58,6 +62,17 @@ public class Soldier {
         this.months = months;
         this.category = category;
         this.monthlyContribution = monthlyContribution;
+    }
+
+    public Soldier(Long id, String fullName, String jmbg, Integer months, SoldierCategory category,
+            Double monthlyContribution, SoldierStatus status) {
+        this.id = id;
+        this.fullName = fullName;
+        this.jmbg = jmbg;
+        this.months = months;
+        this.category = category;
+        this.monthlyContribution = monthlyContribution;
+        this.status = status;
     }
 
     public Long getId() {
@@ -106,5 +121,13 @@ public class Soldier {
 
     public void setMonthlyContribution(Double monthlyContribution) {
         this.monthlyContribution = monthlyContribution;
+    }
+    
+    public SoldierStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SoldierStatus status) {
+        this.status = status;
     }
 }

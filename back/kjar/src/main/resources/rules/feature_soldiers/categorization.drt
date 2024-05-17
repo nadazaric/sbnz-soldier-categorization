@@ -8,6 +8,7 @@ template header
 
     import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
     import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
+    import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 
     template "classification-rules"
 
@@ -16,13 +17,14 @@ template header
         when
             $soldier: Soldier(
                 $soldierId: id, 
-                SoldierCategory.UNCATEGORIZED == category, 
+                SoldierStatus.UNCATEGORIZED == status, 
                 $months: months > @{minMonths},
                 months <= @{maxMonths}
             )
         then
             modify($soldier) {setCategory(SoldierCategory.@{newCategory});}
             modify($soldier) {setMonthlyContribution(new Double(($months * @{coefficent})));}
+            modify($soldier) {setStatus(SoldierStatus.NO_INJURIES);}
     end
 
 end template

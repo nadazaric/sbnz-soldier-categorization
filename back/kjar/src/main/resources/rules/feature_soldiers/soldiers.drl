@@ -6,10 +6,11 @@ import com.ftn.sbnz.model.feature_soldiers.values.WarDutyType;
 import com.ftn.sbnz.model.feature_soldiers.values.SoldierCategory;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 
 rule "Calculate months for classification"
     when 
-        $soldier: Soldier($soldierId: id, SoldierCategory.UNCATEGORIZED == category, months == null)
+        $soldier: Soldier($soldierId: id, SoldierStatus.NO_MONTHS == status)
         $totalDays: Number() from accumulate(
             WarDuty(
                 soldier.id == $soldierId, 
@@ -22,4 +23,5 @@ rule "Calculate months for classification"
     then 
         System.err.println($totalDays);
         modify($soldier) {setMonths((int) $totalDays/30);}
+        modify($soldier) {setStatus(SoldierStatus.UNCATEGORIZED);}
 end
