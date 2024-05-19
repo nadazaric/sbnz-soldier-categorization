@@ -35,7 +35,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
           {entities != null && entities.length != 0 &&
             <div>
               <div className={style.rowInjury}>
-                  <div className={`${style.item} ${style.headerItem}`}>{t.war_obligation_start_date}</div>
+                  <div className={`${style.item} ${style.headerItem}`}>{t.injuries_type}</div>
                   <div className={`${style.item} ${style.headerItem}`}/>
               </div>
               { entities.map((injury, index) => (
@@ -52,7 +52,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                           checked={injury.type === 'LOW'}
                                           onChange={(e) => handleChange(index, e)}
                                       />
-                                      {t.war_obligation_type_war_zone}
+                                      {t.injuries_type_low}
                                   </label>
                                   <label className={styleForm.squareButtonLabel}>
                                       <input
@@ -63,7 +63,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                           checked={injury.type === 'MEDIUM'}
                                           onChange={(e) => handleChange(index, e)}
                                       />
-                                      {t.war_obligation_type_work_duty}
+                                      {t.injuries_type_medium}
                                   </label>
                                   <label className={styleForm.squareButtonLabel}>
                                       <input
@@ -74,7 +74,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                           checked={injury.type === 'HIGH'}
                                           onChange={(e) => handleChange(index, e)}
                                       />
-                                      {t.war_obligation_type_work_duty}
+                                      {t.injuries_type_high}
                                   </label>
                               </div>
                           </div>

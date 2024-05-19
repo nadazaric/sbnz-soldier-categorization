@@ -21,6 +21,12 @@ export default {
     war_obligation_type_war_zone: 'War Zone',
     war_obligation_type_work_duty: 'Work Duty',
 
+    // injuries
+    injuries_section: 'Injuries',
+    injuries_type: 'Type of Injury',
+    injuries_type_low: 'Minor Injury',
+    injuries_type_medium: 'Moderate Injury',
+    injuries_type_high: 'Severe Injury',
 
     // buttons
     button_add_soldier: 'Add Soldier',

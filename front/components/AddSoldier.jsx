@@ -94,7 +94,7 @@ export function AddSoldier({ formMode=false, onSave }) {
                 </Section>
                 <div className='spacer_hor_L' />
                 <Section 
-                    title={t.war_obligation_section}
+                    title={t.injuries_section}
                     action={SECTION_ACTIONS.ADD}
                     onAction={addInjury}
                 >

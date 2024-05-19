@@ -21,6 +21,13 @@ export default {
     war_obligation_type_war_zone: 'Ratna zona',
     war_obligation_type_work_duty: 'Radna obaveza',
 
+    // injuries
+    injuries_section: 'Povrede',
+    injuries_type: 'Tip povrede',
+    injuries_type_low: 'Manja povreda',
+    injuries_type_medium: 'Srednje teška povreda',
+    injuries_type_high: 'Teška povreda',
+
     // buttons
     button_add_soldier: 'Dodaj vojnika',
     button_save: 'Sačuvaj',
