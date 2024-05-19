@@ -1,6 +1,6 @@
 import { DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
-import { SoldierDetails } from "@/components/SoldierDetails";
+import { AddSoldier } from "@/components/AddSoldier";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
 import { getTranslation } from "@/locales/TranslationHelper";
@@ -57,7 +57,7 @@ export default function Soldiers() {
                 onCloseModal={() => setOpenDialog(false)}
                 title={'Neki title'}
             >
-                <SoldierDetails 
+                <AddSoldier 
                     formMode
                     onSave={saveSoldier}
                 />
