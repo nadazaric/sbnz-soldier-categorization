@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import com.ftn.sbnz.model.feature_soldiers.dtos.CreateInjuryDTO;
 import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 
 @Entity
@@ -33,6 +34,10 @@ public class Injury {
         this.id = id;
         this.type = type;
         this.soldier = soldier;
+    }
+
+    public Injury(CreateInjuryDTO injuryDTO) {
+        this.type = InjuryType.valueOf(injuryDTO.getType());
     }
 
     public Long getId() {

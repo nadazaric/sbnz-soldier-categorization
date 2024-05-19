@@ -52,6 +52,7 @@ public class Soldier {
         this.months = 0;
         this.category = SoldierCategory.NONE;
         this.monthlyContribution = 0.0;
+        this.status = SoldierStatus.NO_MONTHS;
     }
 
     public Soldier(Long id, String fullName, String jmbg, Integer months, SoldierCategory category,

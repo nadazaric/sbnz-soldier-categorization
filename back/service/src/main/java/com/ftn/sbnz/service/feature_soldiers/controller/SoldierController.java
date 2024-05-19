@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.service.feature_soldiers.service.interf.ISoldierService;
-
 import org.springframework.http.HttpStatus;
 
 @RestController

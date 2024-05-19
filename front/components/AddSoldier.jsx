@@ -58,7 +58,12 @@ export function AddSoldier({ formMode=false, onSave, isOpen }) {
       
     function saveSoldier(e) {
         e.preventDefault()
-        if (onSave) onSave(form)
+        if (onSave) onSave({
+            fullName: form.fullName,
+            jmbg: form.jmbg,
+            warDuties: warObligations,
+            injuries: injuries
+        })
         setForm({
             fullName: '',
             jmbg: ''

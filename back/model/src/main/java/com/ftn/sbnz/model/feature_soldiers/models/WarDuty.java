@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import com.ftn.sbnz.model.feature_soldiers.dtos.CreateWarDutyDTO;
 import com.ftn.sbnz.model.feature_soldiers.values.WarDutyType;
 
 @Entity
@@ -37,6 +38,12 @@ public class WarDuty {
         this.endDate = endDate;
         this.type = type;
         this.soldier = soldier;
+    }
+
+    public WarDuty(CreateWarDutyDTO createWarDutyDTO) {
+        this.startDate = createWarDutyDTO.getStartDate();
+        this.endDate = createWarDutyDTO.getEndDate();
+        this.type = WarDutyType.valueOf(createWarDutyDTO.getType());
     }
 
     public Long getId() {

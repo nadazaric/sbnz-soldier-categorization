@@ -48,7 +48,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                           className={styleForm.squareButton}
                                           type="radio"
                                           value="LOW"
-                                          name={`type-${index}`}
+                                          name={`type-injury-${index}`}
                                           checked={injury.type === 'LOW'}
                                           onChange={(e) => handleChange(index, e)}
                                       />
@@ -58,7 +58,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                       <input
                                           className={styleForm.squareButton}
                                           type="radio"
-                                          name={`type-${index}`}
+                                          name={`type-injury-${index}`}
                                           value="MEDIUM"
                                           checked={injury.type === 'MEDIUM'}
                                           onChange={(e) => handleChange(index, e)}
@@ -69,7 +69,7 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                                       <input
                                           className={styleForm.squareButton}
                                           type="radio"
-                                          name={`type-${index}`}
+                                          name={`type-injury-${index}`}
                                           value="HIGH"
                                           checked={injury.type === 'HIGH'}
                                           onChange={(e) => handleChange(index, e)}
