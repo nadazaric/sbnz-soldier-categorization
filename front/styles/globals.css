@@ -112,7 +112,8 @@ body {
 }
 
 .raisedButton:disabled {
-  background-color: rgba(var(--LightGray), 0.35);
+  background-color: rgba(var(--LightGray), 1);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .outlinedButton {

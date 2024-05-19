@@ -56,7 +56,7 @@ export default function Soldiers() {
                 isOpen={openDialog}
                 width={600}
                 onCloseModal={() => setOpenDialog(false)}
-                title={'Neki title'}
+                title={t.soldiers_add_title}
             >
                 <AddSoldier 
                     formMode

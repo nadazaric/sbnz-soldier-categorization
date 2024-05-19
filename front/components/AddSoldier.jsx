@@ -14,14 +14,20 @@ export function AddSoldier({ formMode=false, onSave }) {
     })
 
     const [warObligations, setWarObligations] = useState([])
+    const [warObligationsHaveError, setWarObligationsHaveError] = useState(false)
     const addObligationToList = () => {
         setWarObligations([...warObligations, { startDate: new Date(1992, 3, 7), endDate: new Date(1992, 3, 8), type: 'WAR_ZONE' }]);
     }
-    function onObligationsChange(newObligations) {
+    function onObligationsChange(newObligations, haveError) {
         setWarObligations(newObligations)
-        console.log(newObligations)
+        setWarObligationsHaveError(haveError)
     }
-
+    function removeObligationFromList(indexToRemove) {
+        setWarObligations(prevObligations => {
+            return prevObligations.filter((obligation, index) => index !== indexToRemove)
+        })
+    }
+      
     function saveSoldier(e) {
         e.preventDefault()
         if (onSave) onSave(form)
@@ -29,6 +35,10 @@ export function AddSoldier({ formMode=false, onSave }) {
             fullName: '',
             jmbg: ''
         })
+    }
+
+    function isButtonDisabled() {
+        return form.fullName == '' || form.jmbg == '' || !warObligationsHaveError
     }
 
     if (formMode) {
@@ -56,13 +66,14 @@ export function AddSoldier({ formMode=false, onSave }) {
                 </div>
                 <div className='spacer_hor_L' />
                 <Section 
-                    title={"Ucesce u ratu"}
+                    title={t.war_obligation_section}
                     action={SECTION_ACTIONS.ADD}
                     onAction={addObligationToList}
                 >
                     <TableEditableWarObligation 
                         obligations={warObligations}
                         onChange={onObligationsChange}
+                        onDelete={removeObligationFromList}
                     />
                 </Section>
                 <div className='spacer_hor_L' />
@@ -70,6 +81,7 @@ export function AddSoldier({ formMode=false, onSave }) {
                     disableRipple
                     className='raisedButton'
                     type='submit'
+                    disabled={isButtonDisabled()}
                 >
                     {t.button_save}
                 </Button>

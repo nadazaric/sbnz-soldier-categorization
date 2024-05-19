@@ -11,7 +11,7 @@
 .rowWarObligation {
     height: fit-content;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 2fr 40px;
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
