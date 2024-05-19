@@ -61,6 +61,7 @@ export default function Soldiers() {
                 <AddSoldier 
                     formMode
                     onSave={saveSoldier}
+                    isOpen={openDialog}
                 />
             </DialogWithHeader>
         </div>

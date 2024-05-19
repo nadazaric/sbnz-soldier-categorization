@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styleForm from '../styles/Form.module.css'
 import { getTranslation } from '@/locales/TranslationHelper'
 import { Button } from '@mui/material'
@@ -6,7 +6,7 @@ import Section, { SECTION_ACTIONS } from './Section'
 import TableEditableWarObligation from './TableEditableWarObligation'
 import TableEditableInjury from './TableEditableInjury'
 
-export function AddSoldier({ formMode=false, onSave }) {
+export function AddSoldier({ formMode=false, onSave, isOpen }) {
     const t = getTranslation()
 
     const [form, setForm] = useState({
@@ -43,6 +43,18 @@ export function AddSoldier({ formMode=false, onSave }) {
             return prev.filter((injury, index) => index !== indexToRemove)
         })
     }
+
+    // clear form
+    useEffect(() => {
+        if(isOpen) return
+        setForm({
+            fullName: '',
+            jmbg: ''
+        })
+        setWarObligations([])
+        setWarObligationsHaveError(false)
+        setInjuries([])
+    }, [isOpen])
       
     function saveSoldier(e) {
         e.preventDefault()
