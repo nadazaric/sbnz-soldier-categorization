@@ -24,4 +24,59 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    width: 100%;
+}
+
+.celearInput{
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    outline: none;
+}
+
+/* radio btn */
+
+.radioButtonWrapper { 
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.squareButtonLabel {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    font-size: 12px;
+}
+
+.squareButtonLabel:hover > .squareButton {
+    border: 2px solid rgb(var(--SecondaryColor));
+}
+
+.squareButton {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 15px;
+    aspect-ratio: 1;
+    border-radius: var(--CornerRadiusStandard);
+    border: 2px solid #aaa;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 100ms ease-out;
+    color: transparent;
+    margin: 0;
+}
+
+.squareButton:checked {
+    background-color: rgb(var(--PrimaryColor));
+    border: 2px solid rgb(var(--PrimaryColor));
+}
+
+.squerButtonLabel { 
+    display: flex;
+    /* gap: 5px; */
+    align-items: center;
 }

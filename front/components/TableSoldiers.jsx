@@ -35,7 +35,7 @@ export default function TableSoldiers({ soldiers, onSoldierClick, onAddClick }) 
                 {soldiers != null && soldiers.map((soldier, index) => (
                     <React.Fragment key={index}>
                         <div 
-                            className={`${style.rowSoldier} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}
+                            className={`${style.rowSoldier} ${style.itemRow} ${style.activeRow} ${index % 2 === 0 ? style.grayRow : ''}`}
                             onClick={() => {if (onSoldierClick) onSoldierClick(soldier)}}>
                             <div className={`${style.item}`}>{soldier.fullName}</div>
                             <div className={`${style.item}`}>{soldier.jmbg}</div>

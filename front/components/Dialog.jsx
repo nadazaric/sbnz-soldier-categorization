@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from "react"
 import style from '../styles/Dialog.module.css'
 import CloseIcon from '@mui/icons-material/Close'
 
-export function Dialog({ isOpen=false, onCloseModal, children }) {
-
+export function Dialog({ 
+    isOpen=false, 
+    width=300,
+    onCloseModal, 
+    children 
+}) {
     const ref = useRef()
     useEffect(() => {
         if (isOpen) ref.current?.showModal()
@@ -17,6 +21,7 @@ export function Dialog({ isOpen=false, onCloseModal, children }) {
     return(
         <dialog
             className={`${style.dialog} ${isOpen ? style.show : style.hide}`}
+            style={{ width: `${width}px` }}
             ref={ref}
             onCancel={onCloseModal}
         >
@@ -25,10 +30,18 @@ export function Dialog({ isOpen=false, onCloseModal, children }) {
     )
 }
 
-export function DialogWithHeader({ isOpen=false, onCloseModal, title, children }) {
+export function DialogWithHeader({ 
+    isOpen=false, 
+    width=300,
+    isFullWidth=false,
+    onCloseModal, 
+    title, 
+    children 
+}) {
     return(
         <Dialog
             isOpen={isOpen}
+            width={width}
             onCloseModal={onCloseModal}
         >
             <div className={style.header}>

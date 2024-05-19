@@ -54,6 +54,7 @@ export default function Soldiers() {
             />
             <DialogWithHeader
                 isOpen={openDialog}
+                width={600}
                 onCloseModal={() => setOpenDialog(false)}
                 title={'Neki title'}
             >

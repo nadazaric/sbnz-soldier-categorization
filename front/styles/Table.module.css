@@ -8,7 +8,21 @@
     cursor: pointer;
 }
 
+.rowWarObligation {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .rowSoldier:hover {
+    cursor: default;
+}
+
+.rowWarObligation:hover {
     cursor: default;
 }
 
@@ -16,7 +30,7 @@
     transition: transform 75ms ease-out;
 }
 
-.itemRow:hover {
+.activeRow:hover {
     cursor: pointer;
     outline: solid 1px rgb(var(--PrimaryColor));
 }

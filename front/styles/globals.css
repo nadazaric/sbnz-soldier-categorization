@@ -5,6 +5,7 @@
   --SecondaryColor: 97, 157, 115;
   --LightGray: 238, 238, 238;
   --DarkGray: 125, 130, 120;
+  --ErrorColor: 240, 20, 96;
 
   /* variables */
   --CornerRadiusStandard: 30px;
@@ -60,8 +61,16 @@ body {
   cursor: default;
 }
 
+.error {
+  color: rgb(var(--ErrorColor));
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.width_full {width: 100% !important; }
 .spacer_hor_S {height: 6px;}
 .spacer_hor_M {height: 10px;}
+.spacer_hor_L {height: 14px;}
 
 /* ------------------------------------------------------------------------------------------------------ Scrollbar */
 ::-webkit-scrollbar {
