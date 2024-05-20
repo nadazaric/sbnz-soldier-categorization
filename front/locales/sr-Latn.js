@@ -10,6 +10,8 @@ export default {
     soldiers_jmbg: 'Jedinstveni matični broj [JMBG]',
     soldiers_months: 'Broj mjeseci u ratnoj zoni',
     soldiers_category: 'Kategorija',
+    soldiers_category_lower: 'kategorija',
+    soldiers_category_none: 'Nema kategoriju',
     soldiers_monthly_contribution: 'Mjesečni doprinos',
     soldiers_add_title: 'Dodaj vojnika',
 

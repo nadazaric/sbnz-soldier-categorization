@@ -10,6 +10,8 @@ export default {
     soldiers_jmbg: 'Unique identification number [JMBG]',
     soldiers_months: 'Months in the war zone',
     soldiers_category: 'Category',
+    soldiers_category_lower: 'category',
+    soldiers_category_none: 'No category',
     soldiers_monthly_contribution: 'Monthly Contribution',
     soldiers_add_title: 'Add soldier',
 

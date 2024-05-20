@@ -71,7 +71,7 @@ export function AddSoldier({ formMode=false, onSave, isOpen }) {
     }
 
     function isButtonDisabled() {
-        return form.fullName == '' || form.jmbg == '' || !warObligationsHaveError
+        return form.fullName == '' || form.jmbg == '' || !warObligationsHaveError || warObligations.length == 0
     }
 
     if (formMode) {

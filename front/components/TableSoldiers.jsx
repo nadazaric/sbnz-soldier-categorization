@@ -40,7 +40,7 @@ export default function TableSoldiers({ soldiers, onSoldierClick, onAddClick }) 
                             <div className={`${style.item}`}>{soldier.fullName}</div>
                             <div className={`${style.item}`}>{soldier.jmbg}</div>
                             <div className={`${style.item}`}>{soldier.months}</div>
-                            <div className={`${style.item}`}>{soldier.category}</div>
+                            <div className={`${style.item}`}>{soldier.category == 'NONE' ? t.soldiers_category_none : `${soldier.category} ${t.soldiers_category_lower}`}</div>
                             <div className={`${style.item}`}>{soldier.monthlyContribution} {t.valute}</div>
                         </div>
                     </React.Fragment>
