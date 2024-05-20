@@ -34,6 +34,7 @@ export default {
 
     // globals
     no_data: 'Nema podataka.',
+    valute: 'BAM',
 
     // errors
     error_date_not_in_range: 'Datumi nisu u opsegu 06.04.1992 - 14.12.1995.',

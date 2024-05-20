@@ -34,6 +34,7 @@ export default {
 
     // globals
     no_data: 'No data.',
+    valute: 'BAM',
 
     // errors
     error_date_not_in_range: 'Dates are not within the range of 06.04.1992 - 14.12.1995.',
