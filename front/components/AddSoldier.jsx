@@ -8,6 +8,7 @@ import TableEditableWarObligation from './TableEditableWarObligation'
 import TableEditableInjury from './TableEditableInjury'
 import axios from 'axios'
 import { BACK_BASE_URL } from '@/helper/environment'
+import detailsStyle from '../styles/Details.module.css'
 
 export function AddSoldier({ 
     selectedId = null,
@@ -51,10 +52,7 @@ export function AddSoldier({
         })
     }
 
-    // details view
-    
-
-    // clear form
+    // clear form && details view
     useEffect(() => {
         if(!isOpen) {
             setForm({
@@ -106,23 +104,41 @@ export function AddSoldier({
             className={styleForm.form}
             onSubmit={(e) => saveSoldier(e)}
         >
-            <div className={`${styleForm.inputWrapper} width_full`}>
-                <input 
-                    className={styleForm.input}
-                    value={form.fullName}
-                    placeholder={t.soldiers_full_name}
-                    onChange={(e) => {setForm({...form, fullName: e.target.value})}}  
-                />
-            </div>
-            <div className='spacer_hor_S' />
-            <div className={`${styleForm.inputWrapper} width_full`}>
-                <input 
-                    className={styleForm.input}
-                    value={form.jmbg}
-                    placeholder={t.soldiers_jmbg}
-                    onChange={(e) => {setForm({...form, jmbg: e.target.value})}}  
-                />
-            </div>
+            {formMode &&
+                <div className={styleForm.form}>
+                    <div className={`${styleForm.inputWrapper} width_full`}>
+                        <input 
+                            className={styleForm.input}
+                            value={form.fullName}
+                            placeholder={t.soldiers_full_name}
+                            onChange={(e) => {setForm({...form, fullName: e.target.value})}}  
+                        />
+                    </div>
+                    <div className='spacer_hor_S' />
+                    <div className={`${styleForm.inputWrapper} width_full`}>
+                        <input 
+                            className={styleForm.input}
+                            value={form.jmbg}
+                            placeholder={t.soldiers_jmbg}
+                            onChange={(e) => {setForm({...form, jmbg: e.target.value})}}  
+                        />
+                    </div>
+                </div>
+            }
+            {!formMode &&
+                <div className={detailsStyle.wrapper}>
+                    <div className={detailsStyle.rowWrapper}>
+                        <div className={detailsStyle.label}>Ime i prezime</div>
+                        <div className={detailsStyle.info}>{form.fullName}</div>
+                    </div>
+                    <div className='spacer_hor_S' />
+                    <div className={detailsStyle.rowWrapper}>
+                        <div className={detailsStyle.label}>JMBG</div>
+                        <div className={detailsStyle.info}>{form.jmbg}</div>
+                    </div>
+                </div>
+            }
+            
             <div className='spacer_hor_L' />
             <Section 
                 title={t.war_obligation_section}
@@ -136,28 +152,34 @@ export function AddSoldier({
                     onDelete={removeObligationFromList}
                 />
             </Section>
+
             <div className='spacer_hor_L' />
-            <Section 
-                title={t.injuries_section}
-                action={formMode ? SECTION_ACTIONS.ADD : SECTION_ACTIONS.NONE}
-                onAction={addInjury}
-            >
-                <TableEditableInjury 
-                    formMode={formMode}
-                    injuries={injuries}
-                    onChange={onInjuriesChange}
-                    onDelete={removeInjuryFromList}
-                />
-            </Section>
+            {(formMode || injuries.length != 0) &&
+                <Section 
+                    title={t.injuries_section}
+                    action={formMode ? SECTION_ACTIONS.ADD : SECTION_ACTIONS.NONE}
+                    onAction={addInjury}
+                >
+                    <TableEditableInjury 
+                        formMode={formMode}
+                        injuries={injuries}
+                        onChange={onInjuriesChange}
+                        onDelete={removeInjuryFromList}
+                    />
+                </Section>
+            }
+            
             <div className='spacer_hor_L' />
-            <Button 
-                disableRipple
-                className='raisedButton'
-                type='submit'
-                disabled={isButtonDisabled()}
-            >
-                {t.button_save}
-            </Button>
+            {formMode &&
+                <Button 
+                    disableRipple
+                    className='raisedButton'
+                    type='submit'
+                    disabled={isButtonDisabled()}
+                >
+                    {t.button_save}
+                </Button>
+            }
         </form>
     )
 }
