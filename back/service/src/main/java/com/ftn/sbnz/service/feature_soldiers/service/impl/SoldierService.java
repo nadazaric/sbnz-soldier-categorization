@@ -1,6 +1,9 @@
 package com.ftn.sbnz.service.feature_soldiers.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +54,30 @@ public class SoldierService implements ISoldierService {
 
         kieSession.fireAllRules();
         return soldierRepository.save(soldier);
+    }
+
+    @Override
+    public CreateSoldierDTO getOne(Long id) {
+        Optional<Soldier> soldier = soldierRepository.findById(id);
+        if (!soldier.isPresent()) return null;
+        CreateSoldierDTO createSoldierDTO = new CreateSoldierDTO();
+        createSoldierDTO.setFullName(soldier.get().getFullName());
+        createSoldierDTO.setJmbg(soldier.get().getJmbg());
+        
+        List<CreateWarDutyDTO> warDutyDTOs = new ArrayList<>();
+        List<WarDuty> warDuties = warDutyRepository.findBySoldierId(id);
+        for (WarDuty warDuty : warDuties) {
+            warDutyDTOs.add(new CreateWarDutyDTO(warDuty.getStartDate(), warDuty.getEndDate(), warDuty.getType().toString()));
+        }
+        createSoldierDTO.setWarDuties(warDutyDTOs);
+
+        List<CreateInjuryDTO> injuryDTOs = new ArrayList<>();
+        List<Injury> injuries = injuryRepository.findBySoldierId(id);
+        for (Injury injury : injuries) {
+            injuryDTOs.add(new CreateInjuryDTO(injury.getType().toString()));
+        }
+        createSoldierDTO.setInjuries(injuryDTOs);
+
+        return createSoldierDTO;
     }
 }

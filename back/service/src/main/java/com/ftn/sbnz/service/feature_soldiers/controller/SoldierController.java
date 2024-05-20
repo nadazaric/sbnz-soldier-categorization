@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,11 @@ public class SoldierController {
     @PostMapping
     public ResponseEntity<Soldier> create(@RequestBody CreateSoldierDTO soldierDTO){
         return new ResponseEntity<>(soldierService.saveSoldier(soldierDTO), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CreateSoldierDTO> getOne(@PathVariable Long id) {
+        return new ResponseEntity<>(soldierService.getOne(id), HttpStatus.OK);
     }
     
 }

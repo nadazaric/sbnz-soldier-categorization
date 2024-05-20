@@ -6,7 +6,11 @@ import styleForm from '../styles/Form.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutline'
 import { getTranslation } from '@/locales/TranslationHelper'
 
-export default function TableEditableWarObligation({ obligations, onChange, onDelete }) {
+export default function TableEditableWarObligation({ 
+  obligations, 
+  onChange, 
+  onDelete 
+}) {
   const [entities, setEntities] = useState([])
   const [isError, setIsError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -63,6 +67,17 @@ export default function TableEditableWarObligation({ obligations, onChange, onDe
     return true
   }
 
+  function getDate(date) {
+    if (date instanceof Date) {
+      const year = date.getFullYear()
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      return `${year}-${month}-${day}`
+  } else {
+      return date
+  }
+  }
+
   function onDeleteClick(e, index) {
     e.preventDefault()
     if (onDelete) onDelete(index)
@@ -87,7 +102,8 @@ export default function TableEditableWarObligation({ obligations, onChange, onDe
                               className={`${styleForm.celearInput} width_full`}
                               name="startDate"
                               type="date"
-                              value={obligation.startDate.toISOString().split('T')[0]}
+                              // value={obligation.startDate.toISOString().split('T')[0]}
+                              value={getDate(obligation.startDate)}
                               onChange={(e) => handleChange(index, e)}
                             />
                           </div>
@@ -96,7 +112,8 @@ export default function TableEditableWarObligation({ obligations, onChange, onDe
                               className={`${styleForm.celearInput} width_full`}
                               name='endDate'
                               type="date"
-                              value={obligation.endDate.toISOString().split('T')[0]}
+                              // value={obligation.endDate.toISOString().split('T')[0]}
+                              value={getDate(obligation.endDate)}
                               onChange={(e) => handleChange(index, e)}
                             />
                           </div>

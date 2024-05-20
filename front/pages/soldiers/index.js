@@ -11,6 +11,7 @@ export default function Soldiers() {
     const t = getTranslation()
     const [soldiers, setSoldiers] = useState(null)
     const [openDialog, setOpenDialog] = useState(false)
+    const [selectedId, setSelectedId] = useState('')
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/soldier`)
@@ -19,11 +20,13 @@ export default function Soldiers() {
     }, [])
 
     function onSoldierClick(soldier) {
-        console.log(soldier)
+        setSelectedId(soldier.id)
+        setOpenDialog(true)
     }
 
     function onAddClick() {
         setOpenDialog(true)
+        setSelectedId(null)
     }
 
     const saveSoldier = async (formData) => {
@@ -59,7 +62,7 @@ export default function Soldiers() {
                 title={t.soldiers_add_title}
             >
                 <AddSoldier 
-                    formMode
+                    selectedId={selectedId}
                     onSave={saveSoldier}
                     isOpen={openDialog}
                 />
