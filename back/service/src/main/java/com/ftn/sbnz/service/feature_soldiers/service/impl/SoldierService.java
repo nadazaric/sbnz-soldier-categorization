@@ -10,6 +10,7 @@ import com.ftn.sbnz.model.feature_soldiers.dtos.CreateWarDutyDTO;
 import com.ftn.sbnz.model.feature_soldiers.models.Injury;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
+import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
 import com.ftn.sbnz.service.feature_soldiers.repository.InjuryRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.SoldierRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.WarDutyRepository;
@@ -18,16 +19,10 @@ import com.ftn.sbnz.service.feature_soldiers.service.interf.ISoldierService;
 @Service
 public class SoldierService implements ISoldierService {
 
-    private final KieSession kieSession;
-    
-    @Autowired
-    public SoldierService(KieSession kieSession) {
-        this.kieSession = kieSession;
-    }
-
     @Autowired SoldierRepository soldierRepository;
     @Autowired WarDutyRepository warDutyRepository;
     @Autowired InjuryRepository injuryRepository;
+    @Autowired IKieSessionService kieSessionService;
 
     @Override
     public List<Soldier> getAll() {
@@ -36,28 +31,25 @@ public class SoldierService implements ISoldierService {
 
     @Override
     public Soldier saveSoldier(CreateSoldierDTO soldierDTO) {
+        KieSession kieSession = kieSessionService.getKieSession();
 
         Soldier soldier = new Soldier(soldierDTO);
         soldier = soldierRepository.save(soldier);
-        this.kieSession.insert(soldier);
+        kieSession.insert(soldier);
         for (CreateWarDutyDTO warDutyDTO : soldierDTO.getWarDuties()) {
             WarDuty warDuty = new WarDuty(warDutyDTO);
             warDuty.setSoldier(soldier);
             warDuty = warDutyRepository.save(warDuty);
-            this.kieSession.insert(warDuty);
+            kieSession.insert(warDuty);
         }
         for (CreateInjuryDTO injuryDTO : soldierDTO.getInjuries()) {
             Injury injury = new Injury(injuryDTO);
             injury.setSoldier(soldier);
             injury = injuryRepository.save(injury);
-            this.kieSession.insert(injury);
+            kieSession.insert(injury);
         }
 
-        this.kieSession.fireAllRules();
-        // this.kieSession.dispose();
-        soldierRepository.save(soldier);
-
-        return soldier;
+        kieSession.fireAllRules();
+        return soldierRepository.save(soldier);
     }
-    
 }

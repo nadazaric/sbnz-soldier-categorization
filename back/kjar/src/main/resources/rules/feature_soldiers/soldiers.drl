@@ -23,7 +23,6 @@ rule "Calculate months for classification"
             sum((int)(ChronoUnit.DAYS.between($startDate, $endDate) + 1))
         )
     then 
-        System.err.println($totalDays);
         modify($soldier) {setMonths((int) $totalDays/30);}
         modify($soldier) {setStatus(SoldierStatus.UNCATEGORIZED);}
 end
@@ -46,7 +45,5 @@ rule "Calculate bonus from Injuries"
             )
         )
     then
-        System.err.println("LAST RULE");
-        System.err.println($soldierId);
         modify($soldier) {setMonthlyContribution($monthlyContribution + $bonus.doubleValue());}
 end

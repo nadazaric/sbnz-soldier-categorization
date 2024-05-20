@@ -31,7 +31,7 @@ export default function TableEditableWarObligation({ obligations, onChange, onDe
 
   function isValidDateRange(){
     const minDate = new Date(1992, 3, 6)
-    const maxDate = new Date(1995, 11, 14)
+    const maxDate = new Date(1995, 11, 15)
   
     for (let i = 0; i < obligations.length; i++) {
       const current = obligations[i]
