@@ -1,0 +1,13 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    margin-top: calc(-1 * var(--NavbarHeight));
+}
+
+.content {
+    overflow-y: auto; 
+    overflow-x: hidden;
+    height: calc(100vh - var(--NavBarHeight));
+    margin-top: var(--NavbarHeight);
+}

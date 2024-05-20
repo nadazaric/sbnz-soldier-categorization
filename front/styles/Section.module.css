@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+}
+
+.titleWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* background-color: aqua; */
+}
+
+.title {
+    font-size: 18px;
+}

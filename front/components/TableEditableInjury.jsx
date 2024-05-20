@@ -1,0 +1,108 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-no-undef */
+import React, { useEffect, useState } from 'react'
+import style from '../styles/Table.module.css'
+import styleForm from '../styles/Form.module.css'
+import DeleteIcon from '@mui/icons-material/DeleteOutline'
+import { getTranslation } from '@/locales/TranslationHelper'
+
+export default function TableEditableInjury({ 
+  formMode=false,
+  injuries, 
+  onChange, 
+  onDelete 
+}){
+  const [entities, setEntities] = useState([])
+  const t = getTranslation()
+
+  useEffect(() =>{
+    setEntities(injuries)
+  }, [injuries])
+
+  const handleChange = (index, e) => {
+    const { name, value, type, checked } = e.target
+    const [fieldName, fieldIndex] = name.split('-')
+    const newValue = type === 'checkbox' ? checked : (type === 'date' ? new Date(value) : value)
+    const newEntities = [...entities]
+    newEntities[index][fieldName] = newValue
+    setEntities(newEntities)
+    if (onChange) onChange(newEntities)
+  }
+
+  function onDeleteClick(e, index) {
+    e.preventDefault()
+    if (onDelete) onDelete(index)
+  }
+  
+  return (
+    <div>
+        <div>
+          {entities != null && entities.length != 0 &&
+            <div>
+              <div className={style.rowInjury}>
+                  <div className={`${style.item} ${style.headerItem}`}>{t.injuries_type}</div>
+                  <div className={`${style.item} ${style.headerItem}`}/>
+              </div>
+              {!formMode && entities.map((injury, index) => (
+                  <React.Fragment key={index}>
+                      <div className={`${style.rowInjury} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
+                          <div className={`${style.item}`}>{injury.type === 'LOW' ? t.injuries_type_low : (injury.type === 'MEDIUM' ? t.injuries_type_medium : t.injuries_type_high)}</div>
+                          <div className={`${style.item}`}></div>
+                        </div>
+                  </React.Fragment>
+              ))}
+              {formMode && entities.map((injury, index) => (
+                  <React.Fragment key={index}>
+                      <div className={`${style.rowInjury} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
+                          <div className={`${style.item}`}>
+                              <div className={styleForm.radioButtonWrapper}>
+                                  <label className={styleForm.squareButtonLabel}>
+                                      <input
+                                          className={styleForm.squareButton}
+                                          type="radio"
+                                          value="LOW"
+                                          name={`type-injury-${index}`}
+                                          checked={injury.type === 'LOW'}
+                                          onChange={(e) => handleChange(index, e)}
+                                      />
+                                      {t.injuries_type_low}
+                                  </label>
+                                  <label className={styleForm.squareButtonLabel}>
+                                      <input
+                                          className={styleForm.squareButton}
+                                          type="radio"
+                                          name={`type-injury-${index}`}
+                                          value="MEDIUM"
+                                          checked={injury.type === 'MEDIUM'}
+                                          onChange={(e) => handleChange(index, e)}
+                                      />
+                                      {t.injuries_type_medium}
+                                  </label>
+                                  <label className={styleForm.squareButtonLabel}>
+                                      <input
+                                          className={styleForm.squareButton}
+                                          type="radio"
+                                          name={`type-injury-${index}`}
+                                          value="HIGH"
+                                          checked={injury.type === 'HIGH'}
+                                          onChange={(e) => handleChange(index, e)}
+                                      />
+                                      {t.injuries_type_high}
+                                  </label>
+                              </div>
+                          </div>
+                          <div className={`${style.item}`}> 
+                            <DeleteIcon 
+                              className='icon'
+                              onClick={(e) => onDeleteClick(e, index)}
+                            /> 
+                          </div>
+                        </div>
+                  </React.Fragment>
+              ))}
+            </div>
+          }
+        </div>
+    </div>
+  )
+}
