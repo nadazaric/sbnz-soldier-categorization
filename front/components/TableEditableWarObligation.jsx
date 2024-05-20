@@ -34,6 +34,17 @@ export default function TableEditableWarObligation({
     if (onChange) onChange(newEntities, isValid)
   };
 
+  function formatDate(date) {
+    if (date instanceof Date) {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+    } else {
+        return date
+    }
+}
+
   function isValidDateRange(){
     const minDate = new Date(1992, 3, 6)
     const maxDate = new Date(1995, 11, 15)
@@ -70,13 +81,13 @@ export default function TableEditableWarObligation({
 
   function getDate(date) {
     if (date instanceof Date) {
-      const year = date.getFullYear()
-      const month = String(date.getMonth() + 1).padStart(2, '0')
-      const day = String(date.getDate()).padStart(2, '0')
-      return `${year}-${month}-${day}`
-  } else {
-      return date
-  }
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        return `${year}-${month}-${day}`
+    } else {
+        return date
+    }
   }
 
   function onDeleteClick(e, index) {
@@ -98,8 +109,8 @@ export default function TableEditableWarObligation({
               {!formMode && entities.map((obligation, index) => (
                   <React.Fragment key={index}>
                       <div className={`${style.rowWarObligation} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
-                          <div className={`${style.item}`}>{obligation.startDate}</div>
-                          <div className={`${style.item}`}>{obligation.endDate}</div>
+                          <div className={`${style.item}`}>{getDate(obligation.startDate)}</div>
+                          <div className={`${style.item}`}>{getDate(obligation.endDate)}</div>
                           <div className={`${style.item}`}>{obligation.type == 'WAR_ZONE' ? t.war_obligation_type_war_zone : t.war_obligation_type_work_duty}</div>
                           <div className={`${style.item}`}></div>
                         </div>

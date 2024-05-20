@@ -6,7 +6,12 @@ import styleForm from '../styles/Form.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutline'
 import { getTranslation } from '@/locales/TranslationHelper'
 
-export default function TableEditableInjury({ injuries, onChange, onDelete }) {
+export default function TableEditableInjury({ 
+  formMode=false,
+  injuries, 
+  onChange, 
+  onDelete 
+}){
   const [entities, setEntities] = useState([])
   const t = getTranslation()
 
@@ -38,7 +43,15 @@ export default function TableEditableInjury({ injuries, onChange, onDelete }) {
                   <div className={`${style.item} ${style.headerItem}`}>{t.injuries_type}</div>
                   <div className={`${style.item} ${style.headerItem}`}/>
               </div>
-              { entities.map((injury, index) => (
+              {!formMode && entities.map((injury, index) => (
+                  <React.Fragment key={index}>
+                      <div className={`${style.rowInjury} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
+                          <div className={`${style.item}`}>{injury.type === 'LOW' ? t.injuries_type_low : (injury.type === 'MEDIUM' ? t.injuries_type_medium : t.injuries_type_high)}</div>
+                          <div className={`${style.item}`}></div>
+                        </div>
+                  </React.Fragment>
+              ))}
+              {formMode && entities.map((injury, index) => (
                   <React.Fragment key={index}>
                       <div className={`${style.rowInjury} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
                           <div className={`${style.item}`}>

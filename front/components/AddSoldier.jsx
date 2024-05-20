@@ -15,11 +15,11 @@ export function AddSoldier({
     isOpen 
 }){
     const t = getTranslation()
-
     const [form, setForm] = useState({
         fullName: '',
         jmbg: ''
     })
+    const [formMode, setFormMode] = useState(true)
 
     // war obligations
     const [warObligations, setWarObligations] = useState([])
@@ -66,7 +66,8 @@ export function AddSoldier({
             setInjuries([])
         } else if (isOpen && selectedId != null) {
             getSoldierDetails()
-        }
+            setFormMode(false)
+        } else setFormMode(true)
     }, [isOpen])
 
     function getSoldierDetails() {
@@ -125,10 +126,11 @@ export function AddSoldier({
             <div className='spacer_hor_L' />
             <Section 
                 title={t.war_obligation_section}
-                action={SECTION_ACTIONS.ADD}
+                action={formMode ? SECTION_ACTIONS.ADD : SECTION_ACTIONS.NONE}
                 onAction={addObligationToList}
             >
                 <TableEditableWarObligation 
+                    formMode={formMode}
                     obligations={warObligations}
                     onChange={onObligationsChange}
                     onDelete={removeObligationFromList}
@@ -137,10 +139,11 @@ export function AddSoldier({
             <div className='spacer_hor_L' />
             <Section 
                 title={t.injuries_section}
-                action={SECTION_ACTIONS.ADD}
+                action={formMode ? SECTION_ACTIONS.ADD : SECTION_ACTIONS.NONE}
                 onAction={addInjury}
             >
                 <TableEditableInjury 
+                    formMode={formMode}
                     injuries={injuries}
                     onChange={onInjuriesChange}
                     onDelete={removeInjuryFromList}
