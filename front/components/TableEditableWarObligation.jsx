@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutline'
 import { getTranslation } from '@/locales/TranslationHelper'
 
 export default function TableEditableWarObligation({ 
+  formMode=false,
   obligations, 
   onChange, 
   onDelete 
@@ -94,7 +95,17 @@ export default function TableEditableWarObligation({
                   <div className={`${style.item} ${style.headerItem}`}>{t.war_obligation_type}</div>
                   <div className={`${style.item} ${style.headerItem}`}/>
               </div>
-              { entities.map((obligation, index) => (
+              {!formMode && entities.map((obligation, index) => (
+                  <React.Fragment key={index}>
+                      <div className={`${style.rowWarObligation} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
+                          <div className={`${style.item}`}>{obligation.startDate}</div>
+                          <div className={`${style.item}`}>{obligation.endDate}</div>
+                          <div className={`${style.item}`}>{obligation.type == 'WAR_ZONE' ? t.war_obligation_type_war_zone : t.war_obligation_type_work_duty}</div>
+                          <div className={`${style.item}`}></div>
+                        </div>
+                  </React.Fragment>
+              ))}
+              {formMode && entities.map((obligation, index) => (
                   <React.Fragment key={index}>
                       <div className={`${style.rowWarObligation} ${style.itemRow} ${index % 2 === 0 ? style.grayRow : ''}`}>
                           <div className={`${style.item}`}>
@@ -102,7 +113,6 @@ export default function TableEditableWarObligation({
                               className={`${styleForm.celearInput} width_full`}
                               name="startDate"
                               type="date"
-                              // value={obligation.startDate.toISOString().split('T')[0]}
                               value={getDate(obligation.startDate)}
                               onChange={(e) => handleChange(index, e)}
                             />
@@ -112,7 +122,6 @@ export default function TableEditableWarObligation({
                               className={`${styleForm.celearInput} width_full`}
                               name='endDate'
                               type="date"
-                              // value={obligation.endDate.toISOString().split('T')[0]}
                               value={getDate(obligation.endDate)}
                               onChange={(e) => handleChange(index, e)}
                             />
@@ -162,5 +171,5 @@ export default function TableEditableWarObligation({
           </div>
         }
     </div>
-  );
+  )
 }
