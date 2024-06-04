@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ftn.sbnz.model.feature_auth.User;
+import com.ftn.sbnz.model.feature_auth.models.User;
 import com.ftn.sbnz.service.feature_auth.repository.UserRepository;
 
 import java.util.Set;

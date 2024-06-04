@@ -1,4 +1,4 @@
-package com.ftn.sbnz.model.feature_auth;
+package com.ftn.sbnz.model.feature_auth.models;
 
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;

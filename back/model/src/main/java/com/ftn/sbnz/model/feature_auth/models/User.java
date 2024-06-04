@@ -1,9 +1,10 @@
-package com.ftn.sbnz.model.feature_auth;
+package com.ftn.sbnz.model.feature_auth.models;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 import java.util.HashSet;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 import java.util.Set;
 
 @Entity
