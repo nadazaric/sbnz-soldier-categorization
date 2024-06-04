@@ -11,8 +11,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @ComponentScan(basePackages = { "com.*" }) 
 @EntityScan("com.*")
 public class ServiceApplication  { 
+	
 	public static void main(String[] args) {
-		System.getProperties().put("org.apache.commons.logging.simplelog.defaultlog","fatal");
+		// System.getProperties().put("org.apache.commons.logging.simplelog.defaultlog","fatal");
 		SpringApplication.run(ServiceApplication.class, args);
 	}
 }
