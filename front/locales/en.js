@@ -3,6 +3,8 @@ export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Soldiers',
     navbar_option_competitions: 'Competitions',
+    navbar_option_workers: 'Workers',
+    navbar_option_login: 'Log out',
 
     // login
     login_username: 'Username',

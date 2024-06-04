@@ -72,7 +72,7 @@ export default function Navbar() {
                         href={`/${PAGE.WORKERS}`}
                         onClick={() => setSelectedOption(PAGE.WORKERS)}
                     >
-                        {"radnici"}
+                        {t.navbar_option_workers}
                     </Link>
                 }
 
@@ -85,7 +85,7 @@ export default function Navbar() {
                             logOut()
                         }}
                     >
-                        {'izloguj se'}
+                        {t.navbar_option_login}
                     </Link>
                 }
 

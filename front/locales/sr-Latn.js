@@ -3,6 +3,8 @@ export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Vojnici',
     navbar_option_competitions: 'Konkursi',
+    navbar_option_workers: 'Radnici',
+    navbar_option_login: 'Odjavi se',
 
     // login
     login_username: 'Korisničko ime',

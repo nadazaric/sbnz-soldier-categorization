@@ -56,6 +56,7 @@ export default function Login() {
                         className={styleForm.input}
                         value={form.password}
                         placeholder={t.login_password}
+                        type='password'
                         onChange={(e) => {setForm({...form, password: e.target.value})}}  
                     />
                 </div>
