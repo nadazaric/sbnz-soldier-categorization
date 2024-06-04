@@ -4,6 +4,11 @@ export default {
     navbar_option_soldiers: 'Soldiers',
     navbar_option_competitions: 'Competitions',
 
+    // login
+    login_username: 'Username',
+    login_password: 'Password',
+    button_login: 'Login',
+
     // soldiers
     soldiers_header_title: 'Soldiers',
     soldiers_full_name: 'Name and Surname',

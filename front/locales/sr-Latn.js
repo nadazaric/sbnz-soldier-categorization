@@ -4,6 +4,11 @@ export default {
     navbar_option_soldiers: 'Vojnici',
     navbar_option_competitions: 'Konkursi',
 
+    // login
+    login_username: 'Korisničko ime',
+    login_password: 'Lozinka',
+    button_login: 'Prijavi se',
+
     // soldiers
     soldiers_header_title: 'Vojnici',
     soldiers_full_name: 'Ime i prezime',
