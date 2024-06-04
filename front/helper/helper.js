@@ -9,7 +9,10 @@ export function putUserRefreshToken(token) {
 }
 
 export function getUserAccessToken() {
-    return window.localStorage.getItem('accessToken');
+    if (typeof window !== 'undefined') {
+        return window.localStorage.getItem('accessToken');
+    }
+    return null;
 }
 
 export function getUserRefreshToken() {
@@ -17,9 +20,9 @@ export function getUserRefreshToken() {
 }
 
 export function getUserRole() {
-    const roleString = parseJwt(getUserAccessToken())['role'];
+    const roleString = parseJwt(getUserAccessToken())['role']
     try {
-        if (roleString != undefined) return roleString.split('name=')[1].slice(0, -1);
+        if (roleString != undefined) return roleString;
     } catch {
         return null;
     }
