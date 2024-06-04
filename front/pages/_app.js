@@ -23,7 +23,7 @@ axios.interceptors.response.use(
     },
     async function (error) {
         const originalRequest = error.config;
-  
+        if (getUserAccessToken() == null) return
         if (error.response && error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true
             const tokenEndpoint = `${BACK_BASE_URL}/api/user/refreshToken`

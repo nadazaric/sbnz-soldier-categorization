@@ -47,7 +47,10 @@ export default function Login() {
                         className={styleForm.input}
                         value={form.username}
                         placeholder={t.login_username}
-                        onChange={(e) => {setForm({...form, username: e.target.value})}}  
+                        onChange={(e) => {
+                            setForm({...form, username: e.target.value})
+                            setHaveError(false)
+                        }}  
                     />
                 </div>
                 <div className='spacer_hor_S'/>
@@ -57,7 +60,10 @@ export default function Login() {
                         value={form.password}
                         placeholder={t.login_password}
                         type='password'
-                        onChange={(e) => {setForm({...form, password: e.target.value})}}  
+                        onChange={(e) => {
+                            setForm({...form, password: e.target.value})
+                            setHaveError(false)
+                        }}  
                     />
                 </div>
                 {haveError && 
