@@ -2,11 +2,14 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Soldiers from "./soldiers";
 import { getTranslation } from "@/locales/TranslationHelper";
+import { getUserRole } from "@/helper/helper";
+import Workers from "./workers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const t = getTranslation()
+  const role = getUserRole()
 
   return (
     <>
@@ -19,7 +22,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Soldiers />
+        {role == 'ROLE_WORKER' && <Soldiers />}
+        {role == 'ROLE_ADMIN' && <Workers />}
       </main>
     </>
   );

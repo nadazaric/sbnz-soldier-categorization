@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link'
 import style from '../styles/Navbar.module.css'
 import { useEffect, useState } from 'react'
@@ -9,7 +10,7 @@ import { getUserRole, logOut } from '@/helper/helper'
 export default function Navbar() {
     const t = getTranslation()
     const router = useRouter()
-    const [selectedOption, setSelectedOption] = useState(PAGE.SOLDIERS)
+    const [selectedOption, setSelectedOption] = useState('')
     const [locale, setLocale] = useState()
     const [role, setRole] = useState(null)
     const languageOptions = [
@@ -19,6 +20,8 @@ export default function Navbar() {
 
     useEffect(() => {
         setLocale(router.locale)
+        if (selectedOption == '' && getUserRole() == 'ROLE_ADMIN') setSelectedOption(PAGE.WORKERS)
+        else if (selectedOption == '' && getUserRole() == 'ROLE_WORKER') setSelectedOption(PAGE.SOLDIERS)
     }, [router, selectedOption])
 
     useEffect(() => {
@@ -32,9 +35,6 @@ export default function Navbar() {
 
     return(
         <div className={style.wrapper}>
-            {
-                console.log('NAVVVVVVVVVVV ' + role)
-            }
             <div className={style.logo}>
                 <Link
                     className={`${style.logo}`}
@@ -46,7 +46,7 @@ export default function Navbar() {
             </div>
 
             <div className={style.options}>
-                {role == 'WORKER' &&
+                {role == 'ROLE_WORKER' &&
                     <Link
                         className={`${style.option} ${selectedOption === PAGE.SOLDIERS ? style.selectedOption : ''}`}
                         href={`/${PAGE.SOLDIERS}`}
@@ -56,7 +56,7 @@ export default function Navbar() {
                     </Link>
                 }
 
-                {role == 'WORKER' &&
+                {role == 'ROLE_WORKER' &&
                     <Link
                         className={`${style.option} ${selectedOption === PAGE.COMPETITIONS ? style.selectedOption : ''}`}
                         href={`/${PAGE.COMPETITIONS}`}
@@ -107,6 +107,5 @@ export default function Navbar() {
 export const PAGE = {
     SOLDIERS: 'soldiers',
     COMPETITIONS: 'competitions',
-    WORKERS: 'workers',
-    LOGOUT: 'logout'
+    WORKERS: 'workers'
 } 
