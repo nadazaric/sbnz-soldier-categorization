@@ -2,16 +2,35 @@ import { useState } from 'react'
 import styleForm from '../../styles/Form.module.css'
 import { getTranslation } from '@/locales/TranslationHelper'
 import { Button } from '@mui/material'
+import axios from 'axios'
+import { putUserAccessToken, putUserRefreshToken } from '@/helper/helper'
+import { BACK_BASE_URL } from '@/helper/environment'
+import { useRouter } from 'next/router'
 
 export default function Login() {
     const t = getTranslation()
+    const router = useRouter()
+    const [haveError, setHaveError] = useState(false)
     const [form, setForm] = useState({
         username: '',
         password: ''
     })
 
-    function onLoginClick() {
-
+    const loginUser = async () => {
+        try {
+            const response = await axios.post(`${BACK_BASE_URL}/user/login`, form, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'skip': true
+                }
+            })
+            if (response.status === 200) {
+                const data = response.data
+                putUserAccessToken(data.accessToken)
+                putUserRefreshToken(data.refreshToken)
+                router.push('/')
+            } else { setHaveError(true) }
+        } catch (error) { setHaveError(true) }
     }
 
     function isButtonDisabled() {
@@ -45,7 +64,7 @@ export default function Login() {
                     disableRipple
                     className='raisedButton width_full'
                     disabled={isButtonDisabled()}
-                    onClick={() => onLoginClick()}
+                    onClick={() => loginUser()}
                 >
                     {t.button_login}
                 </Button>

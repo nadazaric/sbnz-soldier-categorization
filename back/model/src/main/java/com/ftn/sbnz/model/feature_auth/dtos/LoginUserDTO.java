@@ -3,7 +3,6 @@ package com.ftn.sbnz.model.feature_auth.dtos;
 public class LoginUserDTO {
     private String accessToken;
     private String refreshToken;
-    private String logoName;
 
     public String getAccessToken() {
         return accessToken;
@@ -19,13 +18,5 @@ public class LoginUserDTO {
 
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
-    }
-
-    public String getLogoName() {
-        return logoName;
-    }
-
-    public void setLogoName(String logoName) {
-        this.logoName = logoName;
     }
 }
