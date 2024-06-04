@@ -35,9 +35,6 @@ public class UserController {
         sc.setAuthentication(auth);
         User userEntity = userService.getByUsername(userCredentials.getUsername());
 
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(sc.getAuthentication().getAuthorities().toArray()[0].toString());
-
         String token = jwtTokenUtil.generateToken(userEntity.getUsername(), sc.getAuthentication().getAuthorities().toArray()[0].toString());
         String refreshToken = jwtTokenUtil.generateRefreshToken(userEntity.getUsername(), sc.getAuthentication().getAuthorities().toArray()[0].toString());
 

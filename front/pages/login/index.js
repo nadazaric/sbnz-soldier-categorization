@@ -60,6 +60,12 @@ export default function Login() {
                         onChange={(e) => {setForm({...form, password: e.target.value})}}  
                     />
                 </div>
+                {haveError && 
+                    <>
+                        <div className='spacer_hor_XS'/>
+                        <p className="error" style={{marginLeft: 5}}>{t.login_error}</p>
+                    </>
+                }
                 <div className='spacer_hor_S'/>
                 <Button 
                     disableRipple

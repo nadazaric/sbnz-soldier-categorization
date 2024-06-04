@@ -74,6 +74,7 @@ body {
 
 .width_full {width: 100% !important; }
 .height_full {height: calc(100vh - var(--NavbarHeight)) !important; }
+.spacer_hor_XS {height: 4px;}
 .spacer_hor_S {height: 6px;}
 .spacer_hor_M {height: 10px;}
 .spacer_hor_L {height: 14px;}

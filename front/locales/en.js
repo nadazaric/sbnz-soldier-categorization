@@ -9,6 +9,7 @@ export default {
     // login
     login_username: 'Username',
     login_password: 'Password',
+    login_error: 'The username or password is incorrect.',
     button_login: 'Login',
 
     // soldiers

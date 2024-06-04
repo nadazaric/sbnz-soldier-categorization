@@ -9,6 +9,7 @@ export default {
     // login
     login_username: 'Korisničko ime',
     login_password: 'Lozinka',
+    login_error: 'Korisničko ime ili lozinka je pogrešna.',
     button_login: 'Prijavi se',
 
     // soldiers
