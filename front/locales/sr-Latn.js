@@ -3,6 +3,14 @@ export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Vojnici',
     navbar_option_competitions: 'Konkursi',
+    navbar_option_workers: 'Radnici',
+    navbar_option_login: 'Odjavi se',
+
+    // login
+    login_username: 'Korisničko ime',
+    login_password: 'Lozinka',
+    login_error: 'Korisničko ime ili lozinka je pogrešna.',
+    button_login: 'Prijavi se',
 
     // soldiers
     soldiers_header_title: 'Vojnici',
@@ -30,8 +38,15 @@ export default {
     injuries_type_medium: 'Srednje teška povreda',
     injuries_type_high: 'Teška povreda',
 
+    // workers
+    workers_header_title: 'Radnici',
+    worker_name: 'Ime i prezime',
+    worker_username: 'Korisničko ime',
+    worker_add_title: 'Dodaj radnika',
+
     // buttons
     button_add_soldier: 'Dodaj vojnika',
+    button_add_worker: 'Dodaj radnika',
     button_save: 'Sačuvaj',
 
     // globals

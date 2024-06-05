@@ -2,11 +2,20 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Soldiers from "./soldiers";
 import { getTranslation } from "@/locales/TranslationHelper";
+import { getUserRole } from "@/helper/helper";
+import Workers from "./workers";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const t = getTranslation()
+  const role = getUserRole()
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+      setDomLoaded(true);
+    }, []);
 
   return (
     <>
@@ -19,7 +28,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Soldiers />
+        {domLoaded &&
+          <div>
+            {role == 'ROLE_WORKER' && <Soldiers />}
+            {role == 'ROLE_ADMIN' && <Workers />}
+          </div>
+        }
       </main>
     </>
   );

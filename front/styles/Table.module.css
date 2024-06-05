@@ -28,6 +28,16 @@
     cursor: pointer;
 }
 
+.rowWorker {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .rowSoldier:hover {
     cursor: default;
 }
@@ -37,6 +47,10 @@
 }
 
 .rowInjury:hover {
+    cursor: default;
+}
+
+.rowWorker:hover {
     cursor: default;
 }
 

@@ -3,6 +3,14 @@ export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Soldiers',
     navbar_option_competitions: 'Competitions',
+    navbar_option_workers: 'Workers',
+    navbar_option_login: 'Log out',
+
+    // login
+    login_username: 'Username',
+    login_password: 'Password',
+    login_error: 'The username or password is incorrect.',
+    button_login: 'Login',
 
     // soldiers
     soldiers_header_title: 'Soldiers',
@@ -30,8 +38,15 @@ export default {
     injuries_type_medium: 'Moderate Injury',
     injuries_type_high: 'Severe Injury',
 
+    // workers
+    workers_header_title: 'Workers',
+    worker_name: 'Name',
+    worker_username: 'Username',
+    worker_add_title: 'Add worker',
+
     // buttons
     button_add_soldier: 'Add Soldier',
+    button_add_worker: 'Add Worker',
     button_save: 'Save',
 
     // globals

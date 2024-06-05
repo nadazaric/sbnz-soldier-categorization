@@ -41,7 +41,6 @@ export default function Soldiers() {
             else { }
         } catch (error) { }
     }
-    
 
     return(
         <div className='page'>

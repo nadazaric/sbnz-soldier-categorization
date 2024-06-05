@@ -61,6 +61,11 @@ body {
   cursor: default;
 }
 
+.loginTitle {
+  font-size: 32px;
+  font-weight: 500;
+}
+
 .error {
   color: rgb(var(--ErrorColor));
   font-size: 12px;
@@ -68,9 +73,16 @@ body {
 }
 
 .width_full {width: 100% !important; }
+.height_full {height: calc(100vh - var(--NavbarHeight)) !important; }
+.spacer_hor_XS {height: 4px;}
 .spacer_hor_S {height: 6px;}
 .spacer_hor_M {height: 10px;}
 .spacer_hor_L {height: 14px;}
+.spacer_hor_XL {height: 18px;}
+
+.flex {display: flex;}
+.center {justify-content: center; align-items: center;}
+.flexDirectionColumn {flex-direction: column;}
 
 /* ------------------------------------------------------------------------------------------------------ Scrollbar */
 ::-webkit-scrollbar {
