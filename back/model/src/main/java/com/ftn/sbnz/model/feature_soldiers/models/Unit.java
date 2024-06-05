@@ -7,7 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
 import org.kie.api.definition.type.Position;
+
+import com.ftn.sbnz.model.feature_soldiers.values.UnitType;
 
 @Entity
 public class Unit {
@@ -16,15 +20,18 @@ public class Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     @Position(0)
     private String name;
 
+    @Transient
     @Position(1)
     private String parentName;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Unit parent;
+
+    @Column
+    private UnitType type;
     
     public Unit() {
     }
@@ -40,6 +47,23 @@ public class Unit {
         this.id = id;
         this.name = name;
         this.parent = parent;
+        if (parent == null) return;
+        this.parentName = parent.getName();
+    }
+
+    public Unit(String name, Unit parent, UnitType type) {
+        this.name = name;
+        this.parent = parent;
+        this.type = type;
+        if (parent == null) return;
+        this.parentName = parent.getName();
+    }
+
+    public Unit(Long id, String name, Unit parent, UnitType type) {
+        this.id = id;
+        this.name = name;
+        this.parent = parent;
+        this.type = type;
         if (parent == null) return;
         this.parentName = parent.getName();
     }
