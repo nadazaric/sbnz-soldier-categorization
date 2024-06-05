@@ -1,6 +1,7 @@
 package com.ftn.sbnz.service.feature_auth.service.impl;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -8,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.ftn.sbnz.model.feature_auth.dtos.RegisterDTO;
+import com.ftn.sbnz.model.feature_auth.dtos.UserDetailsDTO;
 import com.ftn.sbnz.model.feature_auth.models.Role;
 import com.ftn.sbnz.model.feature_auth.models.User;
 import com.ftn.sbnz.service.feature_auth.repository.RoleRepository;
@@ -46,6 +47,17 @@ public class UserService implements IUserService{
     public boolean alreadyExistWithUsername(String username) {
         Optional<User> userEntity = userRepository.findByUsername(username);
         return userEntity.isPresent();
+    }
+
+    @Override
+    public List<UserDetailsDTO> getWorkers() {
+        List<User> users = userRepository.findAll();
+        List<UserDetailsDTO> userDetailsDTOs = new ArrayList<>();
+        for (User user : users) {
+            if (((Role)user.getRoles().toArray()[0]).getName().equals("ADMIN"))
+                userDetailsDTOs.add(new UserDetailsDTO(user.getName(), user.getUsername()));
+        }
+        return userDetailsDTOs;
     }
     
 }

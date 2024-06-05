@@ -1,5 +1,7 @@
 package com.ftn.sbnz.service.feature_auth.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import com.ftn.sbnz.model.feature_auth.dtos.LoginUserDTO;
@@ -70,5 +71,10 @@ public class UserController {
         User user = this.userService.register(dto);
         UserDetailsDTO userDetailsDTO = new UserDetailsDTO(user.getName(), user.getUsername());
         return new ResponseEntity<>(userDetailsDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/workers")
+    public ResponseEntity<List<UserDetailsDTO>> getWorkers() {
+        return new ResponseEntity<>(userService.getWorkers(), HttpStatus.OK);
     }
 }
