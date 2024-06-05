@@ -9,6 +9,7 @@ import TableEditableInjury from './TableEditableInjury'
 import axios from 'axios'
 import { BACK_BASE_URL } from '@/helper/environment'
 import detailsStyle from '../styles/Details.module.css'
+import TableEditableUnit from './TableEditableUnit'
 
 export function AddSoldier({ 
     selectedId = null,
@@ -53,11 +54,14 @@ export function AddSoldier({
     }
 
     // units
-    const [units, setUnits] = useState(null);
-    
+    const [units, setUnits] = useState([])
+
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/unit/simple-units`)
-            .then(response => { console.log(response.data); setUnits(response.data) })
+            .then(response => { 
+                const options = response.data.map(item => ({ value: item.id, text: item.name, selected: false }))
+                setUnits(options)
+            })
             .catch(_error => {})
     }, [])
 
@@ -71,6 +75,8 @@ export function AddSoldier({
             setWarObligations([])
             setWarObligationsHaveError(false)
             setInjuries([])
+            const updatedUnits = units.map(unit => ({ ...unit, selected: false }))
+            setUnits(updatedUnits)
         } else if (isOpen && selectedId != null) {
             getSoldierDetails()
             setFormMode(false)
@@ -92,16 +98,23 @@ export function AddSoldier({
       
     function saveSoldier(e) {
         e.preventDefault()
+        var selectedUnits = []
+        for (var unit of units) {
+            if (unit.selected) selectedUnits.push(unit.value)
+        }
         if (onSave) onSave({
             fullName: form.fullName,
             jmbg: form.jmbg,
             warDuties: warObligations,
-            injuries: injuries
+            injuries: injuries,
+            units: selectedUnits
         })
         setForm({
             fullName: '',
             jmbg: ''
         })
+        const updatedUnits = units.map(unit => ({ ...unit, selected: false }))
+        setUnits(updatedUnits)
     }
 
     function isButtonDisabled() {
@@ -147,6 +160,15 @@ export function AddSoldier({
                     </div>
                 </div>
             }
+
+            <div className='spacer_hor_L' />
+            <Section title={t.unit_section}>
+                <div className='spacer_hor_M' />
+                <TableEditableUnit 
+                    formMode={formMode}
+                    units={units}
+                />
+            </Section>
             
             <div className='spacer_hor_L' />
             <Section 

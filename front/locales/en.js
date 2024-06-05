@@ -44,6 +44,9 @@ export default {
     worker_username: 'Username',
     worker_add_title: 'Add worker',
 
+    // units
+    unit_section: 'Miletary Unit',
+
     // buttons
     button_add_soldier: 'Add Soldier',
     button_add_worker: 'Add Worker',

@@ -1,0 +1,26 @@
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.option {
+    padding: 5px 10px;
+    border-radius: var(--CornerRadiusStandard);
+    border: solid 2px rgb(var(--PrimaryColor));
+    font-size: 14px;
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: rgba(var(--PrimaryColor), 0.1);
+}
+
+.optionSelected {
+    background-color: rgb(var(--PrimaryColor));
+    color: rgb(var(--OnPrimaryColor));
+}
+
+.optionSelected:hover {
+    background-color: rgb(var(--PrimaryColor));
+}

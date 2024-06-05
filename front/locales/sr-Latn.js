@@ -44,6 +44,9 @@ export default {
     worker_username: 'Korisničko ime',
     worker_add_title: 'Dodaj radnika',
 
+    // units
+    unit_section: 'Vojne jedinice',
+
     // buttons
     button_add_soldier: 'Dodaj vojnika',
     button_add_worker: 'Dodaj radnika',
