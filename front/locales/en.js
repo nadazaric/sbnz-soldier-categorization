@@ -42,6 +42,7 @@ export default {
     workers_header_title: 'Workers',
     worker_name: 'Name',
     worker_username: 'Username',
+    worker_add_title: 'Add worker',
 
     // buttons
     button_add_soldier: 'Add Soldier',

@@ -70,7 +70,7 @@ public class UserController {
     public ResponseEntity<UserDetailsDTO> register(@RequestBody RegisterDTO dto) throws ResourceNotFoundException {
         User user = this.userService.register(dto);
         UserDetailsDTO userDetailsDTO = new UserDetailsDTO(user.getName(), user.getUsername());
-        return new ResponseEntity<>(userDetailsDTO, HttpStatus.OK);
+        return new ResponseEntity<>(userDetailsDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/workers")

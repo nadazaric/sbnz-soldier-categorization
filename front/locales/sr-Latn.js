@@ -40,8 +40,9 @@ export default {
 
     // workers
     workers_header_title: 'Radnici',
-    worker_name: 'Ime',
+    worker_name: 'Ime i prezime',
     worker_username: 'Korisničko ime',
+    worker_add_title: 'Dodaj radnika',
 
     // buttons
     button_add_soldier: 'Dodaj vojnika',
