@@ -2,6 +2,8 @@ package backward;
 
 import com.ftn.sbnz.model.feature_soldiers.models.Unit;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
+import com.ftn.sbnz.model.core.Trigger;
+import java.util.List;
 
 query isContainedIn( String x, String y )
     Unit( x, y; )
@@ -9,11 +11,16 @@ query isContainedIn( String x, String y )
     ( Unit( z, y; ) and isContainedIn( x, z; ) )
 end
 
+global List<Soldier> soldiersInUnit;
+
 rule "Get soldiers in Unit"
 when 
-    String(this == "BACKWARD")
-    isContainedIn(id, "II Brigada";)
+    Trigger($sp: searchParam)
+    isContainedIn(id, $sp;)
     $s: Soldier(jmbg == id)
 then
-    System.err.println(id + " je u I Brigadi.");
+    // System.err.println(id + " je u " + $sp);
+    if (!soldiersInUnit.contains($s)) {
+        soldiersInUnit.add($s);
+    }
 end

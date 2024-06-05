@@ -20,7 +20,6 @@ public class Unit {
     @Position(0)
     private String name;
 
-    @Column
     @Position(1)
     private String parentName;
 
