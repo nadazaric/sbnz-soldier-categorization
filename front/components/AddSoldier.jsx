@@ -52,6 +52,15 @@ export function AddSoldier({
         })
     }
 
+    // units
+    const [units, setUnits] = useState(null);
+    
+    useEffect(() => {
+        axios.get(`${BACK_BASE_URL}/unit/simple-units`)
+            .then(response => { console.log(response.data); setUnits(response.data) })
+            .catch(_error => {})
+    }, [])
+
     // clear form && details view
     useEffect(() => {
         if(!isOpen) {
