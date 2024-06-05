@@ -2,9 +2,12 @@ package com.ftn.sbnz.service.feature_soldiers.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.ftn.sbnz.model.feature_soldiers.dtos.UnitDTO;
 import com.ftn.sbnz.model.feature_soldiers.models.Unit;
@@ -25,6 +28,14 @@ public class UnitService implements IUnitService{
             unitDTOs.add(new UnitDTO(unit.getId(), unit.getName()));
         }
         return unitDTOs;
+    }
+
+    @Override
+    public void saveUnitForSoldier(String jmbg, Long parentUnitId) {
+        Optional<Unit> unit = unitRepository.findById(parentUnitId);
+        if (!unit.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parent id " + parentUnitId + " is not valid.");
+        Unit newUnit = new Unit(jmbg, unit.get(), UnitType.OTHER);
+        unitRepository.save(newUnit);
     }
     
 }

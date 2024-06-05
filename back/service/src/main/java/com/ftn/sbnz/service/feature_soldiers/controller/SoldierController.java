@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.service.feature_soldiers.service.interf.ISoldierService;
+import com.ftn.sbnz.service.feature_soldiers.service.interf.IUnitService;
+
 import org.springframework.http.HttpStatus;
 
 @RestController
@@ -19,6 +21,7 @@ import org.springframework.http.HttpStatus;
 public class SoldierController {
 
     @Autowired ISoldierService soldierService;
+    @Autowired IUnitService unitService;
 
     @GetMapping
     public ResponseEntity<List<Soldier>> getAll() {
@@ -27,7 +30,9 @@ public class SoldierController {
 
     @PostMapping
     public ResponseEntity<Soldier> create(@RequestBody CreateSoldierDTO soldierDTO){
-        return new ResponseEntity<>(soldierService.saveSoldier(soldierDTO), HttpStatus.CREATED);
+        Soldier soldier = soldierService.saveSoldier(soldierDTO);
+        for (Long id : soldierDTO.getUnits()) unitService.saveUnitForSoldier(soldierDTO.getJmbg(), id);
+        return new ResponseEntity<>(soldier, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
