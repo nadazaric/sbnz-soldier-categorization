@@ -54,7 +54,7 @@ public class UserService implements IUserService{
         List<User> users = userRepository.findAll();
         List<UserDetailsDTO> userDetailsDTOs = new ArrayList<>();
         for (User user : users) {
-            if (((Role)user.getRoles().toArray()[0]).getName().equals("ADMIN"))
+            if (((Role)user.getRoles().toArray()[0]).getName().equals("WORKER"))
                 userDetailsDTOs.add(new UserDetailsDTO(user.getName(), user.getUsername()));
         }
         return userDetailsDTOs;

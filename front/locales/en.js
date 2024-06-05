@@ -38,8 +38,14 @@ export default {
     injuries_type_medium: 'Moderate Injury',
     injuries_type_high: 'Severe Injury',
 
+    // workers
+    workers_header_title: 'Workers',
+    worker_name: 'Name',
+    worker_username: 'Username',
+
     // buttons
     button_add_soldier: 'Add Soldier',
+    button_add_worker: 'Add Worker',
     button_save: 'Save',
 
     // globals

@@ -38,8 +38,14 @@ export default {
     injuries_type_medium: 'Srednje teška povreda',
     injuries_type_high: 'Teška povreda',
 
+    // workers
+    workers_header_title: 'Radnici',
+    worker_name: 'Ime',
+    worker_username: 'Korisničko ime',
+
     // buttons
     button_add_soldier: 'Dodaj vojnika',
+    button_add_worker: 'Dodaj radnika',
     button_save: 'Sačuvaj',
 
     // globals
