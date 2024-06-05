@@ -7,4 +7,5 @@ import com.ftn.sbnz.model.feature_auth.models.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findByName(String name);
 }

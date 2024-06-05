@@ -3,15 +3,20 @@ package com.ftn.sbnz.service.feature_auth.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import com.ftn.sbnz.model.feature_auth.dtos.LoginUserDTO;
+import com.ftn.sbnz.model.feature_auth.dtos.RegisterDTO;
 import com.ftn.sbnz.model.feature_auth.dtos.UserCredentialsDTO;
+import com.ftn.sbnz.model.feature_auth.dtos.UserDetailsDTO;
 import com.ftn.sbnz.model.feature_auth.models.User;
 import com.ftn.sbnz.service.feature_auth.service.interf.IUserService;
 import com.ftn.sbnz.service.security.jwt.JwtTokenUtil;
@@ -58,5 +63,12 @@ public class UserController {
         String newRefreshToken = jwtTokenUtil.generateRefreshToken(jwtTokenUtil.getUsernameFromToken(dto.getRefreshToken()), jwtTokenUtil.getRoleFromToken(dto.getRefreshToken()));
         dto.setRefreshToken(newRefreshToken);
         return dto;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDetailsDTO> register(@RequestBody RegisterDTO dto) throws ResourceNotFoundException {
+        User user = this.userService.register(dto);
+        UserDetailsDTO userDetailsDTO = new UserDetailsDTO(user.getName(), user.getUsername());
+        return new ResponseEntity<>(userDetailsDTO, HttpStatus.OK);
     }
 }

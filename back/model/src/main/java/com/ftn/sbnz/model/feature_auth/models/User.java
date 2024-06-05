@@ -36,6 +36,13 @@ public class User {
     public User() {
     }
 
+    public User(String name, @NotNull String username, @NotNull String password, Role role) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.roles.add(role);
+    }
+
     public User(Long id, String name, @NotNull String username, @NotNull String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
