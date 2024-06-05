@@ -2,4 +2,7 @@
     <kbase name="feature_soldiers_KBase" packages="feature_soldiers">
         <ksession name="feature_soldiers_key_ssesion"/>
     </kbase>
+    <kbase name="bwBase" packages="backward">
+        <ksession name="bwKsession"/>
+    </kbase>
 </kmodule>

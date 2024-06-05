@@ -1,0 +1,19 @@
+package backward;
+
+import com.ftn.sbnz.model.feature_soldiers.models.Unit;
+import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
+
+query isContainedIn( String x, String y )
+    Unit( x, y; )
+    or
+    ( Unit( z, y; ) and isContainedIn( x, z; ) )
+end
+
+rule "Get soldiers in Unit"
+when 
+    String(this == "BACKWARD")
+    isContainedIn(id, "II Brigada";)
+    $s: Soldier(jmbg == id)
+then
+    System.err.println(id + " je u I Brigadi.");
+end
