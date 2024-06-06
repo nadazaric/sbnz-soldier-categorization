@@ -1,6 +1,6 @@
 import { DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
-import { AddSoldier } from "@/components/AddSoldier";
+import { AddDetailsSoldier } from "@/components/AddSoldier";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
 import { getTranslation } from "@/locales/TranslationHelper";
@@ -58,9 +58,9 @@ export default function Soldiers() {
                 isOpen={openDialog}
                 width={600}
                 onCloseModal={() => setOpenDialog(false)}
-                title={t.soldiers_add_title}
+                title={selectedId ? t.soldiers_details : t.soldiers_add_title}
             >
-                <AddSoldier 
+                <AddDetailsSoldier 
                     selectedId={selectedId}
                     onSave={saveSoldier}
                     isOpen={openDialog}

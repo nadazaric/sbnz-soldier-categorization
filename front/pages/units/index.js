@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { AddSoldier } from "@/components/AddSoldier"
+import { AddDetailsSoldier } from "@/components/AddSoldier"
 import { DialogWithHeader } from "@/components/Dialog"
 import TableSoldiers from "@/components/TableSoldiers"
 import { BACK_BASE_URL } from "@/helper/environment"
@@ -37,7 +37,7 @@ export default function Units() {
                 onCloseModal={() => setOpenDialog(false)}
                 title={t.soldiers_add_title}
             >
-                <AddSoldier 
+                <AddDetailsSoldier 
                     selectedId={selectedSoldierId}
                     isOpen={openDialog}
                 />

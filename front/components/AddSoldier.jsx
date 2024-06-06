@@ -11,7 +11,7 @@ import { BACK_BASE_URL } from '@/helper/environment'
 import detailsStyle from '../styles/Details.module.css'
 import TableEditableUnit from './TableEditableUnit'
 
-export function AddSoldier({ 
+export function AddDetailsSoldier({ 
     selectedId = null,
     onSave, 
     isOpen 
@@ -155,12 +155,12 @@ export function AddSoldier({
             {!formMode &&
                 <div className={detailsStyle.wrapper}>
                     <div className={detailsStyle.rowWrapper}>
-                        <div className={detailsStyle.label}>Ime i prezime</div>
+                        <div className={detailsStyle.label}>{t.soldiers_full_name}</div>
                         <div className={detailsStyle.info}>{form.fullName}</div>
                     </div>
                     <div className='spacer_hor_S' />
                     <div className={detailsStyle.rowWrapper}>
-                        <div className={detailsStyle.label}>JMBG</div>
+                        <div className={detailsStyle.label}>{t.soldiers_jmbg}</div>
                         <div className={detailsStyle.info}>{form.jmbg}</div>
                     </div>
                 </div>

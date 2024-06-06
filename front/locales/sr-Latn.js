@@ -22,6 +22,7 @@ export default {
     soldiers_category_none: 'Nema kategoriju',
     soldiers_monthly_contribution: 'Mjesečni doprinos',
     soldiers_add_title: 'Dodaj vojnika',
+    soldiers_details: 'Deatlji o vojniku',
 
     // war obligation
     war_obligation_section: 'Učešće u ratu',
