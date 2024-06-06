@@ -58,6 +58,16 @@ export default function Navbar() {
 
                 {role == 'ROLE_WORKER' &&
                     <Link
+                        className={`${style.option} ${selectedOption === PAGE.UNITS ? style.selectedOption : ''}`}
+                        href={`/${PAGE.UNITS}`}
+                        onClick={() => setSelectedOption(PAGE.UNITS)}
+                    >
+                        {t.navbar_option_units}
+                    </Link>
+                }
+
+                {role == 'ROLE_WORKER' &&
+                    <Link
                         className={`${style.option} ${selectedOption === PAGE.COMPETITIONS ? style.selectedOption : ''}`}
                         href={`/${PAGE.COMPETITIONS}`}
                         onClick={() => setSelectedOption(PAGE.COMPETITIONS)}
@@ -106,6 +116,7 @@ export default function Navbar() {
 
 export const PAGE = {
     SOLDIERS: 'soldiers',
+    UNITS: 'units',
     COMPETITIONS: 'competitions',
     WORKERS: 'workers'
 } 
