@@ -27,4 +27,9 @@ public class UnitController {
     public ResponseEntity<List<Soldier>> getSoldiersForUnit(@PathVariable Long unitId) {
         return new ResponseEntity<>(unitService.getSoldiersForUnit(unitId), HttpStatus.OK);
     }
+
+    @GetMapping("/units-except-soldier")
+    public ResponseEntity<List<UnitDTO>> getUnitsExceptSoldier() {
+        return new ResponseEntity<>(unitService.getAllUnitsExcepSoldier(), HttpStatus.OK);
+    }
 }

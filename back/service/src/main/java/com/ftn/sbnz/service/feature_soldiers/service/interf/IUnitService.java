@@ -9,4 +9,5 @@ public interface IUnitService {
     public List<UnitDTO> getBasicUnits();
     public void saveUnitForSoldier(String jmbg, Long unitId);
     public List<Soldier> getSoldiersForUnit(Long unitId);
+    public List<UnitDTO> getAllUnitsExcepSoldier();
 }

@@ -39,7 +39,7 @@ public class UnitService implements IUnitService{
     public void saveUnitForSoldier(String jmbg, Long parentUnitId) {
         Optional<Unit> unit = unitRepository.findById(parentUnitId);
         if (!unit.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parent id " + parentUnitId + " is not valid.");
-        Unit newUnit = new Unit(jmbg, unit.get(), UnitType.OTHER);
+        Unit newUnit = new Unit(jmbg, unit.get(), UnitType.SOLDIER);
         KieSession kieSession = kieSessionService.getKieSession();
         kieSession.insert(newUnit);
         unitRepository.save(newUnit);
@@ -56,6 +56,15 @@ public class UnitService implements IUnitService{
         kieSession.setGlobal("soldiersInUnit", soldiers);
         kieSession.fireAllRules();
         return soldiers;
+    }
+
+    @Override
+    public List<UnitDTO> getAllUnitsExcepSoldier() {
+        List<Unit> units = unitRepository.findByType(UnitType.OTHER);
+        units.addAll(unitRepository.findByType(UnitType.UNIT));
+        List< UnitDTO> unitDTOs = new ArrayList<>();
+        for (Unit unit : units) unitDTOs.add(new UnitDTO(unit.getId(), unit.getName()));
+        return unitDTOs;
     }
     
 }
