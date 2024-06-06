@@ -2,10 +2,8 @@ import { getTranslation } from '@/locales/TranslationHelper'
 import style from '../styles/Table.module.css'
 import React, { useEffect, useState } from 'react'
 import CancelIcon from '@mui/icons-material/Close'
-import AddIcon from '@mui/icons-material/Add'
-import { Button } from '@mui/material'
 
-export default function TableWorkers({ workers, onAddClick }) {
+export default function TableWorkers({ workers }) {
     const t = getTranslation()
 
     if (workers == null) return <div></div>
@@ -14,12 +12,6 @@ export default function TableWorkers({ workers, onAddClick }) {
             <div className={style.pageNoData}>
                 <CancelIcon className={style.noDataIcon} style={{ fontSize: '120px' }} />
                 <p className={style.noDataDescription}>{t.no_data}</p>
-                <Button 
-                    className="button raisedButton"
-                    onClick={() => { if(onAddClick) onAddClick() }}>
-                    <AddIcon style={{ fontSize: '18px' }} />
-                    <p>{t.button_add_worker}</p>
-                </Button>
             </div>
         )
     } else {

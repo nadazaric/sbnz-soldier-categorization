@@ -2,7 +2,6 @@
 export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Vojnici',
-    navbar_option_units: 'Vojne jedinice',
     navbar_option_competitions: 'Konkursi',
     navbar_option_workers: 'Radnici',
     navbar_option_login: 'Odjavi se',
@@ -48,6 +47,7 @@ export default {
 
     // units
     unit_section: 'Vojne jedinice',
+    unit_default_option: 'Bez filtera',
 
     // buttons
     button_add_soldier: 'Dodaj vojnika',

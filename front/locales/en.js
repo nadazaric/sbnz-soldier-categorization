@@ -2,7 +2,6 @@
 export default {
     logo: 'Dutyify',
     navbar_option_soldiers: 'Soldiers',
-    navbar_option_units: 'Units',
     navbar_option_competitions: 'Competitions',
     navbar_option_workers: 'Workers',
     navbar_option_login: 'Log out',
@@ -48,6 +47,7 @@ export default {
 
     // units
     unit_section: 'Miletary Unit',
+    unit_default_option: 'No Filter',
 
     // buttons
     button_add_soldier: 'Add Soldier',

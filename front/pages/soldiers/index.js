@@ -4,13 +4,14 @@ import { ButtonHeader } from "@/components/Header";
 import { AddDetailsSoldier } from "@/components/AddSoldier";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
-import { getTranslation } from "@/locales/TranslationHelper";
+import { getLanguage, getTranslation } from "@/locales/TranslationHelper";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DropdownMenuOption } from "@/components/DropdownMenu";
 
 export default function Soldiers() {
     const t = getTranslation()
+    const language = getLanguage()
     const [soldiers, setSoldiers] = useState(null)
     const [openDialog, setOpenDialog] = useState(false)
     const [selectedId, setSelectedId] = useState('')
@@ -22,23 +23,23 @@ export default function Soldiers() {
         axios.get(`${BACK_BASE_URL}/unit/units-except-soldier`)
             .then(response => { 
                 var options = []
-                options.push({value: null, text: "DEAFULT"})
+                options.push({value: null, text: t.unit_default_option})
                 for (var option of response.data) options.push({value: option.id, text: option.name})
                 setUnitOptns(options) 
             })
             .catch(_error => {})
-    }, [])
+    }, [language])
 
     function getSoldiersForUnit() {
         axios.get(`${BACK_BASE_URL}/unit/soldiers-for-unit/${selectedUnitId}`)
-            .then(response => {console.log('UNIT ' + selectedUnitId); setSoldiers(response.data) })
+            .then(response => { setSoldiers(response.data) })
             .catch(_error => {})
     }
 
     // soldiers
     function getAllSoldiers() {
         axios.get(`${BACK_BASE_URL}/soldier`)
-            .then(response => {console.log('ALL'); setSoldiers(response.data) })
+            .then(response => { setSoldiers(response.data) })
             .catch(_error => {})
     }
 
@@ -91,7 +92,6 @@ export default function Soldiers() {
             <TableSoldiers 
                 soldiers={soldiers} 
                 onSoldierClick={onSoldierClick}
-                onAddClick={onAddClick}
             />
             <DialogWithHeader
                 isOpen={openDialog}
