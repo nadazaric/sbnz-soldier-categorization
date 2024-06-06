@@ -77,6 +77,13 @@
 
 .squerButtonLabel { 
     display: flex;
-    /* gap: 5px; */
     align-items: center;
+}
+
+.dropdownButton:hover {
+    background-color: transparent;
+}
+
+.dropdownIcon {
+    color: rgb(var(--PrimaryColor));
 }

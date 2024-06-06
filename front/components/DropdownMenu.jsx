@@ -106,18 +106,20 @@ export function DropdownMenuOption({ options, selectedDefault, onSelect, alwaysO
     <div>
         <Button 
             disableRipple 
-            className="inputWrapper dropdownInput" 
+            className={styleForm.dropdownButton}
+            // className="inputWrapper dropdownInput" 
             onClick={handleClick}
             // disabled={isDisabled}
           >
-            <input
-              ref={inputRef}
-              className={`${styleForm.celearInput} width_full`}
-              readOnly
-              value={selectedOption ? selectedOption.text : ''}
-              // onChange={(e) => handleClick}
-            />
-            <ArrowIcon />
+            <div className={`${styleForm.inputWrapper} width_full`}>
+                <input 
+                  readOnly
+                  className={styleForm.input}
+                  value={selectedOption ? selectedOption.text : ''} 
+                  ref={inputRef}
+                />
+                <ArrowIcon className={styleForm.dropdownIcon} />
+            </div>
           </Button>
 
         <Menu
@@ -127,7 +129,8 @@ export function DropdownMenuOption({ options, selectedDefault, onSelect, alwaysO
             PaperProps={{
             style: {
                 maxHeight: 200,
-                maxWidth: 600
+                maxWidth: 600,
+                marginLeft: 20
             },
             }}
         >
