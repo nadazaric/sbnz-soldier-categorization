@@ -1,4 +1,4 @@
-package backward;
+// package backward;
 
 import com.ftn.sbnz.model.feature_soldiers.models.Unit;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
