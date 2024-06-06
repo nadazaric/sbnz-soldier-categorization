@@ -13,13 +13,19 @@ import org.kie.api.runtime.KieSession;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
+import com.ftn.sbnz.model.feature_soldiers.models.Unit;
 import com.ftn.sbnz.service.ServiceApplication;
 import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
+import com.ftn.sbnz.service.feature_soldiers.repository.SoldierRepository;
+import com.ftn.sbnz.service.feature_soldiers.repository.UnitRepository;
 
 @Service
 public class KieSesionService implements IKieSessionService{
 
     private final KieSession kieSession;
+    @Autowired private SoldierRepository soldierRepository;
+    @Autowired private UnitRepository unitRepository;
 
     @Autowired
     public KieSesionService() throws IOException {
@@ -31,6 +37,14 @@ public class KieSesionService implements IKieSessionService{
         return kieSession;
     }
 
+    @Override
+    public void loadData() {
+        List<Soldier> soldiers = soldierRepository.findAll();
+        for (Soldier soldier : soldiers) kieSession.insert(soldier);
+        List<Unit> units = unitRepository.findAll();
+        for (Unit unit : units) kieSession.insert(unit);
+    }
+
     private KieSession generateKieSession() throws IOException {
         // load template
         InputStream template = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/categorization.drt");
@@ -39,9 +53,14 @@ public class KieSesionService implements IKieSessionService{
         String drl = converter.compile(data, template, 3, 2);
 
         // load soldier rules
-        InputStream ordinaryRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/soldiers.drl");
-        byte[] ordinaryRulesBytes = IOUtils.toByteArray(ordinaryRules);
-        drl += new String(ordinaryRulesBytes, StandardCharsets.UTF_8);
+        InputStream soldierRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/soldiers.drl");
+        byte[] soldierRulesBytes = IOUtils.toByteArray(soldierRules);
+        drl += new String(soldierRulesBytes, StandardCharsets.UTF_8);
+
+        // load unit rules
+        InputStream unitRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/soldierUnits.drl");
+        byte[] unitRulesBytes = IOUtils.toByteArray(unitRules);
+        drl += new String(unitRulesBytes, StandardCharsets.UTF_8);
         // System.err.println(drl);
 
         return this.createKieSessionFromDRL(drl);

@@ -14,14 +14,15 @@ export default {
 
     // soldiers
     soldiers_header_title: 'Soldiers',
-    soldiers_full_name: 'Name and Surname',
-    soldiers_jmbg: 'Unique identification number [JMBG]',
+    soldiers_full_name: 'Fullname',
+    soldiers_jmbg: ' JMBG',
     soldiers_months: 'Months in the war zone',
     soldiers_category: 'Category',
     soldiers_category_lower: 'category',
     soldiers_category_none: 'No category',
     soldiers_monthly_contribution: 'Monthly Contribution',
     soldiers_add_title: 'Add soldier',
+    soldiers_details: 'Soldier details',
 
     // war obligation
     war_obligation_section: 'War Obligations',
@@ -43,6 +44,10 @@ export default {
     worker_name: 'Name',
     worker_username: 'Username',
     worker_add_title: 'Add worker',
+
+    // units
+    unit_section: 'Miletary Unit',
+    unit_default_option: 'No Filter',
 
     // buttons
     button_add_soldier: 'Add Soldier',

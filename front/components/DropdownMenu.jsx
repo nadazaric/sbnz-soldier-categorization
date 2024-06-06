@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import style from '../styles/DropdownMenu.module.css'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { getTranslation } from '@/locales/TranslationHelper';
+import styleForm from '../styles/Form.module.css'
+import { Button } from '@mui/material';
+import ArrowIcon from '@mui/icons-material/ArrowDropDown'
 
 export function DropdownMenuNavbarOption({ options, selectedDefault, onSelect, alwaysOnText = null }) {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -52,6 +55,82 @@ export function DropdownMenuNavbarOption({ options, selectedDefault, onSelect, a
             style: {
                 maxHeight: 200,
                 maxWidth: 600
+            },
+            }}
+        >
+            <div>
+                {options.map((option) => (
+                    <MenuItem 
+                        key={option.value} 
+                        onClick={() => handleClose(option)} 
+                        style={{ fontSize: '14px', whiteSpace: 'normal' }}>
+                        {option.text}
+                    </MenuItem>
+                ))}
+            </div>
+        </Menu>
+    </div>
+  )
+}
+
+export function DropdownMenuOption({ options, selectedDefault, onSelect, alwaysOnText = null }) {
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [selectedOption, setSelectedOption] = useState(null)
+  const t = getTranslation()
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedDefault && options && options.length > 0) {
+      setSelectedOption(options[0])
+    } else if (options && options.length > 0) {
+      const defaultOption = options.find(option => option.value === selectedDefault)
+      setSelectedOption(defaultOption)
+    }
+  }, [options, selectedDefault])
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = (option) => {
+    setSelectedOption(option)
+    setAnchorEl(null)
+    if (onSelect) onSelect(option)
+  }
+
+  if (!options || options.length === 0) {
+    return <div>{t.no_data}</div>
+  }
+
+  return (
+    <div>
+        <Button 
+            disableRipple 
+            className={styleForm.dropdownButton}
+            // className="inputWrapper dropdownInput" 
+            onClick={handleClick}
+            // disabled={isDisabled}
+          >
+            <div className={`${styleForm.inputWrapper} width_full`}>
+                <input 
+                  readOnly
+                  className={styleForm.input}
+                  value={selectedOption ? selectedOption.text : ''} 
+                  ref={inputRef}
+                />
+                <ArrowIcon className={styleForm.dropdownIcon} />
+            </div>
+          </Button>
+
+        <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => setAnchorEl(null)}
+            PaperProps={{
+            style: {
+                maxHeight: 200,
+                maxWidth: 600,
+                marginLeft: 20
             },
             }}
         >

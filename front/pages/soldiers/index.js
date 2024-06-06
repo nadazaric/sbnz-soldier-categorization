@@ -1,23 +1,47 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { DialogWithHeader } from "@/components/Dialog";
 import { ButtonHeader } from "@/components/Header";
-import { AddSoldier } from "@/components/AddSoldier";
+import { AddDetailsSoldier } from "@/components/AddSoldier";
 import TableSoldiers from "@/components/TableSoldiers";
 import { BACK_BASE_URL } from "@/helper/environment";
-import { getTranslation } from "@/locales/TranslationHelper";
+import { getLanguage, getTranslation } from "@/locales/TranslationHelper";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { DropdownMenuOption } from "@/components/DropdownMenu";
 
 export default function Soldiers() {
     const t = getTranslation()
+    const language = getLanguage()
     const [soldiers, setSoldiers] = useState(null)
     const [openDialog, setOpenDialog] = useState(false)
     const [selectedId, setSelectedId] = useState('')
 
+    // units
+    const [selectedUnitId, setSelectedUnitId] = useState(null)
+    const [unitOption, setUnitOptns] = useState([{value: '', text: ''}])
     useEffect(() => {
+        axios.get(`${BACK_BASE_URL}/unit/units-except-soldier`)
+            .then(response => { 
+                var options = []
+                options.push({value: null, text: t.unit_default_option})
+                for (var option of response.data) options.push({value: option.id, text: option.name})
+                setUnitOptns(options) 
+            })
+            .catch(_error => {})
+    }, [language])
+
+    function getSoldiersForUnit() {
+        axios.get(`${BACK_BASE_URL}/unit/soldiers-for-unit/${selectedUnitId}`)
+            .then(response => { setSoldiers(response.data) })
+            .catch(_error => {})
+    }
+
+    // soldiers
+    function getAllSoldiers() {
         axios.get(`${BACK_BASE_URL}/soldier`)
             .then(response => { setSoldiers(response.data) })
             .catch(_error => {})
-    }, [])
+    }
 
     function onSoldierClick(soldier) {
         setSelectedId(soldier.id)
@@ -29,38 +53,53 @@ export default function Soldiers() {
         setSelectedId(null)
     }
 
-    const saveSoldier = async (formData) => {
-        try {
-            const response = await axios.post(`${BACK_BASE_URL}/soldier`, formData, {
-                headers: { 'Content-Type': 'application/json' }
-            })
-            if (response.status === 201) {
-                setSoldiers(prevSoldiers => [...prevSoldiers, response.data])
-                setOpenDialog(false)
-            }
-            else { }
-        } catch (error) { }
+    // globals
+    useEffect(() => {
+        getSoldiers()
+    }, [selectedUnitId])
+
+    function getSoldiers() {
+        if (selectedUnitId == null) getAllSoldiers()
+        else getSoldiersForUnit()
     }
+
+    const saveSoldier = (formData) => {
+        axios.post(`${BACK_BASE_URL}/soldier`, formData, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            if (response.status === 201) {
+                setOpenDialog(false)
+                setSelectedUnitId(null)
+            }
+        })
+        .catch(error => {});
+    };
 
     return(
         <div className='page'>
             <ButtonHeader 
                 title={t.soldiers_header_title}
                 onAddClick={onAddClick} 
-            />
+            >
+                <DropdownMenuOption
+                    options={unitOption}
+                    selectedDefault={selectedUnitId}
+                    onSelect={(e) => setSelectedUnitId(e.value)}
+                />
+            </ButtonHeader>
             <div className="spacer_hor_M" />
             <TableSoldiers 
                 soldiers={soldiers} 
                 onSoldierClick={onSoldierClick}
-                onAddClick={onAddClick}
             />
             <DialogWithHeader
                 isOpen={openDialog}
                 width={600}
                 onCloseModal={() => setOpenDialog(false)}
-                title={t.soldiers_add_title}
+                title={selectedId ? t.soldiers_details : t.soldiers_add_title}
             >
-                <AddSoldier 
+                <AddDetailsSoldier 
                     selectedId={selectedId}
                     onSave={saveSoldier}
                     isOpen={openDialog}

@@ -15,13 +15,14 @@ export default {
     // soldiers
     soldiers_header_title: 'Vojnici',
     soldiers_full_name: 'Ime i prezime',
-    soldiers_jmbg: 'Jedinstveni matični broj [JMBG]',
+    soldiers_jmbg: 'JMBG',
     soldiers_months: 'Broj mjeseci u ratnoj zoni',
     soldiers_category: 'Kategorija',
     soldiers_category_lower: 'kategorija',
     soldiers_category_none: 'Nema kategoriju',
     soldiers_monthly_contribution: 'Mjesečni doprinos',
     soldiers_add_title: 'Dodaj vojnika',
+    soldiers_details: 'Deatlji o vojniku',
 
     // war obligation
     war_obligation_section: 'Učešće u ratu',
@@ -43,6 +44,10 @@ export default {
     worker_name: 'Ime i prezime',
     worker_username: 'Korisničko ime',
     worker_add_title: 'Dodaj radnika',
+
+    // units
+    unit_section: 'Vojne jedinice',
+    unit_default_option: 'Bez filtera',
 
     // buttons
     button_add_soldier: 'Dodaj vojnika',

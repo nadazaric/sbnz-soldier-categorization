@@ -7,3 +7,24 @@
 .icon {
     scale: 1.4;
 }
+
+.rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.iconWrapper {
+    border-radius: var(--CornerRadiusStandard);
+    border: 2px solid rgb(var(--DarkGray));
+    height: var(--InputButtonHeight);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconWrapper:hover {
+    border: solid 2px rgb(var(--PrimaryColor));
+}

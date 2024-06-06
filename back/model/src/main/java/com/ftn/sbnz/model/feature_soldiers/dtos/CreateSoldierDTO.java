@@ -8,15 +8,17 @@ public class CreateSoldierDTO {
     private String jmbg;
     private List<CreateWarDutyDTO> warDuties;
     private List<CreateInjuryDTO> injuries;
+    private List<Long> units;
 
     public CreateSoldierDTO() {}
 
     public CreateSoldierDTO(String fullName, String jmbg, List<CreateWarDutyDTO> warDuties,
-            List<CreateInjuryDTO> injuries) {
+            List<CreateInjuryDTO> injuries, List<Long> units) {
         this.fullName = fullName;
         this.jmbg = jmbg;
         this.warDuties = warDuties;
         this.injuries = injuries;
+        this.units = units;
     }
 
     public String getFullName() {
@@ -42,5 +44,11 @@ public class CreateSoldierDTO {
     }
     public void setInjuries(List<CreateInjuryDTO> injuries) {
         this.injuries = injuries;
+    }
+    public List<Long> getUnits() {
+        return units;
+    }
+    public void setUnits(List<Long> units) {
+        this.units = units;
     }
 }

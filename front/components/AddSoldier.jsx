@@ -9,8 +9,9 @@ import TableEditableInjury from './TableEditableInjury'
 import axios from 'axios'
 import { BACK_BASE_URL } from '@/helper/environment'
 import detailsStyle from '../styles/Details.module.css'
+import TableEditableUnit from './TableEditableUnit'
 
-export function AddSoldier({ 
+export function AddDetailsSoldier({ 
     selectedId = null,
     onSave, 
     isOpen 
@@ -52,6 +53,29 @@ export function AddSoldier({
         })
     }
 
+    // units
+    const [units, setUnits] = useState([])
+
+    useEffect(() => {
+        axios.get(`${BACK_BASE_URL}/unit/simple-units`)
+            .then(response => { 
+                const options = response.data.map(item => ({ value: item.id, text: item.name, selected: false }))
+                setUnits(options)
+            })
+            .catch(_error => {})
+    }, [])
+
+    function isNotAllUnitsFalse () {
+        var isAllFalse = true
+        for (var unit of units) {
+            if (unit.selected) {
+                isAllFalse = false
+                break
+            }
+        }
+        return !isAllFalse
+    }
+
     // clear form && details view
     useEffect(() => {
         if(!isOpen) {
@@ -62,6 +86,8 @@ export function AddSoldier({
             setWarObligations([])
             setWarObligationsHaveError(false)
             setInjuries([])
+            const updatedUnits = units.map(unit => ({ ...unit, selected: false }))
+            setUnits(updatedUnits)
         } else if (isOpen && selectedId != null) {
             getSoldierDetails()
             setFormMode(false)
@@ -77,22 +103,34 @@ export function AddSoldier({
             })
             setWarObligations(response.data.warDuties)
             setInjuries(response.data.injuries)
+            const updatedUnits = units.map(unit => {
+                if (response.data.units.includes(unit.value)) return { ...unit, selected: true }
+                else return unit
+            })
+            setUnits(updatedUnits)
          })
         .catch(_error => {})
     }
       
     function saveSoldier(e) {
         e.preventDefault()
+        var selectedUnits = []
+        for (var unit of units) {
+            if (unit.selected) selectedUnits.push(unit.value)
+        }
         if (onSave) onSave({
             fullName: form.fullName,
             jmbg: form.jmbg,
             warDuties: warObligations,
-            injuries: injuries
+            injuries: injuries,
+            units: selectedUnits
         })
         setForm({
             fullName: '',
             jmbg: ''
         })
+        const updatedUnits = units.map(unit => ({ ...unit, selected: false }))
+        setUnits(updatedUnits)
     }
 
     function isButtonDisabled() {
@@ -128,16 +166,29 @@ export function AddSoldier({
             {!formMode &&
                 <div className={detailsStyle.wrapper}>
                     <div className={detailsStyle.rowWrapper}>
-                        <div className={detailsStyle.label}>Ime i prezime</div>
+                        <div className={detailsStyle.label}>{t.soldiers_full_name}</div>
                         <div className={detailsStyle.info}>{form.fullName}</div>
                     </div>
                     <div className='spacer_hor_S' />
                     <div className={detailsStyle.rowWrapper}>
-                        <div className={detailsStyle.label}>JMBG</div>
+                        <div className={detailsStyle.label}>{t.soldiers_jmbg}</div>
                         <div className={detailsStyle.info}>{form.jmbg}</div>
                     </div>
                 </div>
             }
+
+            {(formMode || isNotAllUnitsFalse()) &&
+                <>
+                    <div className='spacer_hor_L' />
+                    <Section title={t.unit_section}>
+                        <div className='spacer_hor_M' />
+                        <TableEditableUnit 
+                            formMode={formMode}
+                            units={units}
+                        />
+                    </Section>
+                </>
+            } 
             
             <div className='spacer_hor_L' />
             <Section 
