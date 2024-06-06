@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AddDetailsSoldier } from "@/components/AddSoldier"
 import { DialogWithHeader } from "@/components/Dialog"
+import { Header } from "@/components/Header"
 import TableSoldiers from "@/components/TableSoldiers"
 import { BACK_BASE_URL } from "@/helper/environment"
 import { getTranslation } from "@/locales/TranslationHelper"
@@ -27,10 +28,14 @@ export default function Units() {
 
     return(
         <div className="page">
+            <Header title={'Title'}>
+                
+            </Header>
             <TableSoldiers 
                 soldiers={soldiers}
                 onSoldierClick={onSoldierClick}
             />
+
             <DialogWithHeader
                 isOpen={openDialog}
                 width={600}

@@ -65,6 +65,17 @@ export function AddDetailsSoldier({
             .catch(_error => {})
     }, [])
 
+    function isNotAllUnitsFalse () {
+        var isAllFalse = true
+        for (var unit of units) {
+            if (unit.selected) {
+                isAllFalse = false
+                break
+            }
+        }
+        return !isAllFalse
+    }
+
     // clear form && details view
     useEffect(() => {
         if(!isOpen) {
@@ -166,14 +177,18 @@ export function AddDetailsSoldier({
                 </div>
             }
 
-            <div className='spacer_hor_L' />
-            <Section title={t.unit_section}>
-                <div className='spacer_hor_M' />
-                <TableEditableUnit 
-                    formMode={formMode}
-                    units={units}
-                />
-            </Section>
+            {(formMode || isNotAllUnitsFalse()) &&
+                <>
+                    <div className='spacer_hor_L' />
+                    <Section title={t.unit_section}>
+                        <div className='spacer_hor_M' />
+                        <TableEditableUnit 
+                            formMode={formMode}
+                            units={units}
+                        />
+                    </Section>
+                </>
+            } 
             
             <div className='spacer_hor_L' />
             <Section 

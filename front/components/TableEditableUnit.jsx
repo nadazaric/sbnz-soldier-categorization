@@ -13,8 +13,6 @@ export default function TableEditableUnit({
 
     useEffect(() =>{
         setEntities(units)
-        console.log("===============================")
-        console.log(units)
     }, [units])
 
     const handleChipClick = (index) => {

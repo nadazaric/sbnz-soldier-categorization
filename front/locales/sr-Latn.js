@@ -16,7 +16,7 @@ export default {
     // soldiers
     soldiers_header_title: 'Vojnici',
     soldiers_full_name: 'Ime i prezime',
-    soldiers_jmbg: 'Jedinstveni matični broj [JMBG]',
+    soldiers_jmbg: 'JMBG',
     soldiers_months: 'Broj mjeseci u ratnoj zoni',
     soldiers_category: 'Kategorija',
     soldiers_category_lower: 'kategorija',
