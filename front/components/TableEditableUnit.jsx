@@ -13,6 +13,8 @@ export default function TableEditableUnit({
 
     useEffect(() =>{
         setEntities(units)
+        console.log("===============================")
+        console.log(units)
     }, [units])
 
     const handleChipClick = (index) => {
@@ -27,11 +29,16 @@ export default function TableEditableUnit({
             <div>
                 {entities != null && entities.length != 0 &&
                     <div>
-                        {/* <div className={style.rowInjury}>
-                            <div className={`${style.item} ${style.headerItem}`}>{"Nazv jedinice"}</div>
-                            <div className={`${style.item} ${style.headerItem}`}/>
-                        </div> */}
                         <div className={styleChip.wrapper}>
+                            {!formMode && units.map((unit, index) => (
+                                <React.Fragment key={index}>
+                                    {unit.selected && (
+                                        <div className={`${styleChip.option} ${styleChip.optionSelected}`}>
+                                            {unit.text}
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            ))}
                             {formMode && units.map((unit, index) => (
                                 <React.Fragment key={index}>
                                     <div 

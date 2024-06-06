@@ -92,6 +92,11 @@ export function AddSoldier({
             })
             setWarObligations(response.data.warDuties)
             setInjuries(response.data.injuries)
+            const updatedUnits = units.map(unit => {
+                if (response.data.units.includes(unit.value)) return { ...unit, selected: true }
+                else return unit
+            })
+            setUnits(updatedUnits)
          })
         .catch(_error => {})
     }

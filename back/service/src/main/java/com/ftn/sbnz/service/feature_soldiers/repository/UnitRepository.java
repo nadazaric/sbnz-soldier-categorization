@@ -7,4 +7,5 @@ import com.ftn.sbnz.model.feature_soldiers.values.UnitType;
 
 public interface UnitRepository extends JpaRepository<Unit, Long> {
     public List<Unit> findByType(UnitType type);
+    public List<Unit> findByName(String name);
 }

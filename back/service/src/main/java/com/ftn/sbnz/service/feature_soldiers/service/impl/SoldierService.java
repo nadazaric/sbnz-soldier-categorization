@@ -11,10 +11,12 @@ import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateWarDutyDTO;
 import com.ftn.sbnz.model.feature_soldiers.models.Injury;
 import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
+import com.ftn.sbnz.model.feature_soldiers.models.Unit;
 import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
 import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
 import com.ftn.sbnz.service.feature_soldiers.repository.InjuryRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.SoldierRepository;
+import com.ftn.sbnz.service.feature_soldiers.repository.UnitRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.WarDutyRepository;
 import com.ftn.sbnz.service.feature_soldiers.service.interf.ISoldierService;
 
@@ -25,6 +27,7 @@ public class SoldierService implements ISoldierService {
     @Autowired WarDutyRepository warDutyRepository;
     @Autowired InjuryRepository injuryRepository;
     @Autowired IKieSessionService kieSessionService;
+    @Autowired UnitRepository unitRepository;
 
     @Override
     public List<Soldier> getAll() {
@@ -76,6 +79,11 @@ public class SoldierService implements ISoldierService {
             injuryDTOs.add(new CreateInjuryDTO(injury.getType().toString()));
         }
         createSoldierDTO.setInjuries(injuryDTOs);
+
+        List<Unit> units = unitRepository.findByName(soldier.get().getJmbg());
+        List<Long> unitIds = new ArrayList<>();
+        for (Unit unit : units) unitIds.add(unit.getParent().getId());
+        createSoldierDTO.setUnits(unitIds);
 
         return createSoldierDTO;
     }
