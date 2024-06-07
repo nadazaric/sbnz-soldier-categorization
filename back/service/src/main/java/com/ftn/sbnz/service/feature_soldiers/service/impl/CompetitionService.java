@@ -1,14 +1,13 @@
 package com.ftn.sbnz.service.feature_soldiers.service.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
-
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateCompetitorDTO;
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateSpaCompetitionDTO;
 import com.ftn.sbnz.model.feature_competitions.models.Competitor;
@@ -52,6 +51,11 @@ public class CompetitionService implements ICompetitionService {
 
         spaCompetition.get().addCompetitor(competitor);
         return spaCompetitionRepostory.save(spaCompetition.get());
+    }
+
+    @Override
+    public List<SpaCompetition> getSpaCompetitions() {
+        return spaCompetitionRepostory.findAll();
     }
     
 }
