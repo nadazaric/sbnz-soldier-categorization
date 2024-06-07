@@ -34,7 +34,8 @@ public class CompetitionController {
 
     @GetMapping
     public ResponseEntity<List<SpaCompetition>> getSpaCompetition() {
-        return new ResponseEntity<>(competitionService.getSpaCompetitions(), HttpStatus.OK);
+        List<SpaCompetition> competitors = competitionService.getSpaCompetitions();
+        return new ResponseEntity<>(competitors, HttpStatus.OK);
     }
 
     @PostMapping("/finish-competition/{competitionId}")

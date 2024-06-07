@@ -1,3 +1,4 @@
+import TableCompetitions from "@/components/TableCompetitions"
 import { BACK_BASE_URL } from "@/helper/environment"
 import { getTranslation } from "@/locales/TranslationHelper"
 import axios from "axios"
@@ -15,7 +16,9 @@ export default function Competitions() {
 
     return(
         <div className="page">
-            Competitions Page
+            <TableCompetitions 
+                competitions={competitions}
+            />
         </div>
     )
 }

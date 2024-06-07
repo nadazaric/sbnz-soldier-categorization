@@ -58,7 +58,8 @@ public class CompetitionService implements ICompetitionService {
 
     @Override
     public List<SpaCompetition> getSpaCompetitions() {
-        return spaCompetitionRepostory.findAll();
+        List<SpaCompetition> competitions = spaCompetitionRepostory.findAll();
+        return competitions;
     }
 
     @Override
