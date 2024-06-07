@@ -19,7 +19,7 @@ import java.util.List;
 
 rule "Check and Collect Recent Competitors"
 when
-    $newCompetitor: Competitor()
+    $newCompetitor: Competitor(status == CompetitorStatus.WAITING)
     $competitions: List() from collect(
         SpaCompetition(year >= String.valueOf(LocalDate.now().minusYears(3).getYear()) && isDone == true)
     )

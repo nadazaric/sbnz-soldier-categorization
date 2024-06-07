@@ -27,7 +27,7 @@ public class CompetitionsTest {
         Competitor c0 = new Competitor( 
             "Dragomir Vasic",
             "4",
-            CompetitorStatus.WAITING,
+            CompetitorStatus.ACCEPTED,
             CompetitorCategry.INVALID,
             FamilyType.NONE,
             InjuryType.MEDIUM,
@@ -98,6 +98,7 @@ public class CompetitionsTest {
         sc2.setCompetitors(competitors2);
 
         kieSession.insert(sc0);
+        kieSession.insert(c0);
         kieSession.insert(sc1);
         kieSession.insert(sc2);
         kieSession.insert(c4);
