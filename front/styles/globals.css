@@ -7,6 +7,9 @@
   --DarkGray: 125, 130, 120;
   --ErrorColor: 240, 20, 96;
 
+  --NeutralColor: 242, 216, 145;
+  --PositiveColor: 140, 194, 147;
+
   /* variables */
   --CornerRadiusStandard: 30px;
   --NavbarHeight: 60px;

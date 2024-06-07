@@ -49,6 +49,14 @@ export default {
     unit_section: 'Miletary Unit',
     unit_default_option: 'No Filter',
 
+    // competitions
+    competition_header_title: 'Competitions',
+    competition_name: 'Competition Name',
+    competition_position_name: 'Number of Available Positions',
+    competition_current_number: 'Number of Applicants',
+    competition_status_active: 'Active',
+    competition_status_finished: 'Finished',
+
     // buttons
     button_add_soldier: 'Add Soldier',
     button_add_worker: 'Add Worker',

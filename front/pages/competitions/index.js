@@ -1,3 +1,4 @@
+import { ButtonHeader } from "@/components/Header"
 import TableCompetitions from "@/components/TableCompetitions"
 import { BACK_BASE_URL } from "@/helper/environment"
 import { getTranslation } from "@/locales/TranslationHelper"
@@ -16,6 +17,7 @@ export default function Competitions() {
 
     return(
         <div className="page">
+            <ButtonHeader title={t.competition_header_title} />
             <TableCompetitions 
                 competitions={competitions}
             />

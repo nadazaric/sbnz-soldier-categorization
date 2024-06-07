@@ -116,4 +116,14 @@ public class SpaCompetition {
     public void setSelectedCompetitors(Set<Competitor> selectedCompetitors) {
         this.selectedCompetitors = selectedCompetitors;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
 }

@@ -38,6 +38,16 @@
     cursor: pointer;
 }
 
+.rowCompetition {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 100px 100px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .rowSoldier:hover {
     cursor: default;
 }
@@ -82,7 +92,7 @@
     display: flex;
     padding: 0px 15px;
     text-align: flex-end;
-    gap: 15px;
+    gap: 10px;
     justify-content: flex-end;
 }
 

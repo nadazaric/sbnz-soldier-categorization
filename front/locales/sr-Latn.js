@@ -49,6 +49,14 @@ export default {
     unit_section: 'Vojne jedinice',
     unit_default_option: 'Bez filtera',
 
+    // competitions
+    competition_header_title: 'Konkursi',
+    competition_name: 'Ime konkursa',
+    competition_position_name: 'Broj dozvoljenih mijesta',
+    competition_current_number: 'Broj prijavljenih',
+    competition_status_active: 'Aktivan',
+    competition_status_finished: 'Završen',
+
     // buttons
     button_add_soldier: 'Dodaj vojnika',
     button_add_worker: 'Dodaj radnika',

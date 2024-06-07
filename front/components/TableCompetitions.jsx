@@ -2,6 +2,9 @@ import { getTranslation } from '@/locales/TranslationHelper'
 import style from '../styles/Table.module.css'
 import React, { useEffect, useState } from 'react'
 import CancelIcon from '@mui/icons-material/Close'
+import Chip, { CHIP_TYPE } from './Chip'
+import DoneIcon from '@mui/icons-material/Check'
+import PersonIcon from '@mui/icons-material/PersonAdd'
 
 export default function TableCompetitions({ competitions, onCompeitionClick }) {
     const t = getTranslation()
@@ -17,19 +20,29 @@ export default function TableCompetitions({ competitions, onCompeitionClick }) {
     } else {
         return (
             <div>
-                <div className={style.rowSoldier}>
-                    <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_full_name}</div>
-                    <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_jmbg}</div>
-                    <div className={`${style.item} ${style.headerItem}`}>{t.soldiers_months}</div>
+                <div className={style.rowCompetition}>
+                    <div className={`${style.item} ${style.headerItem}`}>{t.competition_name}</div>
+                    <div className={`${style.item} ${style.headerItem}`}>{t.competition_position_name}</div>
+                    <div className={`${style.item} ${style.headerItem}`}>{t.competition_current_number}</div>
                 </div>
                 {competitions != null && competitions.map((competition, index) => (
                     <React.Fragment key={index}>
                         <div 
-                            className={`${style.rowSoldier} ${style.itemRow} ${style.activeRow} ${index % 2 === 0 ? style.grayRow : ''}`}
+                            className={`${style.rowCompetition} ${style.itemRow} ${style.activeRow} ${index % 2 === 0 ? style.grayRow : ''}`}
                             onClick={() => {if (onCompeitionClick) onSoldierClick(competition)}}>
                             <div className={`${style.item}`}>{competition.name}</div>
                             <div className={`${style.item}`}>{competition.positionNumber}</div>
-                            <div className={`${style.item}`}>{competition.isDone}</div>
+                            <div className={`${style.item}`}>{competition.competitors && competition.competitors.length}</div>
+                            <div className={`${style.item}`}>
+                                <Chip 
+                                    type={competition.isDone ? CHIP_TYPE.POSITIVE : CHIP_TYPE.NEUTRAL} 
+                                    title={competition.isDone ? t.competition_status_finished : t.competition_status_active} 
+                                />
+                            </div>
+                            <div className={`${style.item} ${style.lastItem}`}>
+                                <DoneIcon className='icon' />
+                                <PersonIcon className='icon' />
+                            </div>
                         </div>
                     </React.Fragment>
                 ))}
