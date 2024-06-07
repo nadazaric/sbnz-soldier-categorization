@@ -10,4 +10,5 @@ public interface ICompetitionService {
     public SpaCompetition createSpaCometition(CreateSpaCompetitionDTO spaCompetitionDTO);
     public SpaCompetition addCompetitorToSpaCompetition(CreateCompetitorDTO competitorDTO);
     public List<SpaCompetition> getSpaCompetitions();
+    public SpaCompetition finishCompetition(Long competitionId);
 }

@@ -129,6 +129,5 @@ public class CompetitionsTest {
         for (Competitor competitor : sc2.getSelectedCompetitors()) {
             System.out.println("Competitor: " + competitor.getFullName() + ", Score: " + competitor.getScore());
         }
-
     }
 }

@@ -57,5 +57,24 @@ public class CompetitionService implements ICompetitionService {
     public List<SpaCompetition> getSpaCompetitions() {
         return spaCompetitionRepostory.findAll();
     }
+
+    @Override
+    public SpaCompetition finishCompetition(Long competitionId) {
+        KieSession kieSession = kieSessionService.getKieSession();
+
+        Optional<SpaCompetition> spaCompetitionForFinish = spaCompetitionRepostory.findById(competitionId);
+        if (!spaCompetitionForFinish.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitionId);
+        kieSession.insert(spaCompetitionForFinish);
+        
+        Integer year = LocalDate.now().getYear();
+        for (int i = 0; i < 3; i++) {
+            System.out.println(year - i);
+            List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(String.valueOf(year - i));
+            for (SpaCompetition competition : competitionsForYear) kieSession.insert(competition);
+        }
+
+        kieSession.fireAllRules();
+        return spaCompetitionForFinish.get();
+    }
     
 }
