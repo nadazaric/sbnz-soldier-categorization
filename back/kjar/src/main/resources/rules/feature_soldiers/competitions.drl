@@ -1,0 +1,44 @@
+package backward;
+
+import com.ftn.sbnz.model.feature_competitions.models.Competitor;
+import com.ftn.sbnz.model.feature_competitions.values.CompetitorCategry;
+import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
+import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
+
+// rule "Check is Competition request valid"
+// when
+//     $competitor: Competitor($jmbg: jmbg, categry == CompetitorCategry.NONE)
+// then
+//     System.err.println("Takmicar nije validan: " + $jmbg);
+//     modify($competitor) {setStatus(CompetitorStatus.DENIED);}
+// end
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+rule "Check and Collect Recent Competitors"
+when
+    $newCompetitor: Competitor()
+    $competitions: List() from collect(
+        SpaCompetition(year >= String.valueOf(LocalDate.now().minusYears(3).getYear()) && isDone == true)
+    )
+then
+    List<String> recentCompetitorsJmbg = new ArrayList<>();
+
+    for (Object obj : $competitions) {
+        SpaCompetition competition = (SpaCompetition) obj;
+        for (Competitor competitor : competition.getSelectedCompetitors()) {
+            if (!recentCompetitorsJmbg.contains(competitor.getJmbg())) {
+                recentCompetitorsJmbg.add(competitor.getJmbg());
+            }
+        }
+    }
+
+    CompetitorStatus status = CompetitorStatus.ACCEPTED;
+    if (recentCompetitorsJmbg.contains($newCompetitor.getJmbg())) {
+        System.err.println("Competitor with JMBG " + $newCompetitor.getJmbg() + " already exists in recent SpaCompetitions.");
+        status = CompetitorStatus.DENIED;
+    }
+    modify($newCompetitor) {setStatus(status);}
+end

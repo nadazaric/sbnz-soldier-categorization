@@ -33,6 +33,11 @@ public class SpaCompetition {
 
     public SpaCompetition() {}
 
+    public SpaCompetition(String year, Integer positionNumber) {
+        this.year = year;
+        this.positionNumber = positionNumber;
+    }
+
     public SpaCompetition(Long id, String year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,
             Set<Competitor> selectedCompetitors) {
         this.id = id;

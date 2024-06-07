@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import com.ftn.sbnz.model.feature_competitions.values.CompetitorCategry;
 import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
 import com.ftn.sbnz.model.feature_competitions.values.FamilyType;
 import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
@@ -21,10 +22,13 @@ public class Competitor {
     private String fullName;
 
     @Column
-    private LocalDate birthDate;
+    private String jmbg;
 
     @Column
     private CompetitorStatus status;
+
+    @Column
+    private CompetitorCategry categry;
 
     @Column
     private FamilyType deadFamilyMember;
@@ -32,16 +36,34 @@ public class Competitor {
     @Column
     private InjuryType injuryType;
 
-    public Competitor() {}
+    @Column
+    private Integer score;
 
-    public Competitor(Long id, String fullName, LocalDate birthDate, CompetitorStatus status,
-            FamilyType deadFamilyMember, InjuryType injuryType) {
-        this.id = id;
+    
+    public Competitor() {
+    }
+
+    public Competitor(String fullName, String jmbg, CompetitorStatus status, CompetitorCategry categry,
+            FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
         this.fullName = fullName;
-        this.birthDate = birthDate;
+        this.jmbg = jmbg;
         this.status = status;
+        this.categry = categry;
         this.deadFamilyMember = deadFamilyMember;
         this.injuryType = injuryType;
+        this.score = score;
+    }
+
+    public Competitor(Long id, String fullName, String jmbg, CompetitorStatus status, CompetitorCategry categry,
+            FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
+        this.id = id;
+        this.fullName = fullName;
+        this.jmbg = jmbg;
+        this.status = status;
+        this.categry = categry;
+        this.deadFamilyMember = deadFamilyMember;
+        this.injuryType = injuryType;
+        this.score = score;
     }
 
     public Long getId() {
@@ -60,20 +82,20 @@ public class Competitor {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public CompetitorStatus getStatus() {
         return status;
     }
 
     public void setStatus(CompetitorStatus status) {
         this.status = status;
+    }
+
+    public CompetitorCategry getCategry() {
+        return categry;
+    }
+
+    public void setCategry(CompetitorCategry categry) {
+        this.categry = categry;
     }
 
     public FamilyType getDeadFamilyMember() {
@@ -91,4 +113,20 @@ public class Competitor {
     public void setInjuryType(InjuryType injuryType) {
         this.injuryType = injuryType;
     }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public String getJmbg() {
+        return jmbg;
+    }
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
+    }    
 }
