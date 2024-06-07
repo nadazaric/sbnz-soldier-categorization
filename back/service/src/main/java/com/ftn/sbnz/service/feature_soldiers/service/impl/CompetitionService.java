@@ -26,8 +26,11 @@ public class CompetitionService implements ICompetitionService {
 
     @Override
     public SpaCompetition createSpaCometition(CreateSpaCompetitionDTO spaCompetitionDTO) {
-        String year = String.valueOf(LocalDate.now().getYear());
-        SpaCompetition spaCompetition = new SpaCompetition(spaCompetitionDTO.getName(), year, spaCompetitionDTO.getPositionNumber());
+        SpaCompetition spaCompetition = new SpaCompetition(
+            spaCompetitionDTO.getName(), 
+            LocalDate.now().getYear(), 
+            spaCompetitionDTO.getPositionNumber()
+        );
         return spaCompetitionRepostory.save(spaCompetition);
     }
 
@@ -69,7 +72,7 @@ public class CompetitionService implements ICompetitionService {
         Integer year = LocalDate.now().getYear();
         for (int i = 0; i < 3; i++) {
             System.out.println(year - i);
-            List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(String.valueOf(year - i));
+            List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(year - i);
             for (SpaCompetition competition : competitionsForYear) kieSession.insert(competition);
         }
 

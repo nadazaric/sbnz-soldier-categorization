@@ -17,7 +17,7 @@ rule "Check and Collect Recent Competitors"
 when
     $newCompetitor: Competitor(status == CompetitorStatus.WAITING)
     $competitions: List() from collect(
-        SpaCompetition(year >= String.valueOf(LocalDate.now().minusYears(3).getYear()) && isDone == true)
+        SpaCompetition(year >= LocalDate.now().minusYears(3).getYear() && isDone == true)
     )
 then
     List<String> recentCompetitorsJmbg = new ArrayList<>();

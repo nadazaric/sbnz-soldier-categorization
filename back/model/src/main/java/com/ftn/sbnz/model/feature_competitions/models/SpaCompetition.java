@@ -21,7 +21,7 @@ public class SpaCompetition {
     private String name;
 
     @Column
-    private String year;
+    private Integer year;
 
     @Column 
     private Boolean isDone;
@@ -44,14 +44,14 @@ public class SpaCompetition {
         this.selectedCompetitors = new HashSet<>();
     }
 
-    public SpaCompetition(String year, Integer positionNumber) {
+    public SpaCompetition(Integer year, Integer positionNumber) {
         this.year = year;
         this.positionNumber = positionNumber;
         this.competitors = new HashSet<>();
         this.selectedCompetitors = new HashSet<>();
     }    
 
-    public SpaCompetition(String name, String year, Integer positionNumber) {
+    public SpaCompetition(String name, Integer year, Integer positionNumber) {
         this.name = name;
         this.year = year;
         this.positionNumber = positionNumber;
@@ -59,7 +59,7 @@ public class SpaCompetition {
         this.selectedCompetitors = new HashSet<>();
     }
 
-    public SpaCompetition(Long id, String year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,
+    public SpaCompetition(Long id, Integer year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,
             Set<Competitor> selectedCompetitors) {
         this.id = id;
         this.year = year;
@@ -77,11 +77,11 @@ public class SpaCompetition {
         this.id = id;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

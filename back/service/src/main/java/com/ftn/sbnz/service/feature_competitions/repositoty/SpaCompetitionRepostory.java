@@ -8,5 +8,5 @@ import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
 
 @Repository
 public interface SpaCompetitionRepostory extends JpaRepository<SpaCompetition, Long> {
-    public List<SpaCompetition> findByYear(String year);
+    public List<SpaCompetition> findByYear(Integer year);
 }

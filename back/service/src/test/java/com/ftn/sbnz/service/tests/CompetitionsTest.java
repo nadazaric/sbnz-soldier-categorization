@@ -21,7 +21,7 @@ public class CompetitionsTest {
         KieSession kieSession = kieContainer.newKieSession("bwKsession");
 
         SpaCompetition sc0 = new SpaCompetition();
-        sc0.setYear("2020");
+        sc0.setYear(2020);
         sc0.setIsDone(true);
         Competitor c0 = new Competitor( 
             "Dragomir Vasic",
@@ -36,7 +36,7 @@ public class CompetitionsTest {
         sc0.setSelectedCompetitors(competitors0);
 
         SpaCompetition sc1 = new SpaCompetition();
-        sc1.setYear("2023");
+        sc1.setYear(2023);
         sc1.setIsDone(true);
         Competitor c1 = new Competitor(
             "Dragana Mikic",
@@ -68,7 +68,7 @@ public class CompetitionsTest {
         competitors1.add(c3);
         sc1.setSelectedCompetitors(competitors1);
 
-        SpaCompetition sc2 = new SpaCompetition("2024", 2);
+        SpaCompetition sc2 = new SpaCompetition(2024, 2);
         Competitor c4 = new Competitor( 
             "Filip Kokic",
             "3",
