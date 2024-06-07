@@ -18,6 +18,9 @@ public class SpaCompetition {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private String year;
 
     @Column 
@@ -38,6 +41,14 @@ public class SpaCompetition {
     }
 
     public SpaCompetition(String year, Integer positionNumber) {
+        this.year = year;
+        this.positionNumber = positionNumber;
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
+    }    
+
+    public SpaCompetition(String name, String year, Integer positionNumber) {
+        this.name = name;
         this.year = year;
         this.positionNumber = positionNumber;
         this.competitors = new HashSet<>();

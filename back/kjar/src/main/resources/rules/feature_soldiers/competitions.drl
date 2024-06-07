@@ -1,4 +1,4 @@
-package backward;
+// package backward;
 
 import com.ftn.sbnz.model.feature_competitions.models.Competitor;
 import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
