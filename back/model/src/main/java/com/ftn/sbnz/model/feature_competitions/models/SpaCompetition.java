@@ -35,6 +35,10 @@ public class SpaCompetition {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Competitor> selectedCompetitors;
 
+    public void addCompetitor(Competitor competitor) {
+        this.competitors.add(competitor);
+    }
+
     public SpaCompetition() {
         this.competitors = new HashSet<>();
         this.selectedCompetitors = new HashSet<>();
