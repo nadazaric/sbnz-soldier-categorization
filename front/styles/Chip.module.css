@@ -40,3 +40,7 @@
 .staticChipPositive {
     background-color: rgb(var(--PositiveColor));
 }
+
+.staticChipError {
+    background-color: rgb(var(--NoPositiveColor));
+}

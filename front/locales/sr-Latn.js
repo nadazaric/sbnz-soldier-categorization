@@ -67,6 +67,15 @@ export default {
     competitor_dead_family_member: 'Srodstvo s poginulim',
     competitor_injury: 'Tip povrede',
     competitor_score: 'Bodovi',
+    competitor_status: 'Uslovi',
+    competitor_accepted: 'Zadovoljava',
+    competitor_denied: 'Nezadovoljava',
+    competitor_none: 'Nema',
+    competitor_injuries_type_low: 'Manja povreda',
+    competitor_injuries_type_medium: 'Srednje teška povreda',
+    competitor_injuries_type_high: 'Teška povreda',
+    competitor_family_member_child: 'Dijete',
+    competitor_family_member_spouse: 'Supružnik',
 
     // buttons
     button_add_soldier: 'Dodaj vojnika',

@@ -60,13 +60,22 @@ export default {
     competition_all_competitors: 'All candidates',
     competition_selected_competitors: 'Selected candidates',
     competition_no_competitors: 'No Competitors',
-    
+
     // competitor
     competitor_name: 'Full Name',
     competitor_jmbg: 'JMBG',
     competitor_dead_family_member: 'Relation to Fallen Soldier',
     competitor_injury: 'Injury Type',
     competitor_score: 'Score',
+    competitor_status: 'Status',
+    competitor_accepted: 'Accepted',
+    competitor_denied: 'Denied',
+    competitor_none: 'None',
+    competitor_injuries_type_low: 'Minor injury',
+    competitor_injuries_type_medium: 'Moderate injury',
+    competitor_injuries_type_high: 'Severe injury',
+    competitor_family_member_child: 'Child',
+    competitor_family_member_spouse: 'Spouse',
     
 
     // buttons

@@ -35,7 +35,7 @@ export default function Competitions() {
             />
             <DialogWithHeader
                 isOpen={openDetailsDialog}
-                width={1000}
+                width={1200}
                 onCloseModal={() => setOpenDetailsDialog(false)}
                 title={t.competition_details_title}
             >

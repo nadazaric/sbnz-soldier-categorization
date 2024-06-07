@@ -24,12 +24,14 @@ INSERT INTO UNIT(name, parent_id, type) VALUES ('VII Jedinica', 7, 1);
 INSERT INTO UNIT(name, parent_id, type) VALUES ('VIII Jedinica', 7, 1);
 
 INSERT INTO SPA_COMPETITION(name, year, is_done, position_number) VALUES ('Konkurs za 2023 godinu', '2023', true, 2);
-INSERT INTO COMPETITOR(full_name, jmbg, status, dead_family_member, injury_type, score) VALUES ('Milovan Djuric', '1', 2, 1, 1, 20);
+INSERT INTO COMPETITOR(full_name, jmbg, status, dead_family_member, injury_type, score) VALUES ('Milovan Djuric', '1', 2, 1, 0, 20);
 INSERT INTO COMPETITOR(full_name, jmbg, status, dead_family_member, injury_type, score) VALUES ('Marko Peric', '2', 2, 0, 1, 25);
 INSERT INTO COMPETITOR(full_name, jmbg, status, dead_family_member, injury_type, score) VALUES ('Nada Zaric', '3', 2, 0, 2, 30);
+INSERT INTO COMPETITOR(full_name, jmbg, status, dead_family_member, injury_type, score) VALUES ('Jelisaveta Tomic', '4', 1, 2, 3, 0);
 INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALUES (1, 1);
 INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALUES (1, 2);
 INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALUES (1, 3);
+INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALUES (1, 4);
 INSERT INTO SPA_COMPETITION_SELECTED_COMPETITORS(spa_competition_id, selected_competitors_id) VALUES (1, 2);
 INSERT INTO SPA_COMPETITION_SELECTED_COMPETITORS(spa_competition_id, selected_competitors_id) VALUES (1, 3);
 
