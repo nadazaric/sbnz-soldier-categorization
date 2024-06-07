@@ -56,6 +56,18 @@ export default {
     competition_current_number: 'Number of Applicants',
     competition_status_active: 'Active',
     competition_status_finished: 'Finished',
+    competition_details_title: 'Competition Details',
+    competition_all_competitors: 'All candidates',
+    competition_selected_competitors: 'Selected candidates',
+    competition_no_competitors: 'No Competitors',
+    
+    // competitor
+    competitor_name: 'Full Name',
+    competitor_jmbg: 'JMBG',
+    competitor_dead_family_member: 'Relation to Fallen Soldier',
+    competitor_injury: 'Injury Type',
+    competitor_score: 'Score',
+    
 
     // buttons
     button_add_soldier: 'Add Soldier',

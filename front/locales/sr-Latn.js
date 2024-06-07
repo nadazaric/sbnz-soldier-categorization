@@ -56,6 +56,17 @@ export default {
     competition_current_number: 'Broj prijavljenih',
     competition_status_active: 'Aktivan',
     competition_status_finished: 'Završen',
+    competition_details_title: 'Detalji o konkursu',
+    competition_all_competitors: 'Svi kandidati',
+    competition_selected_competitors: 'Izabrani kandidati',
+    competition_no_competitors: 'Nema kandidata',
+
+    // competitor
+    competitor_name: 'Ime i prezime',
+    competitor_jmbg: 'JMBG',
+    competitor_dead_family_member: 'Srodstvo s poginulim',
+    competitor_injury: 'Tip povrede',
+    competitor_score: 'Bodovi',
 
     // buttons
     button_add_soldier: 'Dodaj vojnika',

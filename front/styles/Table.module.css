@@ -48,6 +48,16 @@
     cursor: pointer;
 }
 
+.rowCompetitor {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .rowSoldier:hover {
     cursor: default;
 }
@@ -104,6 +114,15 @@
     align-items: center;
     justify-content: center;
     height: 70vh;
+}
+
+.pageNoDataMini {
+    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
 }
 
 .noDataDescription {

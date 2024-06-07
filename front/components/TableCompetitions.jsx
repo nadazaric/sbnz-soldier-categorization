@@ -29,7 +29,7 @@ export default function TableCompetitions({ competitions, onCompeitionClick }) {
                     <React.Fragment key={index}>
                         <div 
                             className={`${style.rowCompetition} ${style.itemRow} ${style.activeRow} ${index % 2 === 0 ? style.grayRow : ''}`}
-                            onClick={() => {if (onCompeitionClick) onSoldierClick(competition)}}>
+                            onClick={() => {if (onCompeitionClick) onCompeitionClick(competition)}}>
                             <div className={`${style.item}`}>{competition.name}</div>
                             <div className={`${style.item}`}>{competition.positionNumber}</div>
                             <div className={`${style.item}`}>{competition.competitors && competition.competitors.length}</div>
