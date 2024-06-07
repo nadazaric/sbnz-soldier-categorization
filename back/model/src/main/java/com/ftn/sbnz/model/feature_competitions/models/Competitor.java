@@ -1,12 +1,10 @@
 package com.ftn.sbnz.model.feature_competitions.models;
 
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import com.ftn.sbnz.model.feature_competitions.values.CompetitorCategry;
 import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
 import com.ftn.sbnz.model.feature_competitions.values.FamilyType;
 import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
@@ -28,9 +26,6 @@ public class Competitor {
     private CompetitorStatus status;
 
     @Column
-    private CompetitorCategry categry;
-
-    @Column
     private FamilyType deadFamilyMember;
 
     @Column
@@ -43,24 +38,22 @@ public class Competitor {
     public Competitor() {
     }
 
-    public Competitor(String fullName, String jmbg, CompetitorStatus status, CompetitorCategry categry,
+    public Competitor(String fullName, String jmbg, CompetitorStatus status,
             FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
         this.fullName = fullName;
         this.jmbg = jmbg;
         this.status = status;
-        this.categry = categry;
         this.deadFamilyMember = deadFamilyMember;
         this.injuryType = injuryType;
         this.score = score;
     }
 
-    public Competitor(Long id, String fullName, String jmbg, CompetitorStatus status, CompetitorCategry categry,
+    public Competitor(Long id, String fullName, String jmbg, CompetitorStatus status,
             FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
         this.id = id;
         this.fullName = fullName;
         this.jmbg = jmbg;
         this.status = status;
-        this.categry = categry;
         this.deadFamilyMember = deadFamilyMember;
         this.injuryType = injuryType;
         this.score = score;
@@ -88,14 +81,6 @@ public class Competitor {
 
     public void setStatus(CompetitorStatus status) {
         this.status = status;
-    }
-
-    public CompetitorCategry getCategry() {
-        return categry;
-    }
-
-    public void setCategry(CompetitorCategry categry) {
-        this.categry = categry;
     }
 
     public FamilyType getDeadFamilyMember() {

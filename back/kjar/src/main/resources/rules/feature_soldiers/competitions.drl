@@ -1,18 +1,10 @@
 package backward;
 
 import com.ftn.sbnz.model.feature_competitions.models.Competitor;
-import com.ftn.sbnz.model.feature_competitions.values.CompetitorCategry;
 import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
 import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
-
-// rule "Check is Competition request valid"
-// when
-//     $competitor: Competitor($jmbg: jmbg, categry == CompetitorCategry.NONE)
-// then
-//     System.err.println("Takmicar nije validan: " + $jmbg);
-//     modify($competitor) {setStatus(CompetitorStatus.DENIED);}
-// end
-
+import com.ftn.sbnz.model.feature_competitions.values.FamilyType;
+import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +33,21 @@ then
         status = CompetitorStatus.DENIED;
     }
     modify($newCompetitor) {setStatus(status);}
+end
+
+rule "Check Competitor score"
+when 
+    $competitor: Competitor(status == CompetitorStatus.ACCEPTED, score == 0)
+then
+    System.err.println("CHECK: " + $competitor.getJmbg());
+    Integer score = 1;
+
+    if ($competitor.getDeadFamilyMember() == FamilyType.CHILD) score += 15;
+    else if ($competitor.getDeadFamilyMember() == FamilyType.SPOUSE) score += 5;
+
+    if ($competitor.getInjuryType() == InjuryType.LOW) score += 5;
+    else if ($competitor.getInjuryType() == InjuryType.MEDIUM) score += 15;
+    else if ($competitor.getInjuryType() == InjuryType.HIGH) score += 30;
+    
+    modify($competitor) {setScore(score);}
 end

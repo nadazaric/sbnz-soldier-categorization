@@ -9,7 +9,6 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import com.ftn.sbnz.model.feature_competitions.models.Competitor;
 import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
-import com.ftn.sbnz.model.feature_competitions.values.CompetitorCategry;
 import com.ftn.sbnz.model.feature_competitions.values.CompetitorStatus;
 import com.ftn.sbnz.model.feature_competitions.values.FamilyType;
 import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
@@ -28,7 +27,6 @@ public class CompetitionsTest {
             "Dragomir Vasic",
             "4",
             CompetitorStatus.ACCEPTED,
-            CompetitorCategry.INVALID,
             FamilyType.NONE,
             InjuryType.MEDIUM,
             423
@@ -44,7 +42,6 @@ public class CompetitionsTest {
             "Dragana Mikic",
             "1",
             CompetitorStatus.ACCEPTED,
-            CompetitorCategry.INVALID,
             FamilyType.NONE,
             InjuryType.HIGH,
             300
@@ -53,7 +50,6 @@ public class CompetitionsTest {
             "Dorian Vebic",
             "2",
             CompetitorStatus.ACCEPTED,
-            CompetitorCategry.INVALID,
             FamilyType.NONE,
             InjuryType.HIGH,
             300
@@ -62,8 +58,7 @@ public class CompetitionsTest {
             "Filip Kokic",
             "3",
             CompetitorStatus.ACCEPTED,
-            CompetitorCategry.INVALID,
-            FamilyType.NONE,
+            FamilyType.SPOUSE,
             InjuryType.HIGH,
             300
         );
@@ -78,18 +73,16 @@ public class CompetitionsTest {
             "Filip Kokic",
             "3",
             CompetitorStatus.WAITING,
-            CompetitorCategry.NONE,
             FamilyType.NONE,
-            null,
+            InjuryType.LOW,
             0
         );
         Competitor c5 = new Competitor( 
             "Dragomir Vasic",
             "4",
             CompetitorStatus.WAITING,
-            CompetitorCategry.INVALID,
-            FamilyType.NONE,
-            InjuryType.MEDIUM,
+            FamilyType.SPOUSE,
+            InjuryType.HIGH,
             0
         );
 
@@ -106,5 +99,6 @@ public class CompetitionsTest {
         kieSession.fireAllRules();
         System.out.println(c4.getStatus());
         System.out.println(c5.getStatus());
+        System.out.println(c5.getScore());
     }
 }
