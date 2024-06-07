@@ -1,5 +1,6 @@
 package com.ftn.sbnz.model.feature_competitions.models;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,11 +32,16 @@ public class SpaCompetition {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Competitor> selectedCompetitors;
 
-    public SpaCompetition() {}
+    public SpaCompetition() {
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
+    }
 
     public SpaCompetition(String year, Integer positionNumber) {
         this.year = year;
         this.positionNumber = positionNumber;
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
     }
 
     public SpaCompetition(Long id, String year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,

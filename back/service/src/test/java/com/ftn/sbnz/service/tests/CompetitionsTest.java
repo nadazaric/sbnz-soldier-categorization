@@ -85,9 +85,28 @@ public class CompetitionsTest {
             InjuryType.HIGH,
             0
         );
+        Competitor c6 = new Competitor( 
+            "Spasoje Gigic",
+            "5",
+            CompetitorStatus.WAITING,
+            FamilyType.CHILD,
+            InjuryType.HIGH,
+            0
+        );
+        Competitor c7 = new Competitor( 
+            "Helene Mikic",
+            "6",
+            CompetitorStatus.WAITING,
+            FamilyType.CHILD,
+            InjuryType.LOW,
+            0
+        );
 
         Set<Competitor> competitors2 = new HashSet<>();
         competitors2.add(c4);
+        competitors2.add(c5);
+        competitors2.add(c6);
+        competitors2.add(c7);
         sc2.setCompetitors(competitors2);
 
         kieSession.insert(sc0);
@@ -96,9 +115,20 @@ public class CompetitionsTest {
         kieSession.insert(sc2);
         kieSession.insert(c4);
         kieSession.insert(c5);
+        kieSession.insert(c6);
+        kieSession.insert(c7);
         kieSession.fireAllRules();
         System.out.println(c4.getStatus());
         System.out.println(c5.getStatus());
         System.out.println(c5.getScore());
+
+        sc2.setIsDone(true);
+        kieSession.update(kieSession.getFactHandle(sc2), sc2);
+        kieSession.fireAllRules();
+
+        for (Competitor competitor : sc2.getSelectedCompetitors()) {
+            System.out.println("Competitor: " + competitor.getFullName() + ", Score: " + competitor.getScore());
+        }
+
     }
 }

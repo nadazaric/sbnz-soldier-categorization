@@ -8,6 +8,10 @@ import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
 rule "Check and Collect Recent Competitors"
 when
@@ -39,7 +43,6 @@ rule "Check Competitor score"
 when 
     $competitor: Competitor(status == CompetitorStatus.ACCEPTED, score == 0)
 then
-    System.err.println("CHECK: " + $competitor.getJmbg());
     Integer score = 1;
 
     if ($competitor.getDeadFamilyMember() == FamilyType.CHILD) score += 15;
@@ -50,4 +53,27 @@ then
     else if ($competitor.getInjuryType() == InjuryType.HIGH) score += 30;
     
     modify($competitor) {setScore(score);}
+end
+
+rule "Select Competitors for SpaCompetition"
+when
+    $competition: SpaCompetition(isDone == true, selectedCompetitors.size() == 0)
+then
+    List<Competitor> competitors = new ArrayList<Competitor>($competition.getCompetitors());
+    Collections.sort(competitors, new Comparator<Competitor>() {
+        public int compare(Competitor c1, Competitor c2) {
+            return c2.getScore().compareTo(c1.getScore());
+        }
+    });
+
+    Integer numberOfPosition = $competition.getPositionNumber();
+    if (numberOfPosition > $competition.getCompetitors().size()) numberOfPosition = $competition.getCompetitors().size();
+
+    Set<Competitor> selectedCompetitors = new LinkedHashSet<>();
+    for (int i = 0; i < numberOfPosition; i++) {
+        Competitor competitor = competitors.get(i);
+        if (competitor.getStatus() != CompetitorStatus.DENIED) selectedCompetitors.add(competitor);
+    }
+    
+    modify($competition) {setSelectedCompetitors(selectedCompetitors);}
 end
