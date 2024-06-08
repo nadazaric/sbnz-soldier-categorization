@@ -7,4 +7,5 @@ public interface IKieSessionService {
     public void loadData();
     public void fireRulesForAgenda(String agenda);
     public void insertObject(Object object);
+    public void setGlobalObject(String globalName, Object object);
 }

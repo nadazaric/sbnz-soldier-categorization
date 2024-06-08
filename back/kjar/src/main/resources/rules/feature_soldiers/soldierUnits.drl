@@ -14,13 +14,13 @@ end
 global List<Soldier> soldiersInUnit;
 
 rule "Get soldiers in Unit"
-when 
-    Trigger($sp: searchParam)
-    isContainedIn(id, $sp;)
-    $s: Soldier(jmbg == id)
-then
-    // System.err.println(id + " je u " + $sp);
-    if (!soldiersInUnit.contains($s)) {
-        soldiersInUnit.add($s);
-    }
+    agenda-group "units"
+    when 
+        Trigger($sp: searchParam)
+        isContainedIn(id, $sp;)
+        $s: Soldier(jmbg == id)
+    then
+        if (!soldiersInUnit.contains($s)) {
+            soldiersInUnit.add($s);
+        }
 end

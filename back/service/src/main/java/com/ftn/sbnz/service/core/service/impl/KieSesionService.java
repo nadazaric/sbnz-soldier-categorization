@@ -56,6 +56,11 @@ public class KieSesionService implements IKieSessionService{
         this.kieSession.insert(object);
     }
 
+    @Override
+    public void setGlobalObject(String globalName, Object object) {
+        kieSession.setGlobal(globalName, object);
+    }
+
     private KieSession generateKieSession() throws IOException {
         // load template
         InputStream template = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/categorization.drt");
