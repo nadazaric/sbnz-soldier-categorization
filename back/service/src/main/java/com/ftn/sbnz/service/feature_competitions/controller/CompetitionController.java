@@ -1,7 +1,6 @@
-package com.ftn.sbnz.service.feature_soldiers.controller;
+package com.ftn.sbnz.service.feature_competitions.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateCompetitorDTO;
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateSpaCompetitionDTO;
 import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
-import com.ftn.sbnz.service.feature_soldiers.service.interf.ICompetitionService;
+import com.ftn.sbnz.service.feature_competitions.service.interf.ICompetitionService;
 
 @RestController
 @RequestMapping("/api/competition")

@@ -1,4 +1,4 @@
-package com.ftn.sbnz.service.feature_soldiers.service.impl;
+package com.ftn.sbnz.service.feature_competitions.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
 import com.ftn.sbnz.service.core.values.KieSessionAgendas;
 import com.ftn.sbnz.service.feature_competitions.repositoty.CompetitorRepository;
 import com.ftn.sbnz.service.feature_competitions.repositoty.SpaCompetitionRepostory;
-import com.ftn.sbnz.service.feature_soldiers.service.interf.ICompetitionService;
+import com.ftn.sbnz.service.feature_competitions.service.interf.ICompetitionService;
 
 @Service
 public class CompetitionService implements ICompetitionService {
@@ -36,8 +36,9 @@ public class CompetitionService implements ICompetitionService {
 
     @Override
     public SpaCompetition addCompetitorToSpaCompetition(CreateCompetitorDTO competitorDTO) {
-        Optional<SpaCompetition> spaCompetition = spaCompetitionRepostory.findById(competitorDTO.getCompetitionId());
-        if (!spaCompetition.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitorDTO.getCompetitionId());
+        Optional<SpaCompetition> spaCompetitionOpt = spaCompetitionRepostory.findById(competitorDTO.getCompetitionId());
+        if (!spaCompetitionOpt.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitorDTO.getCompetitionId());
+        SpaCompetition spaCompetition = spaCompetitionOpt.get();
 
         Integer year = LocalDate.now().getYear();
         for (int i = 0; i < 3; i++) {
@@ -57,9 +58,13 @@ public class CompetitionService implements ICompetitionService {
         kieSessionService.fireRulesForAgenda(KieSessionAgendas.COMPETITORS_AGNDA);
 
         competitor = competitorRepository.save(competitor);
-        spaCompetition.get().addCompetitor(competitor);
+        spaCompetition.addCompetitor(competitor);
+        spaCompetition = spaCompetitionRepostory.save(spaCompetition);
+        // spaCompetitionOpt.get().addCompetitor(competitor);
+
+        kieSessionService.fireRulesForAgenda(KieSessionAgendas.SANITAZE);
         
-        return spaCompetitionRepostory.save(spaCompetition.get());
+        return spaCompetition;
     }
 
     @Override
@@ -78,7 +83,10 @@ public class CompetitionService implements ICompetitionService {
         kieSessionService.insertObject(spaCompetition);
         kieSessionService.fireRulesForAgenda(KieSessionAgendas.COMPETITIONS_AGENDA);
 
-        return spaCompetitionRepostory.save(spaCompetition);
+        spaCompetition = spaCompetitionRepostory.save(spaCompetition);
+        kieSessionService.fireRulesForAgenda(KieSessionAgendas.SANITAZE);
+
+        return spaCompetition;
     }
     
 }

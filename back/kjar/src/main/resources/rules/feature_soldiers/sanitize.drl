@@ -1,0 +1,19 @@
+
+import com.ftn.sbnz.model.feature_competitions.models.Competitor;
+import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
+
+rule "Sanitize competitors"
+    agenda-group "sanitize"
+    when
+        $competitor: Competitor()
+    then
+        delete($competitor);
+end    
+
+rule "Sanitize competitions"
+    agenda-group "sanitize"
+    when
+        $competition: SpaCompetition()
+    then
+        delete($competition);
+end   

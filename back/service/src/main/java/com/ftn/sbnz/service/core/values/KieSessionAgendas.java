@@ -5,4 +5,5 @@ public class KieSessionAgendas {
     public static String UNITS_AGENDA = "units";
     public static String COMPETITORS_AGNDA = "competitors";
     public static String COMPETITIONS_AGENDA = "competitions";
+    public static String SANITAZE = "sanitize";
 }
