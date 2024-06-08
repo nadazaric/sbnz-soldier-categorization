@@ -223,7 +223,6 @@ export function AddDetailsSoldier({
             <div className='spacer_hor_L' />
             {formMode &&
                 <Button 
-                    disableRipple
                     className='raisedButton'
                     type='submit'
                     disabled={isButtonDisabled()}

@@ -61,6 +61,11 @@ public class KieSesionService implements IKieSessionService{
         InputStream unitRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/soldierUnits.drl");
         byte[] unitRulesBytes = IOUtils.toByteArray(unitRules);
         drl += new String(unitRulesBytes, StandardCharsets.UTF_8);
+
+        // load competition rules
+        InputStream competitionRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/competitions.drl");
+        byte[] competitionRulesBytes = IOUtils.toByteArray(competitionRules);
+        drl += new String(competitionRulesBytes, StandardCharsets.UTF_8);
         // System.err.println(drl);
 
         return this.createKieSessionFromDRL(drl);

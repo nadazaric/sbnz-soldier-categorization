@@ -71,10 +71,11 @@ export default function Soldiers() {
             if (response.status === 201) {
                 setOpenDialog(false)
                 setSelectedUnitId(null)
+                getAllSoldiers()
             }
         })
-        .catch(error => {});
-    };
+        .catch(error => {})
+    }
 
     return(
         <div className='page'>

@@ -1,5 +1,6 @@
 package com.ftn.sbnz.model.feature_competitions.models;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,10 @@ public class SpaCompetition {
     private Long id;
 
     @Column
-    private String year;
+    private String name;
+
+    @Column
+    private Integer year;
 
     @Column 
     private Boolean isDone;
@@ -31,9 +35,31 @@ public class SpaCompetition {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Competitor> selectedCompetitors;
 
-    public SpaCompetition() {}
+    public void addCompetitor(Competitor competitor) {
+        this.competitors.add(competitor);
+    }
 
-    public SpaCompetition(Long id, String year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,
+    public SpaCompetition() {
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
+    }
+
+    public SpaCompetition(Integer year, Integer positionNumber) {
+        this.year = year;
+        this.positionNumber = positionNumber;
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
+    }    
+
+    public SpaCompetition(String name, Integer year, Integer positionNumber) {
+        this.name = name;
+        this.year = year;
+        this.positionNumber = positionNumber;
+        this.competitors = new HashSet<>();
+        this.selectedCompetitors = new HashSet<>();
+    }
+
+    public SpaCompetition(Long id, Integer year, Boolean isDone, Integer positionNumber, Set<Competitor> competitors,
             Set<Competitor> selectedCompetitors) {
         this.id = id;
         this.year = year;
@@ -51,11 +77,11 @@ public class SpaCompetition {
         this.id = id;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -90,4 +116,14 @@ public class SpaCompetition {
     public void setSelectedCompetitors(Set<Competitor> selectedCompetitors) {
         this.selectedCompetitors = selectedCompetitors;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
 }

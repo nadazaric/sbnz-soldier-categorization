@@ -7,6 +7,10 @@
   --DarkGray: 125, 130, 120;
   --ErrorColor: 240, 20, 96;
 
+  --NeutralColor: 242, 216, 145;
+  --PositiveColor: 140, 194, 147;
+  --NoPositiveColor: 230, 174, 154;
+
   /* variables */
   --CornerRadiusStandard: 30px;
   --NavbarHeight: 60px;
@@ -124,7 +128,7 @@ body {
 }
 
 .raisedButton:disabled {
-  background-color: rgba(var(--LightGray), 1);
+  background-color: rgba(var(--SecondaryColor), 0.4);
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -132,10 +136,77 @@ body {
   color: rgb(var(--PrimaryColor));
   border: solid 2px rgb(var(--PrimaryColor));
   transition: background-color 100ms ease-out;
+  border-radius: var(--CornerRadiusStandard);
 }
 
 .outlinedButton:hover {
   color: rgb(var(--SecondaryColor));
   border: solid 2px rgb(var(--SecondaryColor));
   background-color: transparent;
+}
+
+/* ------------------------------------------------------------------------------------------------------ RadioButton */
+.fileRadioInputs {
+  position: relative;
+  display: flex;
+  border-radius: var(--CornerRadiusStandard);
+  background-color: rgb(var(--PositiveColor));
+  box-sizing: border-box;
+  font-size: 14px;
+  width: 100%;
+  padding: 1rem 1rem 0 2rem;
+  gap: 20px;
+}
+
+.fileRadioInputs .radio input {
+  display: none;
+}
+
+.fileRadioInputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border: none;
+  bottom: -1px;
+  padding: 0.35rem 0.8rem;
+  transition: all 0.15s ease-in-out;
+  position: relative;
+  font-weight: 500;
+}
+
+.fileRadioInputs .radio input:checked + .name {
+  background-color: white;
+  font-weight: 600;
+}
+.fileRadioInputs .radio input + .name:hover {
+  color: rgb(var(--OnPrimaryColor));
+}
+.fileRadioInputs .radio input:checked + .name:hover {
+  color: black;
+}
+
+.fileRadioInputs .radio input:checked + .name::after,
+.fileRadioInputs .radio input:checked + .name::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  background-color: rgb(var(--PositiveColor));
+  bottom: 0;
+}
+
+.fileRadioInputs .radio input:checked + .name::after {
+  right: -10px;
+  border-bottom-left-radius: 300px;
+  box-shadow: -3px 3px 0px 0px white;
+  bottom: 1px;
+}
+.fileRadioInputs .radio input:checked + .name::before {
+  left: -10px;
+  bottom: 1px;
+  border-bottom-right-radius: 300px;
+  box-shadow: 3px 3px 0px 0px white;
 }

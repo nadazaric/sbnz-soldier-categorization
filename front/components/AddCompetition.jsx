@@ -3,39 +3,37 @@ import styleForm from '../styles/Form.module.css'
 import { getTranslation } from "@/locales/TranslationHelper"
 import { Button } from "@mui/material"
 
-export default function AddWorker({ isOpen, onSave }) {
+export default function AddCompetition({
+    isOpen,
+    onSave
+}) {
     const t = getTranslation()
     const [form, setForm] = useState({
         name: '',
-        username: '',
-        password: ''
+        positionNumber: ''
     })
 
-    function save(e) {
-        e.preventDefault()
-        if (onSave) onSave(form)
-    }
-
     useEffect(() => {
-        if (isOpen) return
         setForm({
             name: '',
-            username: '',
-            password: ''
+            positionNumber: ''
         })
     }, [isOpen])
 
     function isButtonDisabled() {
-        return form.name == '' || form.username == '' || form.password == ''
+        return form.name == '' || form.positionNumber == 0
     }
 
     return(
-        <form onSubmit={(e) => save(e)}>
+        <form
+            className={styleForm.form}
+            onSubmit={(e) => {if (onSave) onSave(e, form)}}
+        >
             <div className={`${styleForm.inputWrapper} width_full`}>
                 <input 
                     className={styleForm.input}
                     value={form.name}
-                    placeholder={t.worker_name}
+                    placeholder={t.competition_name}
                     onChange={(e) => {setForm({...form, name: e.target.value})}}  
                 />
             </div>
@@ -43,24 +41,16 @@ export default function AddWorker({ isOpen, onSave }) {
             <div className={`${styleForm.inputWrapper} width_full`}>
                 <input 
                     className={styleForm.input}
-                    value={form.username}
-                    placeholder={t.worker_username}
-                    onChange={(e) => {setForm({...form, username: e.target.value})}}  
-                />
-            </div>
-            <div className='spacer_hor_S' />
-            <div className={`${styleForm.inputWrapper} width_full`}>
-                <input 
-                    className={styleForm.input}
-                    value={form.password}
-                    placeholder={t.login_password}
-                    type="password"
-                    onChange={(e) => {setForm({...form, password: e.target.value})}}  
+                    value={form.positionNumber}
+                    placeholder={t.competition_position_name}
+                    type="number"
+                    min={0}
+                    onChange={(e) => {setForm({...form, positionNumber: e.target.value})}}  
                 />
             </div>
             <div className='spacer_hor_S' />
             <Button 
-                className='raisedButton width_full'
+                className='raisedButton'
                 type='submit'
                 disabled={isButtonDisabled()}
             >

@@ -24,3 +24,23 @@
 .optionSelected:hover {
     background-color: rgb(var(--PrimaryColor));
 }
+
+.staticChip {
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: var(--CornerRadiusStandard);
+    display: flex;
+    font-weight: 500;
+}
+
+.staticChipNeutral {
+    background-color: rgb(var(--NeutralColor));
+}
+
+.staticChipPositive {
+    background-color: rgb(var(--PositiveColor));
+}
+
+.staticChipError {
+    background-color: rgb(var(--NoPositiveColor));
+}

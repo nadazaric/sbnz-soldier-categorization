@@ -49,14 +49,49 @@ export default {
     unit_section: 'Miletary Unit',
     unit_default_option: 'No Filter',
 
+    // competitions
+    competition_header_title: 'Competitions',
+    competition_name: 'Competition Name',
+    competition_year: 'Year',
+    competition_position_name: 'Number of Available Positions',
+    competition_current_number: 'Number of Applicants',
+    competition_status_active: 'Active',
+    competition_status_finished: 'Finished',
+    competition_details_title: 'Competition Details',
+    competition_all_competitors: 'All candidates',
+    competition_selected_competitors: 'Selected candidates',
+    competition_no_competitors: 'No Competitors',
+    competition_add_title: 'Add competition',
+    competition_finish_description: 'Do you want to close the competition? After this, you will no longer be able to add new candidates.',
+
+    // competitor
+    competitor_name: 'Full Name',
+    competitor_jmbg: 'JMBG',
+    competitor_dead_family_member: 'Relation to Fallen Soldier',
+    competitor_injury: 'Injury Type',
+    competitor_score: 'Score',
+    competitor_status: 'Status',
+    competitor_accepted: 'Accepted',
+    competitor_denied: 'Denied',
+    competitor_none: 'None',
+    competitor_injuries_type_low: 'Minor injury',
+    competitor_injuries_type_medium: 'Moderate injury',
+    competitor_injuries_type_high: 'Severe injury',
+    competitor_family_member_child: 'Child',
+    competitor_family_member_spouse: 'Spouse',
+    
+
     // buttons
     button_add_soldier: 'Add Soldier',
     button_add_worker: 'Add Worker',
     button_save: 'Save',
+    button_quit: 'Quit',
+    button_finish: 'Finish',
 
     // globals
     no_data: 'No data.',
     valute: 'BAM',
+    confirme: 'Confirme',
 
     // errors
     error_date_not_in_range: 'Dates are not within the range of 06.04.1992 - 14.12.1995.',

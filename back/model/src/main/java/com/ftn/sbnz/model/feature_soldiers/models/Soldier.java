@@ -19,7 +19,7 @@ public class Soldier {
     @Column
     private String fullName;
 
-    @Column
+    @Column(unique = true)
     private String jmbg;
 
     @Column

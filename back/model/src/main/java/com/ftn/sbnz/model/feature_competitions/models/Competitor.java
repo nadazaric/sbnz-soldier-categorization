@@ -1,6 +1,5 @@
 package com.ftn.sbnz.model.feature_competitions.models;
 
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Competitor {
     private String fullName;
 
     @Column
-    private LocalDate birthDate;
+    private String jmbg;
 
     @Column
     private CompetitorStatus status;
@@ -32,16 +31,41 @@ public class Competitor {
     @Column
     private InjuryType injuryType;
 
-    public Competitor() {}
+    @Column
+    private Integer score;
 
-    public Competitor(Long id, String fullName, LocalDate birthDate, CompetitorStatus status,
-            FamilyType deadFamilyMember, InjuryType injuryType) {
-        this.id = id;
+    
+    public Competitor() {
+    }
+
+    public Competitor(String fullName, String jmbg, FamilyType deadFamilyMember, InjuryType injuryType) {
         this.fullName = fullName;
-        this.birthDate = birthDate;
+        this.jmbg = jmbg;
+        this.deadFamilyMember = deadFamilyMember;
+        this.injuryType = injuryType;
+        this.status = CompetitorStatus.WAITING;
+        this.score = 0;
+    }
+
+    public Competitor(String fullName, String jmbg, CompetitorStatus status,
+            FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
+        this.fullName = fullName;
+        this.jmbg = jmbg;
         this.status = status;
         this.deadFamilyMember = deadFamilyMember;
         this.injuryType = injuryType;
+        this.score = score;
+    }
+
+    public Competitor(Long id, String fullName, String jmbg, CompetitorStatus status,
+            FamilyType deadFamilyMember, InjuryType injuryType, Integer score) {
+        this.id = id;
+        this.fullName = fullName;
+        this.jmbg = jmbg;
+        this.status = status;
+        this.deadFamilyMember = deadFamilyMember;
+        this.injuryType = injuryType;
+        this.score = score;
     }
 
     public Long getId() {
@@ -58,14 +82,6 @@ public class Competitor {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public CompetitorStatus getStatus() {
@@ -91,4 +107,20 @@ public class Competitor {
     public void setInjuryType(InjuryType injuryType) {
         this.injuryType = injuryType;
     }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public String getJmbg() {
+        return jmbg;
+    }
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
+    }    
 }
