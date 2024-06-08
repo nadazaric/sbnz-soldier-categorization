@@ -1,7 +1,6 @@
-package com.ftn.sbnz.service.feature_soldiers.service.interf;
+package com.ftn.sbnz.service.feature_competitions.service.interf;
 
 import java.util.List;
-
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateCompetitorDTO;
 import com.ftn.sbnz.model.feature_competitions.dtos.CreateSpaCompetitionDTO;
 import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;

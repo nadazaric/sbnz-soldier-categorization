@@ -10,7 +10,8 @@ import com.ftn.sbnz.model.feature_soldiers.values.SoldierStatus;
 import com.ftn.sbnz.model.feature_soldiers.models.Injury;
 import com.ftn.sbnz.model.feature_soldiers.values.InjuryType;
 
-rule "Calculate months for classification"
+rule "Calculate months for categorization"
+    agenda-group "categorization"
     when 
         $soldier: Soldier($soldierId: id, SoldierStatus.NO_MONTHS == status)
         $totalDays: Number() from accumulate(
@@ -29,6 +30,7 @@ end
 
 rule "Calculate bonus from Injuries"
     no-loop true
+    agenda-group "categorization"
     when
         $soldier: Soldier(
             $soldierId: id, 

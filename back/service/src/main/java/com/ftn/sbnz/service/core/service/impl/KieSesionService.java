@@ -45,6 +45,22 @@ public class KieSesionService implements IKieSessionService{
         for (Unit unit : units) kieSession.insert(unit);
     }
 
+    @Override
+    public void fireRulesForAgenda(String agenda) {
+        this.kieSession.getAgenda().getAgendaGroup(agenda).setFocus();
+        this.kieSession.fireAllRules();
+    }
+
+    @Override
+    public void insertObject(Object object) {
+        this.kieSession.insert(object);
+    }
+
+    @Override
+    public void setGlobalObject(String globalName, Object object) {
+        kieSession.setGlobal(globalName, object);
+    }
+
     private KieSession generateKieSession() throws IOException {
         // load template
         InputStream template = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/categorization.drt");
@@ -66,6 +82,11 @@ public class KieSesionService implements IKieSessionService{
         InputStream competitionRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/competitions.drl");
         byte[] competitionRulesBytes = IOUtils.toByteArray(competitionRules);
         drl += new String(competitionRulesBytes, StandardCharsets.UTF_8);
+
+        // load competition rules
+        InputStream sanitizeRules = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/sanitize.drl");
+        byte[] sanitizeRulesBytes = IOUtils.toByteArray(sanitizeRules);
+        drl += new String(sanitizeRulesBytes, StandardCharsets.UTF_8);
         // System.err.println(drl);
 
         return this.createKieSessionFromDRL(drl);
@@ -88,5 +109,4 @@ public class KieSesionService implements IKieSessionService{
         
         return kieHelper.build().newKieSession();
     }
-    
 }

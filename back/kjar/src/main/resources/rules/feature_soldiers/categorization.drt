@@ -14,6 +14,7 @@ template header
 
     rule "Categorize Soldier @{row.rowNumber}"
         no-loop true
+        agenda-group "categorization"
         when
             $soldier: Soldier(
                 $soldierId: id, 
