@@ -3,7 +3,6 @@ package com.ftn.sbnz.service.feature_soldiers.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -71,15 +70,13 @@ public class CompetitionService implements ICompetitionService {
 
     @Override
     public SpaCompetition finishCompetition(Long competitionId) {
-        KieSession kieSession = kieSessionService.getKieSession();
-
         Optional<SpaCompetition> spaCompetitionForFinish = spaCompetitionRepostory.findById(competitionId);
         if (!spaCompetitionForFinish.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitionId);
         SpaCompetition spaCompetition = spaCompetitionForFinish.get();
 
         spaCompetition.setIsDone(true);
-        kieSession.insert(spaCompetition);
-        kieSession.fireAllRules();
+        kieSessionService.insertObject(spaCompetition);
+        kieSessionService.fireRulesForAgenda(KieSessionAgendas.COMPETITIONS_AGENDA);
 
         return spaCompetitionRepostory.save(spaCompetition);
     }
