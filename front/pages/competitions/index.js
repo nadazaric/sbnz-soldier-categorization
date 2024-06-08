@@ -54,6 +54,15 @@ export default function Competitions() {
         .catch(error => {})
     }
 
+    // add competitor
+    const [openAddCompetitorDialog, setOpenAddCompetitorDialog] = useState(false)
+    const [competitionIdForAddCompetitor, setCompetitionIdForAddCompetitor] = useState
+
+    function onAddCompetitorClick(id) {
+        setOpenAddCompetitorDialog(true)
+        setCompetitionIdForAddCompetitor(id)
+    }
+
     return(
         <div className="page">
             <ButtonHeader 
@@ -63,6 +72,7 @@ export default function Competitions() {
             <TableCompetitions 
                 competitions={competitions}
                 onCompeitionClick={onCompetitionClick}
+                onAddCompetitor={onAddCompetitorClick}
             />
 
             <DialogWithHeader
@@ -84,6 +94,15 @@ export default function Competitions() {
                     isOpen={openAddCompeitionDialog}
                     onSave={saveCompetition} 
                 />
+            </DialogWithHeader>
+
+            <DialogWithHeader
+                isOpen={openAddCompetitorDialog}
+                width={400}
+                onCloseModal={() => setOpenAddCompetitorDialog(false)}
+                title={'Dodaj kandidata'}
+            >
+
             </DialogWithHeader>
         </div>
     )

@@ -6,7 +6,11 @@ import Chip, { CHIP_TYPE } from './Chip'
 import DoneIcon from '@mui/icons-material/Check'
 import PersonIcon from '@mui/icons-material/PersonAdd'
 
-export default function TableCompetitions({ competitions, onCompeitionClick }) {
+export default function TableCompetitions({ 
+    competitions, 
+    onCompeitionClick,
+    onAddCompetitor
+}) {
     const t = getTranslation()
 
     if (competitions == null) return <div></div>
@@ -42,7 +46,13 @@ export default function TableCompetitions({ competitions, onCompeitionClick }) {
                             {!competition.isDone && 
                                 <div className={`${style.item} ${style.lastItem}`}>
                                     <DoneIcon className='icon' />
-                                    <PersonIcon className='icon' />
+                                    <PersonIcon 
+                                        className='icon' 
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            if (onAddCompetitor) onAddCompetitor(competition.id)
+                                        }}
+                                    />
                                 </div>
                             }
                         </div>

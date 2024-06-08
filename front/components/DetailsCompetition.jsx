@@ -24,8 +24,8 @@ export default function DeatilsCompetition({ competition, isOpen }) {
         <div>
             {competitionInfo &&
                 <div>
-                    <div class="fileRadioInputs">
-                        <label class="radio">
+                    <div className="fileRadioInputs">
+                        <label className="radio">
                             <input 
                                 type="radio" 
                                 name="radio" 
@@ -33,10 +33,10 @@ export default function DeatilsCompetition({ competition, isOpen }) {
                                 checked={check == CHECK_TYPE.ALL}
                                 onChange={() => setCheck(CHECK_TYPE.ALL)}
                             />
-                            <span class="name">{t.competition_all_competitors}</span>
+                            <span className="name">{t.competition_all_competitors}</span>
                         </label>
 
-                        <label class="radio">
+                        <label className="radio">
                             <input 
                                 type="radio" 
                                 name="radio" 
@@ -44,7 +44,7 @@ export default function DeatilsCompetition({ competition, isOpen }) {
                                 checked={check == CHECK_TYPE.SELECTED}
                                 onChange={() => setCheck(CHECK_TYPE.SELECTED)}
                             />
-                            <span class="name">{t.competition_selected_competitors}</span>
+                            <span className="name">{t.competition_selected_competitors}</span>
                         </label>
                     </div>
 
