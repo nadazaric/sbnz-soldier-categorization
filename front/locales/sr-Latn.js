@@ -52,6 +52,7 @@ export default {
     // competitions
     competition_header_title: 'Konkursi',
     competition_name: 'Ime konkursa',
+    competition_year: 'Godina',
     competition_position_name: 'Broj dozvoljenih mijesta',
     competition_current_number: 'Broj prijavljenih',
     competition_status_active: 'Aktivan',

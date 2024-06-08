@@ -52,6 +52,7 @@ export default {
     // competitions
     competition_header_title: 'Competitions',
     competition_name: 'Competition Name',
+    competition_year: 'Year',
     competition_position_name: 'Number of Available Positions',
     competition_current_number: 'Number of Applicants',
     competition_status_active: 'Active',

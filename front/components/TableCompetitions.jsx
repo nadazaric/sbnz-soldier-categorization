@@ -27,6 +27,7 @@ export default function TableCompetitions({
             <div>
                 <div className={style.rowCompetition}>
                     <div className={`${style.item} ${style.headerItem}`}>{t.competition_name}</div>
+                    <div className={`${style.item} ${style.headerItem}`}>{t.competition_year}</div>
                     <div className={`${style.item} ${style.headerItem}`}>{t.competition_position_name}</div>
                     <div className={`${style.item} ${style.headerItem}`}>{t.competition_current_number}</div>
                 </div>
@@ -36,6 +37,7 @@ export default function TableCompetitions({
                             className={`${style.rowCompetition} ${style.itemRow} ${style.activeRow} ${index % 2 === 0 ? style.grayRow : ''}`}
                             onClick={() => {if (onCompeitionClick) onCompeitionClick(competition)}}>
                             <div className={`${style.item}`}>{competition.name}</div>
+                            <div className={`${style.item}`}>{competition.year}</div>
                             <div className={`${style.item}`}>{competition.positionNumber}</div>
                             <div className={`${style.item}`}>{competition.competitors && competition.competitors.length}</div>
                             <div className={`${style.item}`}>
