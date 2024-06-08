@@ -14,46 +14,48 @@ import java.util.Set;
 import java.util.LinkedHashSet;
 
 rule "Check and Collect Recent Competitors"
-when
-    $newCompetitor: Competitor(status == CompetitorStatus.WAITING)
-    $competitions: List() from collect(
-        SpaCompetition(year >= LocalDate.now().minusYears(3).getYear() && isDone == true)
-    )
-then
-    List<String> recentCompetitorsJmbg = new ArrayList<>();
+    agenda-group "competitors"
+    when
+        $newCompetitor: Competitor(status == CompetitorStatus.WAITING)
+        $competitions: List() from collect(
+            SpaCompetition(year >= LocalDate.now().minusYears(3).getYear() && isDone == true)
+        )
+    then
+        List<String> recentCompetitorsJmbg = new ArrayList<>();
 
-    for (Object obj : $competitions) {
-        SpaCompetition competition = (SpaCompetition) obj;
-        for (Competitor competitor : competition.getSelectedCompetitors()) {
-            if (!recentCompetitorsJmbg.contains(competitor.getJmbg())) {
-                recentCompetitorsJmbg.add(competitor.getJmbg());
+        for (Object obj : $competitions) {
+            SpaCompetition competition = (SpaCompetition) obj;
+            for (Competitor competitor : competition.getSelectedCompetitors()) {
+                if (!recentCompetitorsJmbg.contains(competitor.getJmbg())) {
+                    recentCompetitorsJmbg.add(competitor.getJmbg());
+                }
             }
         }
-    }
 
-    CompetitorStatus status = CompetitorStatus.ACCEPTED;
-    if (recentCompetitorsJmbg.contains($newCompetitor.getJmbg())) {
-        System.err.println("Competitor with JMBG " + $newCompetitor.getJmbg() + " already exists in recent SpaCompetitions.");
-        status = CompetitorStatus.DENIED;
-    }
-    modify($newCompetitor) {setStatus(status);}
+        CompetitorStatus status = CompetitorStatus.ACCEPTED;
+        if (recentCompetitorsJmbg.contains($newCompetitor.getJmbg())) {
+            System.err.println("Competitor with JMBG " + $newCompetitor.getJmbg() + " already exists in recent SpaCompetitions.");
+            status = CompetitorStatus.DENIED;
+        }
+        modify($newCompetitor) {setStatus(status);}
 end
 
 rule "Check Competitor score"
-when 
-    $competitor: Competitor(status == CompetitorStatus.ACCEPTED, score == 0)
-then
-    Integer score = 0;
+    agenda-group "competitors"
+    when 
+        $competitor: Competitor(status == CompetitorStatus.ACCEPTED, score == 0)
+    then
+        Integer score = 0;
 
-    if ($competitor.getDeadFamilyMember() == FamilyType.CHILD) score += 15;
-    else if ($competitor.getDeadFamilyMember() == FamilyType.SPOUSE) score += 5;
+        if ($competitor.getDeadFamilyMember() == FamilyType.CHILD) score += 15;
+        else if ($competitor.getDeadFamilyMember() == FamilyType.SPOUSE) score += 5;
 
-    if ($competitor.getInjuryType() == InjuryType.LOW) score += 5;
-    else if ($competitor.getInjuryType() == InjuryType.MEDIUM) score += 15;
-    else if ($competitor.getInjuryType() == InjuryType.HIGH) score += 30;
-    
-    if (score == 0) modify($competitor) {setStatus(CompetitorStatus.DENIED);}
-    modify($competitor) {setScore(score);}
+        if ($competitor.getInjuryType() == InjuryType.LOW) score += 5;
+        else if ($competitor.getInjuryType() == InjuryType.MEDIUM) score += 15;
+        else if ($competitor.getInjuryType() == InjuryType.HIGH) score += 30;
+        
+        if (score == 0) modify($competitor) {setStatus(CompetitorStatus.DENIED);}
+        modify($competitor) {setScore(score);}
 end
 
 rule "Select Competitors for SpaCompetition"

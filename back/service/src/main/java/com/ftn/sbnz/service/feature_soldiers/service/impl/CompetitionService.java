@@ -13,6 +13,7 @@ import com.ftn.sbnz.model.feature_competitions.dtos.CreateSpaCompetitionDTO;
 import com.ftn.sbnz.model.feature_competitions.models.Competitor;
 import com.ftn.sbnz.model.feature_competitions.models.SpaCompetition;
 import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
+import com.ftn.sbnz.service.core.values.KieSessionAgendas;
 import com.ftn.sbnz.service.feature_competitions.repositoty.CompetitorRepository;
 import com.ftn.sbnz.service.feature_competitions.repositoty.SpaCompetitionRepostory;
 import com.ftn.sbnz.service.feature_soldiers.service.interf.ICompetitionService;
@@ -36,8 +37,6 @@ public class CompetitionService implements ICompetitionService {
 
     @Override
     public SpaCompetition addCompetitorToSpaCompetition(CreateCompetitorDTO competitorDTO) {
-        KieSession kieSession = kieSessionService.getKieSession();
-
         Optional<SpaCompetition> spaCompetition = spaCompetitionRepostory.findById(competitorDTO.getCompetitionId());
         if (!spaCompetition.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitorDTO.getCompetitionId());
 
@@ -45,7 +44,7 @@ public class CompetitionService implements ICompetitionService {
         for (int i = 0; i < 3; i++) {
             System.out.println(year - i);
             List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(year - i);
-            for (SpaCompetition competition : competitionsForYear) kieSession.insert(competition);
+            for (SpaCompetition competition : competitionsForYear) kieSessionService.insertObject(competition);
         }
 
         Competitor competitor = new Competitor(
@@ -55,8 +54,8 @@ public class CompetitionService implements ICompetitionService {
             competitorDTO.getInjuryType()
         );
 
-        kieSession.insert(competitor);
-        kieSession.fireAllRules();
+        kieSessionService.insertObject(competitor);
+        kieSessionService.fireRulesForAgenda(KieSessionAgendas.COMPETITORS_AGNDA);
 
         competitor = competitorRepository.save(competitor);
         spaCompetition.get().addCompetitor(competitor);
