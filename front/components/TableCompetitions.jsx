@@ -39,10 +39,12 @@ export default function TableCompetitions({ competitions, onCompeitionClick }) {
                                     title={competition.isDone ? t.competition_status_finished : t.competition_status_active} 
                                 />
                             </div>
-                            <div className={`${style.item} ${style.lastItem}`}>
-                                <DoneIcon className='icon' />
-                                <PersonIcon className='icon' />
-                            </div>
+                            {!competition.isDone && 
+                                <div className={`${style.item} ${style.lastItem}`}>
+                                    <DoneIcon className='icon' />
+                                    <PersonIcon className='icon' />
+                                </div>
+                            }
                         </div>
                     </React.Fragment>
                 ))}

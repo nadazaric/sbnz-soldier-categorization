@@ -1,3 +1,4 @@
+import AddCompetition from "@/components/AddCompetition"
 import DeatilsCompetition from "@/components/DetailsCompetition"
 import { DialogWithHeader } from "@/components/Dialog"
 import { ButtonHeader } from "@/components/Header"
@@ -26,13 +27,24 @@ export default function Competitions() {
         setOpenDetailsDialog(true)
     }
 
+    // add competition
+    const [openAddCompeitionDialog, setOpenAddCompetitionDialog] = useState(false)
+
+    function saveCompetition() {
+        setOpenAddCompetitionDialog(false)
+    }
+
     return(
         <div className="page">
-            <ButtonHeader title={t.competition_header_title} />
+            <ButtonHeader 
+                title={t.competition_header_title} 
+                onAddClick={() => setOpenAddCompetitionDialog(true)}
+            />
             <TableCompetitions 
                 competitions={competitions}
                 onCompeitionClick={onCompetitionClick}
             />
+
             <DialogWithHeader
                 isOpen={openDetailsDialog}
                 width={1200}
@@ -40,6 +52,18 @@ export default function Competitions() {
                 title={t.competition_details_title}
             >
                 <DeatilsCompetition competition={selected} isOpen={openDetailsDialog} />
+            </DialogWithHeader>
+
+            <DialogWithHeader
+                isOpen={openAddCompeitionDialog}
+                width={400}
+                onCloseModal={() => setOpenAddCompetitionDialog(false)}
+                title={'Dodaj konkurs'}
+            >
+                <AddCompetition 
+                    isOpen={openAddCompeitionDialog}
+                    onSave={saveCompetition} 
+                />
             </DialogWithHeader>
         </div>
     )
