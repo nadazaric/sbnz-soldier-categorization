@@ -1,7 +1,7 @@
 import AddCompetition from "@/components/AddCompetition"
 import AddCompetitor from "@/components/AddCompetitor"
 import DeatilsCompetition from "@/components/DetailsCompetition"
-import { DialogWithHeader } from "@/components/Dialog"
+import { DialogConfirme, DialogWithHeader } from "@/components/Dialog"
 import { ButtonHeader } from "@/components/Header"
 import TableCompetitions from "@/components/TableCompetitions"
 import { BACK_BASE_URL } from "@/helper/environment"
@@ -57,11 +57,11 @@ export default function Competitions() {
 
     // add competitor
     const [openAddCompetitorDialog, setOpenAddCompetitorDialog] = useState(false)
-    const [competitionIdForAddCompetitor, setCompetitionIdForAddCompetitor] = useState()
+    const [selectedCompetitionId, setSelectedCompetitionId] = useState()
 
     function onAddCompetitorClick(id) {
         setOpenAddCompetitorDialog(true)
-        setCompetitionIdForAddCompetitor(id)
+        setSelectedCompetitionId(id)
     }
 
     function saveCompetitior(e, competitior) {
@@ -81,6 +81,14 @@ export default function Competitions() {
         .catch(error => {})
     }
 
+    // finish competition
+    const [openFinishCompetitionDialog, setOpenFinisCompetitionDialog] = useState(false)
+
+    function onFinishCompetitionClick(id) {
+        setOpenFinisCompetitionDialog(true)
+        setSelectedCompetitionId(id)
+    }
+
     return(
         <div className="page">
             <ButtonHeader 
@@ -91,6 +99,7 @@ export default function Competitions() {
                 competitions={competitions}
                 onCompeitionClick={onCompetitionClick}
                 onAddCompetitor={onAddCompetitorClick}
+                onFinishCompetition={onFinishCompetitionClick}
             />
 
             <DialogWithHeader
@@ -121,11 +130,19 @@ export default function Competitions() {
                 title={'Dodaj kandidata'}
             >
                 <AddCompetitor
-                    competitionId={competitionIdForAddCompetitor}
+                    competitionId={selectedCompetitionId}
                     isOpen={openAddCompetitorDialog}
                     onSave={saveCompetitior}
                 />
             </DialogWithHeader>
+            <DialogConfirme
+                title={t.confirme}
+                neutralActionText={t.button_quit}
+                actionText={t.button_finish}
+                description={t.competition_finish_description}
+                width={400}
+                isOpen={openFinishCompetitionDialog}
+            />
         </div>
     )
 }

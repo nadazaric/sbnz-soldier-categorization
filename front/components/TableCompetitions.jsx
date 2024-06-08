@@ -9,7 +9,8 @@ import PersonIcon from '@mui/icons-material/PersonAdd'
 export default function TableCompetitions({ 
     competitions, 
     onCompeitionClick,
-    onAddCompetitor
+    onAddCompetitor,
+    onFinishCompetition
 }) {
     const t = getTranslation()
 
@@ -45,7 +46,13 @@ export default function TableCompetitions({
                             </div>
                             {!competition.isDone && 
                                 <div className={`${style.item} ${style.lastItem}`}>
-                                    <DoneIcon className='icon' />
+                                    <DoneIcon 
+                                        className='icon' 
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            if (onFinishCompetition) onFinishCompetition(competition.id)
+                                        }}
+                                    />
                                     <PersonIcon 
                                         className='icon' 
                                         onClick={(e) => {

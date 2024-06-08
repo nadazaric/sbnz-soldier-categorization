@@ -136,6 +136,7 @@ body {
   color: rgb(var(--PrimaryColor));
   border: solid 2px rgb(var(--PrimaryColor));
   transition: background-color 100ms ease-out;
+  border-radius: var(--CornerRadiusStandard);
 }
 
 .outlinedButton:hover {

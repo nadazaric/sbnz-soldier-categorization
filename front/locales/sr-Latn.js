@@ -61,6 +61,7 @@ export default {
     competition_selected_competitors: 'Izabrani kandidati',
     competition_no_competitors: 'Nema kandidata',
     competition_add_title: 'Dodaj konkurs',
+    competition_finish_description: 'Da li želite da zatvorite konkurs? Nakon ovoga više nećete moći dodavati nove kandidate.',
 
     // competitor
     competitor_name: 'Ime i prezime',
@@ -82,10 +83,13 @@ export default {
     button_add_soldier: 'Dodaj vojnika',
     button_add_worker: 'Dodaj radnika',
     button_save: 'Sačuvaj',
+    button_quit: 'Odustani',
+    button_finish: 'Završi',
 
     // globals
     no_data: 'Nema podataka.',
     valute: 'BAM',
+    confirme: 'Potvrda',
 
     // errors
     error_date_not_in_range: 'Datumi nisu u opsegu 06.04.1992 - 14.12.1995.',

@@ -61,6 +61,7 @@ export default {
     competition_selected_competitors: 'Selected candidates',
     competition_no_competitors: 'No Competitors',
     competition_add_title: 'Add competition',
+    competition_finish_description: 'Do you want to close the competition? After this, you will no longer be able to add new candidates.',
 
     // competitor
     competitor_name: 'Full Name',
@@ -83,10 +84,13 @@ export default {
     button_add_soldier: 'Add Soldier',
     button_add_worker: 'Add Worker',
     button_save: 'Save',
+    button_quit: 'Quit',
+    button_finish: 'Finish',
 
     // globals
     no_data: 'No data.',
     valute: 'BAM',
+    confirme: 'Confirme',
 
     // errors
     error_date_not_in_range: 'Dates are not within the range of 06.04.1992 - 14.12.1995.',

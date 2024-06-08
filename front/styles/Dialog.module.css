@@ -84,3 +84,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
