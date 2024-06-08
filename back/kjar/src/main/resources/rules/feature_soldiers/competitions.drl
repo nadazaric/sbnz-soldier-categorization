@@ -43,7 +43,7 @@ rule "Check Competitor score"
 when 
     $competitor: Competitor(status == CompetitorStatus.ACCEPTED, score == 0)
 then
-    Integer score = 1;
+    Integer score = 0;
 
     if ($competitor.getDeadFamilyMember() == FamilyType.CHILD) score += 15;
     else if ($competitor.getDeadFamilyMember() == FamilyType.SPOUSE) score += 5;
@@ -52,6 +52,7 @@ then
     else if ($competitor.getInjuryType() == InjuryType.MEDIUM) score += 15;
     else if ($competitor.getInjuryType() == InjuryType.HIGH) score += 30;
     
+    if (score == 0) modify($competitor) {setStatus(CompetitorStatus.DENIED);}
     modify($competitor) {setScore(score);}
 end
 
