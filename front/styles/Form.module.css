@@ -1,6 +1,6 @@
 .inputWrapper {
     width: 250px;
-    border: 2px solid rgb(var(--DarkGray));
+    border: 2px solid rgba(var(--DarkGray), 0.6);
     border-radius: var(--CornerRadiusStandard);
     transition: border-color 0.1s, color 0.1s;
     height: var(--InputButtonHeight);
@@ -86,4 +86,27 @@
 
 .dropdownIcon {
     color: rgb(var(--PrimaryColor));
+}
+
+.borderedDiv {
+    border: 2px solid rgba(var(--DarkGray), 0.6);
+    position: relative;
+    padding: 0 10px;
+    border-radius: var(--CornerRadiusStandard);
+    width: 100%;
+    height: var(--InputButtonHeight);
+    margin-top: 5px;
+    display: grid;
+    align-items: center;
+}
+
+.cornerText {
+    position: absolute;
+    top: -11px; 
+    left: 20px;
+    background-color: white;
+    padding: 0px 5px;
+    margin: 0;
+    font-size: 13px;
+    color: rgba(var(--DarkGray));
 }

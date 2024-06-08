@@ -1,4 +1,5 @@
 import AddCompetition from "@/components/AddCompetition"
+import AddCompetitor from "@/components/AddCompetitor"
 import DeatilsCompetition from "@/components/DetailsCompetition"
 import { DialogWithHeader } from "@/components/Dialog"
 import { ButtonHeader } from "@/components/Header"
@@ -56,7 +57,7 @@ export default function Competitions() {
 
     // add competitor
     const [openAddCompetitorDialog, setOpenAddCompetitorDialog] = useState(false)
-    const [competitionIdForAddCompetitor, setCompetitionIdForAddCompetitor] = useState
+    const [competitionIdForAddCompetitor, setCompetitionIdForAddCompetitor] = useState()
 
     function onAddCompetitorClick(id) {
         setOpenAddCompetitorDialog(true)
@@ -98,11 +99,14 @@ export default function Competitions() {
 
             <DialogWithHeader
                 isOpen={openAddCompetitorDialog}
-                width={400}
+                width={600}
                 onCloseModal={() => setOpenAddCompetitorDialog(false)}
                 title={'Dodaj kandidata'}
             >
-
+                <AddCompetitor
+                    competitionId={competitionIdForAddCompetitor}
+                    isOpen={openAddCompetitorDialog}
+                />
             </DialogWithHeader>
         </div>
     )

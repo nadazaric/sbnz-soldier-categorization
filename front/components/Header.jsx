@@ -9,7 +9,7 @@ export function ButtonHeader({ title, onAddClick, children }) {
                 {children}
                 <div className={style.iconWrapper}>
                     <AddIcon 
-                        className={`${style.icon} icon`}
+                        className={`${style.icon}`}
                         onClick={() => { if(onAddClick) onAddClick()}} />
                 </div>
             </div>
