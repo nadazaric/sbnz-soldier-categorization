@@ -16,15 +16,19 @@ export default function Competitions() {
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/competition`)
-            .then(response => {console.log(response.data); sortCompetitions(response.data) })
+            .then(response => { sortCompetitions(response.data) })
             .catch(_error => {})
     }, [])
 
     const sortCompetitions = (data) => {
         const sortedCompetitions = data.sort((a, b) => {
-            if (a.year === b.year) return 0
-            else if (a.year < b.year) return 1
-            else return -1
+            if (a.year === b.year) {
+                if (a.isDone == b.isDone) return 0
+                else if (a.isDone) return 1
+                else return -1
+            }
+            else if (a.year < b.year) return 2
+            else return -2
         })
         setCompetitions(sortedCompetitions)
     }

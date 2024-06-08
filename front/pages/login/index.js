@@ -74,7 +74,6 @@ export default function Login() {
                 }
                 <div className='spacer_hor_S'/>
                 <Button 
-                    disableRipple
                     className='raisedButton width_full'
                     disabled={isButtonDisabled()}
                     onClick={() => loginUser()}

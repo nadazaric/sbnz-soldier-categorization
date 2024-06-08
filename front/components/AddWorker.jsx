@@ -60,7 +60,6 @@ export default function AddWorker({ isOpen, onSave }) {
             </div>
             <div className='spacer_hor_S' />
             <Button 
-                disableRipple
                 className='raisedButton width_full'
                 type='submit'
                 disabled={isButtonDisabled()}

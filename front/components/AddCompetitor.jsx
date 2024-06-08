@@ -150,7 +150,6 @@ export default function AddCompetitor({
             </div>
             <div className='spacer_hor_S' />
             <Button 
-                disableRipple
                 className='raisedButton'
                 type='submit'
                 disabled={isButtonDisabled()}

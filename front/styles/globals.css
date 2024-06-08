@@ -128,7 +128,7 @@ body {
 }
 
 .raisedButton:disabled {
-  background-color: rgba(var(--LightGray), 1);
+  background-color: rgba(var(--SecondaryColor), 0.4);
   color: rgba(0, 0, 0, 0.5);
 }
 
