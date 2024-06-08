@@ -82,11 +82,25 @@ export default function Competitions() {
     }
 
     // finish competition
-    const [openFinishCompetitionDialog, setOpenFinisCompetitionDialog] = useState(false)
+    const [openFinishCompetitionDialog, setOpenFinishCompetitionDialog] = useState(false)
 
     function onFinishCompetitionClick(id) {
-        setOpenFinisCompetitionDialog(true)
+        setOpenFinishCompetitionDialog(true)
         setSelectedCompetitionId(id)
+    }
+
+    function onFinishCompetition() {
+        axios.post(`${BACK_BASE_URL}/competition/finish-competition/${selectedCompetitionId}`)
+        .then(response => {
+            if (response.status === 200) {
+                setOpenFinishCompetitionDialog(false)
+                const updatedCompetitions = competitions.map(c => 
+                    c.id === response.data.id ? response.data : c
+                )
+                sortCompetitions(updatedCompetitions)
+            }
+        })
+        .catch(error => {})
     }
 
     return(
@@ -142,6 +156,8 @@ export default function Competitions() {
                 description={t.competition_finish_description}
                 width={400}
                 isOpen={openFinishCompetitionDialog}
+                onNeutralAction={() => setOpenFinishCompetitionDialog(false)}
+                onAction={() => onFinishCompetition()}
             />
         </div>
     )

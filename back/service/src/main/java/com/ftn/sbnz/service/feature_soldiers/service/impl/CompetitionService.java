@@ -76,10 +76,13 @@ public class CompetitionService implements ICompetitionService {
 
         Optional<SpaCompetition> spaCompetitionForFinish = spaCompetitionRepostory.findById(competitionId);
         if (!spaCompetitionForFinish.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitionId);
-        
-        kieSession.insert(spaCompetitionForFinish);
+        SpaCompetition spaCompetition = spaCompetitionForFinish.get();
+
+        spaCompetition.setIsDone(true);
+        kieSession.insert(spaCompetition);
         kieSession.fireAllRules();
-        return spaCompetitionForFinish.get();
+
+        return spaCompetitionRepostory.save(spaCompetition);
     }
     
 }
