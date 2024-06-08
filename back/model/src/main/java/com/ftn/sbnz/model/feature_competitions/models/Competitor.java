@@ -19,7 +19,7 @@ public class Competitor {
     @Column
     private String fullName;
 
-    @Column(unique = true)
+    @Column
     private String jmbg;
 
     @Column
@@ -43,6 +43,8 @@ public class Competitor {
         this.jmbg = jmbg;
         this.deadFamilyMember = deadFamilyMember;
         this.injuryType = injuryType;
+        this.status = CompetitorStatus.WAITING;
+        this.score = 0;
     }
 
     public Competitor(String fullName, String jmbg, CompetitorStatus status,

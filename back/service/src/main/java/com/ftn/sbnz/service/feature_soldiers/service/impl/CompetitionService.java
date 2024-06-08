@@ -41,6 +41,13 @@ public class CompetitionService implements ICompetitionService {
         Optional<SpaCompetition> spaCompetition = spaCompetitionRepostory.findById(competitorDTO.getCompetitionId());
         if (!spaCompetition.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitorDTO.getCompetitionId());
 
+        Integer year = LocalDate.now().getYear();
+        for (int i = 0; i < 3; i++) {
+            System.out.println(year - i);
+            List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(year - i);
+            for (SpaCompetition competition : competitionsForYear) kieSession.insert(competition);
+        }
+
         Competitor competitor = new Competitor(
             competitorDTO.getFullName(),
             competitorDTO.getJmbg(),
@@ -50,9 +57,10 @@ public class CompetitionService implements ICompetitionService {
 
         kieSession.insert(competitor);
         kieSession.fireAllRules();
-        competitor = competitorRepository.save(competitor);
 
+        competitor = competitorRepository.save(competitor);
         spaCompetition.get().addCompetitor(competitor);
+        
         return spaCompetitionRepostory.save(spaCompetition.get());
     }
 
@@ -68,15 +76,8 @@ public class CompetitionService implements ICompetitionService {
 
         Optional<SpaCompetition> spaCompetitionForFinish = spaCompetitionRepostory.findById(competitionId);
         if (!spaCompetitionForFinish.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Competition not exist: " + competitionId);
-        kieSession.insert(spaCompetitionForFinish);
         
-        Integer year = LocalDate.now().getYear();
-        for (int i = 0; i < 3; i++) {
-            System.out.println(year - i);
-            List<SpaCompetition> competitionsForYear = spaCompetitionRepostory.findByYear(year - i);
-            for (SpaCompetition competition : competitionsForYear) kieSession.insert(competition);
-        }
-
+        kieSession.insert(spaCompetitionForFinish);
         kieSession.fireAllRules();
         return spaCompetitionForFinish.get();
     }

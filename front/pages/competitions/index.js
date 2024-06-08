@@ -64,6 +64,23 @@ export default function Competitions() {
         setCompetitionIdForAddCompetitor(id)
     }
 
+    function saveCompetitior(e, competitior) {
+        e.preventDefault()
+        axios.post(`${BACK_BASE_URL}/competition/add-competitor`, competitior, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            if (response.status === 201) {
+                setOpenAddCompetitorDialog(false)
+                const updatedCompetitions = competitions.map(c => 
+                    c.id === response.data.id ? response.data : c
+                )
+                sortCompetitions(updatedCompetitions)
+            }
+        })
+        .catch(error => {})
+    }
+
     return(
         <div className="page">
             <ButtonHeader 
@@ -106,6 +123,7 @@ export default function Competitions() {
                 <AddCompetitor
                     competitionId={competitionIdForAddCompetitor}
                     isOpen={openAddCompetitorDialog}
+                    onSave={saveCompetitior}
                 />
             </DialogWithHeader>
         </div>

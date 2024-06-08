@@ -29,7 +29,7 @@ public class CompetitionController {
 
     @PostMapping("/add-competitor")
     public ResponseEntity<SpaCompetition> addCompetitor(@RequestBody CreateCompetitorDTO competitorDTO) {
-        return new ResponseEntity<>(competitionService.addCompetitorToSpaCompetition(competitorDTO), HttpStatus.OK);
+        return new ResponseEntity<>(competitionService.addCompetitorToSpaCompetition(competitorDTO), HttpStatus.CREATED);
     }
 
     @GetMapping
