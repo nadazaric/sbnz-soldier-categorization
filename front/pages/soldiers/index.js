@@ -74,8 +74,8 @@ export default function Soldiers() {
                 getAllSoldiers()
             }
         })
-        .catch(error => {});
-    };
+        .catch(error => {})
+    }
 
     return(
         <div className='page'>

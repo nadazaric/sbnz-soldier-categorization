@@ -60,6 +60,7 @@ export default {
     competition_all_competitors: 'Svi kandidati',
     competition_selected_competitors: 'Izabrani kandidati',
     competition_no_competitors: 'Nema kandidata',
+    competition_add_title: 'Dodaj konkurs',
 
     // competitor
     competitor_name: 'Ime i prezime',

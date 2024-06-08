@@ -27,7 +27,7 @@ export default function AddCompetition({
     return(
         <form
             className={styleForm.form}
-            onSubmit={() => {if (onSave) onSave()}}
+            onSubmit={(e) => {if (onSave) onSave(e, form)}}
         >
             <div className={`${styleForm.inputWrapper} width_full`}>
                 <input 

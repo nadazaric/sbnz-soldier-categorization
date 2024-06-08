@@ -60,6 +60,7 @@ export default {
     competition_all_competitors: 'All candidates',
     competition_selected_competitors: 'Selected candidates',
     competition_no_competitors: 'No Competitors',
+    competition_add_title: 'Add competition',
 
     // competitor
     competitor_name: 'Full Name',

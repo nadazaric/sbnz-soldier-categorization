@@ -15,9 +15,18 @@ export default function Competitions() {
 
     useEffect(() => {
         axios.get(`${BACK_BASE_URL}/competition`)
-            .then(response => { console.log(response.data); setCompetitions(response.data) })
+            .then(response => { sortCompetitions(response.data) })
             .catch(_error => {})
     }, [])
+
+    const sortCompetitions = (data) => {
+        const sortedCompetitions = data.sort((a, b) => {
+            if (a.isDone === b.isDone) return 0
+            else if (a.isDone) return 1
+            else return -1
+        })
+        setCompetitions(sortedCompetitions)
+    }
 
     // show details
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false)
@@ -30,8 +39,19 @@ export default function Competitions() {
     // add competition
     const [openAddCompeitionDialog, setOpenAddCompetitionDialog] = useState(false)
 
-    function saveCompetition() {
-        setOpenAddCompetitionDialog(false)
+    function saveCompetition(e, competition) {
+        e.preventDefault()
+        axios.post(`${BACK_BASE_URL}/competition`, competition, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            if (response.status === 201) {
+                setOpenAddCompetitionDialog(false)
+                var c = [...competitions, response.data]
+                sortCompetitions(c)
+            }
+        })
+        .catch(error => {})
     }
 
     return(
@@ -58,7 +78,7 @@ export default function Competitions() {
                 isOpen={openAddCompeitionDialog}
                 width={400}
                 onCloseModal={() => setOpenAddCompetitionDialog(false)}
-                title={'Dodaj konkurs'}
+                title={t.competition_add_title}
             >
                 <AddCompetition 
                     isOpen={openAddCompeitionDialog}
