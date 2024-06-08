@@ -3,7 +3,6 @@ package com.ftn.sbnz.service.feature_soldiers.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateInjuryDTO;
@@ -14,6 +13,7 @@ import com.ftn.sbnz.model.feature_soldiers.models.Soldier;
 import com.ftn.sbnz.model.feature_soldiers.models.Unit;
 import com.ftn.sbnz.model.feature_soldiers.models.WarDuty;
 import com.ftn.sbnz.service.core.service.interf.IKieSessionService;
+import com.ftn.sbnz.service.core.values.KieSessionAgendas;
 import com.ftn.sbnz.service.feature_soldiers.repository.InjuryRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.SoldierRepository;
 import com.ftn.sbnz.service.feature_soldiers.repository.UnitRepository;
@@ -36,25 +36,23 @@ public class SoldierService implements ISoldierService {
 
     @Override
     public Soldier saveSoldier(CreateSoldierDTO soldierDTO) {
-        KieSession kieSession = kieSessionService.getKieSession();
-
         Soldier soldier = new Soldier(soldierDTO);
         soldier = soldierRepository.save(soldier);
-        kieSession.insert(soldier);
+        kieSessionService.insertObject(soldier);
         for (CreateWarDutyDTO warDutyDTO : soldierDTO.getWarDuties()) {
             WarDuty warDuty = new WarDuty(warDutyDTO);
             warDuty.setSoldier(soldier);
             warDuty = warDutyRepository.save(warDuty);
-            kieSession.insert(warDuty);
+            kieSessionService.insertObject(warDuty);
         }
         for (CreateInjuryDTO injuryDTO : soldierDTO.getInjuries()) {
             Injury injury = new Injury(injuryDTO);
             injury.setSoldier(soldier);
             injury = injuryRepository.save(injury);
-            kieSession.insert(injury);
+            kieSessionService.insertObject(injury);
         }
 
-        kieSession.fireAllRules();
+        kieSessionService.fireRulesForAgenda(KieSessionAgendas.CATEGORIZATION_AGENDA);
         return soldierRepository.save(soldier);
     }
 

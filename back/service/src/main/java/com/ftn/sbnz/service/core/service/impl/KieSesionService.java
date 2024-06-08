@@ -45,6 +45,17 @@ public class KieSesionService implements IKieSessionService{
         for (Unit unit : units) kieSession.insert(unit);
     }
 
+    @Override
+    public void fireRulesForAgenda(String agenda) {
+        this.kieSession.getAgenda().getAgendaGroup(agenda).setFocus();
+        this.kieSession.fireAllRules();
+    }
+
+    @Override
+    public void insertObject(Object object) {
+        this.kieSession.insert(object);
+    }
+
     private KieSession generateKieSession() throws IOException {
         // load template
         InputStream template = ServiceApplication.class.getResourceAsStream("/rules/feature_soldiers/categorization.drt");
@@ -88,5 +99,4 @@ public class KieSesionService implements IKieSessionService{
         
         return kieHelper.build().newKieSession();
     }
-    
 }
