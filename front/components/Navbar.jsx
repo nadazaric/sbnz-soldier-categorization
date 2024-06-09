@@ -20,9 +20,12 @@ export default function Navbar() {
 
     useEffect(() => {
         setLocale(router.locale)
-        if (selectedOption == '' && getUserRole() == 'ROLE_ADMIN') setSelectedOption(PAGE.WORKERS)
-        else if (selectedOption == '' && getUserRole() == 'ROLE_WORKER') setSelectedOption(PAGE.SOLDIERS)
-    }, [router, selectedOption])
+        if (router.pathname.split('/')[1] == PAGE.COMPETITIONS) setSelectedOption(PAGE.COMPETITIONS)
+        if (router.pathname.split('/')[1] == PAGE.WORKERS) setSelectedOption(PAGE.WORKERS)
+        if (router.pathname.split('/')[1] == PAGE.SOLDIERS) setSelectedOption(PAGE.SOLDIERS)
+        if (router.pathname == '/' && getUserRole() == 'ROLE_ADMIN') setSelectedOption(PAGE.WORKERS)
+        else if (router.pathname == '/' && getUserRole() == 'ROLE_WORKER') setSelectedOption(PAGE.SOLDIERS)
+    }, [router])
 
     useEffect(() => {
         setRole(getUserRole())
