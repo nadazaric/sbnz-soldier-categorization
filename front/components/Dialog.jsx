@@ -37,7 +37,9 @@ export function DialogWithHeader({
     isFullWidth=false,
     onCloseModal, 
     title, 
-    children 
+    children,
+    haveError,
+    errorDescription 
 }) {
     return(
         <Dialog
@@ -52,6 +54,12 @@ export function DialogWithHeader({
                     onClick={() => {if(onCloseModal) onCloseModal()}}
                 />
             </div>
+            {haveError && 
+                <div>
+                    {/* <div className='spacer_hor_S'/> */}
+                    <div className="error">{errorDescription}</div>
+                </div>
+            }
             <div className='spacer_hor_M'></div>
             <div>
                 {children}

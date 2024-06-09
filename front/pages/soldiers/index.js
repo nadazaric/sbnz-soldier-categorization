@@ -15,6 +15,8 @@ export default function Soldiers() {
     const [soldiers, setSoldiers] = useState(null)
     const [openDialog, setOpenDialog] = useState(false)
     const [selectedId, setSelectedId] = useState('')
+    const [haveError, setHaveError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     // units
     const [selectedUnitId, setSelectedUnitId] = useState(null)
@@ -74,7 +76,11 @@ export default function Soldiers() {
                 getAllSoldiers()
             }
         })
-        .catch(error => {})
+        .catch(error => {
+            setHaveError(true)
+            if (error.response.status == 400) setErrorMessage(t.error_jmbg_save_soldier)
+            else setErrorMessage(t.error_save_soldier)
+        })
     }
 
     return(
@@ -99,11 +105,14 @@ export default function Soldiers() {
                 width={600}
                 onCloseModal={() => setOpenDialog(false)}
                 title={selectedId ? t.soldiers_details : t.soldiers_add_title}
+                haveError={haveError}
+                errorDescription={errorMessage}
             >
                 <AddDetailsSoldier 
                     selectedId={selectedId}
                     onSave={saveSoldier}
                     isOpen={openDialog}
+                    onChange={() => setHaveError(false)}
                 />
             </DialogWithHeader>
         </div>

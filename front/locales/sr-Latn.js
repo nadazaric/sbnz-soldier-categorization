@@ -95,5 +95,7 @@ export default {
     // errors
     error_date_not_in_range: 'Datumi nisu u opsegu 06.04.1992 - 14.12.1995.',
     error_start_date_after_end_date: 'Početni datum je poslije krajnjeg datuma.',
-    error_date_range_inside_other_range: 'Jedan vremenski opseg se poklapa sa drugim vremenskim opsegom.'
+    error_date_range_inside_other_range: 'Jedan vremenski opseg se poklapa sa drugim vremenskim opsegom.',
+    error_save_soldier: 'Greška pri kreiranju vojnika.',
+    error_jmbg_save_soldier: 'Unijeti JMBG već postoji u bazi podataka.' 
 }

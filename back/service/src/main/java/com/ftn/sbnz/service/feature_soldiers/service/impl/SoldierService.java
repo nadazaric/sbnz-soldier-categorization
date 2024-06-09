@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateInjuryDTO;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateSoldierDTO;
 import com.ftn.sbnz.model.feature_soldiers.dtos.CreateWarDutyDTO;
@@ -36,6 +39,9 @@ public class SoldierService implements ISoldierService {
 
     @Override
     public Soldier saveSoldier(CreateSoldierDTO soldierDTO) {
+        Optional<Soldier> alreadyExists = soldierRepository.findByJmbg(soldierDTO.getJmbg());
+        if (alreadyExists.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Soldier with jmbg " + soldierDTO.getJmbg() + " already exists.");
+
         Soldier soldier = new Soldier(soldierDTO);
         soldier = soldierRepository.save(soldier);
         kieSessionService.insertObject(soldier);

@@ -14,7 +14,8 @@ import TableEditableUnit from './TableEditableUnit'
 export function AddDetailsSoldier({ 
     selectedId = null,
     onSave, 
-    isOpen 
+    isOpen ,
+    onChange
 }){
     const t = getTranslation()
     const [form, setForm] = useState({
@@ -22,6 +23,10 @@ export function AddDetailsSoldier({
         jmbg: ''
     })
     const [formMode, setFormMode] = useState(true)
+
+    useEffect(() => {
+        if (onChange) onChange()
+    }, [form])
 
     // war obligations
     const [warObligations, setWarObligations] = useState([])
@@ -124,10 +129,6 @@ export function AddDetailsSoldier({
             warDuties: warObligations,
             injuries: injuries,
             units: selectedUnits
-        })
-        setForm({
-            fullName: '',
-            jmbg: ''
         })
         const updatedUnits = units.map(unit => ({ ...unit, selected: false }))
         setUnits(updatedUnits)

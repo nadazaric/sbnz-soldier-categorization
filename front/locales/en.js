@@ -79,7 +79,6 @@ export default {
     competitor_injuries_type_high: 'Severe injury',
     competitor_family_member_child: 'Child',
     competitor_family_member_spouse: 'Spouse',
-    
 
     // buttons
     button_add_soldier: 'Add Soldier',
@@ -96,6 +95,7 @@ export default {
     // errors
     error_date_not_in_range: 'Dates are not within the range of 06.04.1992 - 14.12.1995.',
     error_start_date_after_end_date: 'Start date is after the end date.',
-    error_date_range_inside_other_range: 'One date range overlaps with another date range.'
-
+    error_date_range_inside_other_range: 'One date range overlaps with another date range.',
+    error_save_soldier: "Error creating soldier.",
+    error_jmbg_save_soldier: "The entered JMBG already exists in the database."
 }
