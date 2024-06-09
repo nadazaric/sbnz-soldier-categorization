@@ -1,10 +1,10 @@
 INSERT INTO ROLE(id, name) VALUES (1, 'ADMIN');
 INSERT INTO ROLE(id, name) VALUES (2, 'WORKER');
 
-INSERT INTO MY_USER(name, username, password) VALUES ('Nada Zaric', 'admin', '$2a$12$SNAppbTdXwnOkjSjlpxNoOqCd6RQw4O7IabGuWH82a4wh9judY2SO');
+INSERT INTO MY_USER(name, username, password) VALUES ('Nada Zaric', 'admin', '$2a$10$9/6BSbfQhQLH94TIBeO7IeVgGXLLwH7aSiqDN7IxtmRfi2ECMXRQO');
 INSERT INTO MY_USER_ROLES(user_id, roles_id) VALUES (1, 1);
 
-INSERT INTO MY_USER(name, username, password) VALUES ('Ranka Milovanovic', 'ranka', '$2a$12$SNAppbTdXwnOkjSjlpxNoOqCd6RQw4O7IabGuWH82a4wh9judY2SO');
+INSERT INTO MY_USER(name, username, password) VALUES ('Ranka Milovanovic', 'ranka', '$2a$10$I1decg192qvCwPilvfQmj.uNIR0XiZFMSuRwljbvusGgTx8Wz6/mq');
 INSERT INTO MY_USER_ROLES(user_id, roles_id) VALUES (2, 2);
 
 INSERT INTO UNIT(name, parent_id, type) VALUES ('Armija', null, 0); 
@@ -34,7 +34,3 @@ INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALU
 INSERT INTO SPA_COMPETITION_COMPETITORS(spa_competition_id, competitors_id) VALUES (1, 4);
 INSERT INTO SPA_COMPETITION_SELECTED_COMPETITORS(spa_competition_id, selected_competitors_id) VALUES (1, 2);
 INSERT INTO SPA_COMPETITION_SELECTED_COMPETITORS(spa_competition_id, selected_competitors_id) VALUES (1, 3);
-
--- INSERT INTO SOLDIER (full_name, jmbg, months, category, monthly_contribution) VALUES ('Pera Peric', '076436335357', 0, 0, 0.0);
--- INSERT INTO SOLDIER (full_name, jmbg, months, category, monthly_contribution) VALUES ('Marko Markovic', '076437565357', 0, 0, 0.0);
--- INSERT INTO SOLDIER (full_name, jmbg, months, category, monthly_contribution) VALUES ('Despot Despotovic', '4534646342345', 0, 0, 0.0)
